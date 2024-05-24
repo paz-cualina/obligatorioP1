@@ -44,3 +44,5 @@ input.btn.secondary {border: 1px solid var(--secondary) }
 .footer .content .top ul li:hover { color: var(--secondary); }
 .footer .content .bottom { border-top: 1px solid var(--primary); padding-top: 40px; margin-top: 100px; }
 .footer .content .bottom p { text-align: center; font-weight: 600; }
+
+section { position: relative; }
