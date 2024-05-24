@@ -85,3 +85,8 @@
 .product-details .related-products ul li p { font-size: 16px; font-weight: 600; margin: 15px 0 10px; }
 .product-details .related-products ul li span { font-size: 12px; }
 .product-details .related-products ul li .number { text-align: right; font-size: 20px; }
+
+/*Purchase Orders*/
+.purchase-orders .hero { height: 390px; width: 100%; background-image: url("../img/bg-purchase.png"); background-position: center 0; background-repeat: no-repeat; background-size: cover; }
+.purchase-orders .hero .content { height: 100%; display: flex; align-items: center; }
+.purchase-orders .hero .content h1 { font-size: 36px; font-weight: 600; text-transform: uppercase; }
