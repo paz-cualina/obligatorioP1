@@ -1,0 +1,14 @@
+/*User Registration*/
+.user-registration { min-height: 100vh; height: 100%; width: 100%; background-image: url("../img/bg-register.png"); background-position: center; background-repeat: no-repeat; background-size: cover; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.user-registration::after { content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #00000070; }
+.user-registration .img-wrapper { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 60px; }
+.user-registration .img-wrapper img { max-width: 60px; }
+.user-registration .img-wrapper .vertical-line { display: block; height: 65px; width: 1px; background-color: var(--white); }
+.user-registration .content { position: relative; z-index: 2; max-width: 570px; background-color: var(--black); padding: 65px; display: flex; flex-direction: column; align-items: center; }
+.user-registration .content h1 { font-size: 17px; color: var(--secondary); text-transform: uppercase; font-weight: 600; text-align: center; margin-bottom: 50px; }
+.user-registration .content form { width: 100%; max-width: 335px; display: flex; flex-direction: column; gap: 24px; }
+.user-registration .content form .input-wrapper { display: flex; flex-direction: column; }
+.user-registration .content form .input-wrapper .credit-card-wrapper { display: flex; align-items: center; margin-top: 10px; gap: 2px; width: 100%; }
+.user-registration .content form .input-wrapper .credit-card-wrapper input { width: 100%; border: none; border-bottom: 1px solid var(--white); border-radius: 0; padding: 4px; text-align: center; }
+.user-registration .content form .input-wrapper.input-cvc { flex-direction: row; align-items: center; gap: 20px; }
+.user-registration .content form .input-wrapper.input-cvc input { width: 65px; }

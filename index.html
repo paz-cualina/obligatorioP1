@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Obligatorio</title>
+</head>
+<body>
+    <section class="user-registration" id="register-view">
+        <div class="img-wrapper">
+            <img src="./assets/img/logo-flower.png">
+            <span class="vertical-line"></span>
+            <img src="./assets/img/korn-logo.png">
+        </div>
+        <div class="content">
+            <h1>User Registration</h1>
+            <form>
+                <input type="text" id="register-firstName" placeholder="First Name" />
+                <input type="text" id="register-lastName" placeholder="Last Name" />
+                <input type="text" id="register-user" placeholder="User" />
+                <input type="text" id="register-pwd" placeholder="Password" />
+                <div class="input-wrapper">
+                    <label>Credit Card</label>
+                    <div class="credit-card-wrapper">
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                       <span>-</span>
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                       <span>-</span>
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                </div>
+                <div class="input-wrapper input-cvc">
+                    <label>CVC</label>
+                    <input type="text" id="register-cvc" />
+                </div>
+                <input type="submit" value="Register" id="register-button" class="btn secondary" >
+            </form>
+        </div>
+    </section>
+    <script src="./functions.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
