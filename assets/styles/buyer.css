@@ -1,5 +1,5 @@
 /*User Registration*/
-.user-registration { min-height: 100vh; height: 100%; width: 100%; background-image: url("../img/bg-register.png"); background-position: center; background-repeat: no-repeat; background-size: cover; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.user-registration { min-height: 100vh; height: 100%; width: 100%; background-image: url("../img/bg-register.png"); background-position: center -35px; background-repeat: no-repeat; background-size: cover; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .user-registration::after { content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #00000070; }
 .user-registration .img-wrapper { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 60px; }
 .user-registration .img-wrapper img { max-width: 60px; }
@@ -12,3 +12,14 @@
 .user-registration .content form .input-wrapper .credit-card-wrapper input { width: 100%; border: none; border-bottom: 1px solid var(--white); border-radius: 0; padding: 4px; text-align: center; }
 .user-registration .content form .input-wrapper.input-cvc { flex-direction: row; align-items: center; gap: 20px; }
 .user-registration .content form .input-wrapper.input-cvc input { width: 65px; }
+
+/*User Login*/
+.user-login { min-height: 100vh; height: 100%; width: 100%; background-color: var(--black); display: flex; }
+.user-login .left { width: 50%; display: flex; align-items: center; justify-content: center; }
+.user-login .left .content { max-width: 335px; margin-top: -80px; }
+.user-login .left .content .img-wrapper { display: flex; flex-direction: column; align-items: center; gap: 30px; margin-bottom: 100px; }
+.user-login .left .content .img-wrapper img { width: 60px; }
+.user-login .left .content form { width: 100%; max-width: 335px; display: flex; flex-direction: column; gap: 24px; }
+.user-login .left .content form .radio-inputs-wrapper { display: flex; align-items: center; gap: 20px; }
+.user-login .right { width: 50%; background-image: url("../img/login.png"); background-position: center -70px; background-repeat: no-repeat; background-size: cover; position: relative; }
+.user-login .right::after { content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #00000070; }

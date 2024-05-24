@@ -7,6 +7,7 @@
     <title>Obligatorio</title>
 </head>
 <body>
+    <!--- User Registration --->
     <section class="user-registration" id="register-view">
         <div class="img-wrapper">
             <img src="./assets/img/logo-flower.png">
@@ -46,6 +47,36 @@
                 <input type="submit" value="Register" id="register-button" class="btn secondary" >
             </form>
         </div>
+    </section>
+    <!--- User Login --->
+    <section class="user-login">
+        <div class="left">
+            <div class="content">
+                <div class="img-wrapper">
+                    <img src="./assets/img/logo-white.png">
+                    <span>x</span>
+                    <img src="./assets/img/korn-logo.png">
+                </div>
+                <form>
+                    <div class="radio-inputs-wrapper">
+                        <label class="radio">
+                            <input type="radio" name="radio" />
+                            <span></span>
+                            <p>Admin</p>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" />
+                            <span></span>
+                            <p>Buyer</p>
+                        </label>
+                    </div>
+                    <input type="text" id="login-user" placeholder="User" />
+                    <input type="text" id="login-pwd" placeholder="Password" />
+                    <input type="submit" value="Login" id="login-button" class="btn" >
+                </form>
+            </div>
+        </div>
+        <div class="right"></div>
     </section>
     <script src="./functions.js"></script>
     <script src="./main.js"></script>
