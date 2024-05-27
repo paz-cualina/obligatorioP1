@@ -87,6 +87,27 @@
 .product-details .related-products ul li .number { text-align: right; font-size: 20px; }
 
 /*Purchase Orders*/
+.purchase-orders { background-color: #0a0a0a; }
 .purchase-orders .hero { height: 390px; width: 100%; background-image: url("../img/bg-purchase.png"); background-position: center 0; background-repeat: no-repeat; background-size: cover; }
 .purchase-orders .hero .content { height: 100%; display: flex; align-items: center; }
 .purchase-orders .hero .content h1 { font-size: 36px; font-weight: 600; text-transform: uppercase; }
+.purchase-orders .main-tabs-orders .content { max-width: 860px; padding: 70px 0 100px; }
+.purchase-orders .list-tabs-orders { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px; width: 100%; }
+.purchase-orders .list-tabs-orders li { font: 20px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
+.purchase-orders .list-tabs-orders li:hover,
+.purchase-orders .list-tabs-orders li.active { color: var(--primary); }
+.purchase-orders .list-of-orders { display: flex; flex-direction: column; gap: 60px; width: 100%; }
+.purchase-orders .list-of-orders li { display: flex; align-items: center; justify-content: space-between; gap: 50px; width: 100%; }
+.purchase-orders .list-of-orders li .left { width: 165px; object-fit: cover; }
+.purchase-orders .list-of-orders li .right { display: flex; flex-direction: column; width: 100%; }
+.purchase-orders .list-of-orders li .right .top-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.purchase-orders .list-of-orders li .right .top-wrapper p { font-size: 14px; font-weight: 700; text-transform: uppercase; }
+.purchase-orders .list-of-orders li .right .title-product { font-size: 18px; font-weight: 600; margin-bottom: 15px; }
+.purchase-orders .list-of-orders li .right .middle-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.purchase-orders .list-of-orders li .right .middle-wrapper .description { font-size: 13px; max-width: 500px; }
+.purchase-orders .list-of-orders li .right .middle-wrapper .middle-right { padding-top: 5px; display: flex; flex-direction: column; gap: 10px; text-align: right; font-weight: 600; }
+.purchase-orders .list-of-orders li .right .middle-wrapper .middle-right span { font-size: 20px; }
+.purchase-orders .list-of-orders li .right .middle-wrapper .middle-right p { font-size: 15px; }
+.purchase-orders .list-of-orders li .right .wrapper-bottom { display: flex; align-items: center; justify-content: space-between; }
+.purchase-orders .list-of-orders li .right .wrapper-bottom .purchase-state { font-size: 13px; }
+.purchase-orders .list-of-orders li .right .wrapper-bottom p { font-size: 18px; font-weight: 600;}
