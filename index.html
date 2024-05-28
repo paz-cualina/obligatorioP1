@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Obligatorio</title>
+    <link rel="icon" type="image/svg+xml" sizes="32x32" href="./assets/img/favicon.png">
+    <title>Adidas x Korn</title>
 </head>
 <body>
     <!--- Header --->    
@@ -110,25 +111,17 @@
                 <input type="text" id="register-firstName" placeholder="First Name" />
                 <input type="text" id="register-lastName" placeholder="Last Name" />
                 <input type="text" id="register-user" placeholder="User" />
-                <input type="text" id="register-pwd" placeholder="Password" />
+                <input type="password" id="register-pwd" placeholder="Password" />
                 <div class="input-wrapper">
                     <label>Credit Card</label>
-                    <div class="credit-card-wrapper">
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
-                       <span>-</span>
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
-                       <span>-</span>
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
-                    </div>
+                    <!-- <input type="text" id="credit-card" placeholder="0000-2222-4444-6666"> -->
+                    <input
+                        autocomplete="cc-number"
+                        id="credit-card"
+                        name="card"
+                        type="tel"
+                        placeholder="0000 0000 0000 0000"
+                        />
                 </div>
                 <div class="input-wrapper input-cvc">
                     <label>CVC</label>
@@ -330,7 +323,8 @@
             </div>
         </div>
     </footer>
-    <script src="./functions.js"></script>
-    <script src="./main.js"></script>
+    <script src="./assets/js/register.js"></script>
+    <script src="./assets/js/functions.js"></script>
+    <script src="./assets/js/user.js"></script>
 </body>
 </html>

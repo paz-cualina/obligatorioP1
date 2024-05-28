@@ -8,11 +8,12 @@
 .user-registration .content h1 { font-size: 17px; color: var(--secondary); text-transform: uppercase; font-weight: 600; text-align: center; margin-bottom: 50px; }
 .user-registration .content form { width: 100%; max-width: 335px; display: flex; flex-direction: column; gap: 24px; }
 .user-registration .content form .input-wrapper { display: flex; flex-direction: column; }
-.user-registration .content form .input-wrapper .credit-card-wrapper { display: flex; align-items: center; margin-top: 10px; gap: 2px; width: 100%; }
-.user-registration .content form .input-wrapper .credit-card-wrapper input { width: 100%; border: none; border-bottom: 1px solid var(--white); border-radius: 0; padding: 4px; text-align: center; transition: all 0.3s; }
-.user-registration .content form .input-wrapper .credit-card-wrapper input:focus { outline: none; border-bottom: 1px solid var(--secondary); }
+.user-registration .content form .input-wrapper input { width: 100%; border: none; border-bottom: 1px solid var(--white); border-radius: 0; padding: 4px; text-align: center; transition: all 0.3s; }
+.user-registration .content form .input-wrapper input:focus { outline: none; border-bottom: 1px solid var(--secondary); }
 .user-registration .content form .input-wrapper.input-cvc { flex-direction: row; align-items: center; gap: 20px; }
 .user-registration .content form .input-wrapper.input-cvc input { width: 65px; }
+
+#register-pwd { text-transform: none;}
 
 /*****User Login*****/
 .user-login { min-height: 100vh; height: 100%; width: 100%; background-color: var(--black); display: flex; }
@@ -95,15 +96,15 @@
 .purchase-orders .hero .content h1 { font-size: 36px; font-weight: 600; text-transform: uppercase; }
 
 /*Tabs*/
-.main-tabs-orders .content { max-width: 860px; padding: 70px 0 100px; }
-.list-tabs-orders { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px; width: 100%; }
-.list-tabs-orders li { font: 20px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
-.list-tabs-orders li[data-tab="approved"], 
-.list-tabs-orders li[data-tab="approved"] :hover { color: var(--primary); }
-.list-tabs-orders li[data-tab="pending"], 
-.list-tabs-orders li[data-tab="pending"] :hover { color: var(--secondary); }
-.list-tabs-orders li[data-tab="cancelled"], 
-.list-tabs-orders li[data-tab="cancelled"] :hover { color: var(--error); }
+.purchase-orders .main-tabs-orders .content { max-width: 860px; padding: 70px 0 100px; }
+.purchase-orders .list-tabs-orders { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px; width: 100%; }
+.purchase-orders .list-tabs-orders li { font: 20px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
+.purchase-orders .list-tabs-orders li[data-tab="approved"], 
+.purchase-orders .list-tabs-orders li[data-tab="approved"]:hover { color: var(--primary); }
+.purchase-orders .list-tabs-orders li[data-tab="pending"], 
+.purchase-orders .list-tabs-orders li[data-tab="pending"]:hover { color: var(--secondary); }
+.purchase-orders .list-tabs-orders li[data-tab="cancelled"], 
+.purchase-orders .list-tabs-orders li[data-tab="cancelled"]:hover { color: var(--error); }
 
 /*List of orders*/
 .list-of-orders { display: flex; flex-direction: column; gap: 60px; width: 100%; }
@@ -117,7 +118,6 @@
 .list-of-orders li .right .middle-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .list-of-orders li .right .middle-wrapper .description { font-size: 13px; max-width: 500px; }
 .list-of-orders li .right .middle-wrapper .middle-right { padding-top: 5px; display: flex; flex-direction: column; gap: 10px; text-align: right; font-weight: 600; }
-.list-of-orders li .right .middle-wrapper .middle-right span { font-size: 16px; }
 .list-of-orders li .right .middle-wrapper .middle-right p { font-size: 15px; }
 .list-of-orders li .right .bottom-wrapper { display: flex; align-items: center; justify-content: space-between; }
 .list-of-orders li .right .bottom-wrapper .purchase-state { font-size: 13px; }
