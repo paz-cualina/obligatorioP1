@@ -1,0 +1,26 @@
+/* ADMIN */
+#admin section { padding-left: 450px; padding-top: 80px;padding-bottom: 80px; }
+#admin section .content { max-width: 960px; }
+#admin section .content h2{ font-size: 30px; font-weight: 600; margin-bottom: 55px; }
+
+#product-upload-section .product-upload{ display: flex; gap: 60px; margin-bottom: 150px; }
+#product-upload-section .product-upload .column{ position: relative; display: flex; flex-direction: column; gap: 30px; width: 100%; }
+#product-upload-section .product-upload .column input{}
+#product-upload-section .product-upload .column input textarea{}
+#product-upload-section .product-upload .column:nth-child(2){ width: 525px; }
+#product-upload-section .product-upload .column img{ width: 100%; }
+#product-upload-section .product-upload .column img.logo-flower{ position: absolute; top: 30px; right: -40px; width: 100px; transform: rotate(22deg); }
+
+/*Tables*/
+#product-upload-section .table .row .column:nth-child(1){ min-width: 300px; }
+#product-upload-section .table .row .column:nth-child(2){ }
+#product-upload-section .table .row .column:nth-child(3){ max-width: 120px;}
+#product-upload-section .table .row .column:nth-child(4),
+#product-upload-section .table .row .column:nth-child(5){ max-width: 170px;  justify-content: end; }
+
+#earnings-report-section .table .row .column:nth-child(2){ max-width: 100px; }
+#earnings-report-section .table .row .column:nth-child(3){ max-width: 150px; }
+#earnings-report-section .table .row .column:nth-child(4){ max-width: 150px; justify-content: end; }
+
+#admin .list-of-orders li .left { width: 115px; height: 130px; object-fit: cover; }
+#purchase-approval-section .list-tabs-orders{ margin-top: 90px; }

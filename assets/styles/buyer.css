@@ -95,42 +95,44 @@
 .purchase-orders .hero .content h1 { font-size: 36px; font-weight: 600; text-transform: uppercase; }
 
 /*Tabs*/
-.purchase-orders .main-tabs-orders .content { max-width: 860px; padding: 70px 0 100px; }
-.purchase-orders .list-tabs-orders { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px; width: 100%; }
-.purchase-orders .list-tabs-orders li { font: 20px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
-.purchase-orders .list-tabs-orders li[data-tab="approved"], 
-.purchase-orders .list-tabs-orders li[data-tab="approved"] :hover { color: var(--primary); }
-.purchase-orders .list-tabs-orders li[data-tab="pending"], 
-.purchase-orders .list-tabs-orders li[data-tab="pending"] :hover { color: var(--secondary); }
-.purchase-orders .list-tabs-orders li[data-tab="cancelled"], 
-.purchase-orders .list-tabs-orders li[data-tab="cancelled"] :hover { color: var(--error); }
+.main-tabs-orders .content { max-width: 860px; padding: 70px 0 100px; }
+.list-tabs-orders { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px; width: 100%; }
+.list-tabs-orders li { font: 20px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
+.list-tabs-orders li[data-tab="approved"], 
+.list-tabs-orders li[data-tab="approved"] :hover { color: var(--primary); }
+.list-tabs-orders li[data-tab="pending"], 
+.list-tabs-orders li[data-tab="pending"] :hover { color: var(--secondary); }
+.list-tabs-orders li[data-tab="cancelled"], 
+.list-tabs-orders li[data-tab="cancelled"] :hover { color: var(--error); }
 
 /*List of orders*/
-.purchase-orders .list-of-orders { display: flex; flex-direction: column; gap: 60px; width: 100%; }
-.purchase-orders .list-of-orders li { display: flex; align-items: center; justify-content: space-between; gap: 50px; width: 100%; }
-.purchase-orders .list-of-orders li .left { width: 165px; object-fit: cover; }
-.purchase-orders .list-of-orders li .right { display: flex; flex-direction: column; width: 100%; }
-.purchase-orders .list-of-orders li .right .top-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.purchase-orders .list-of-orders li .right .top-wrapper p { font-size: 14px; font-weight: 700; text-transform: uppercase; }
-.purchase-orders .list-of-orders li .right .top-wrapper i { font-size: 13px; }
-.purchase-orders .list-of-orders li .right .title-product { font-size: 18px; font-weight: 600; margin-bottom: 15px; }
-.purchase-orders .list-of-orders li .right .middle-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.purchase-orders .list-of-orders li .right .middle-wrapper .description { font-size: 13px; max-width: 500px; }
-.purchase-orders .list-of-orders li .right .middle-wrapper .middle-right { padding-top: 5px; display: flex; flex-direction: column; gap: 10px; text-align: right; font-weight: 600; }
-.purchase-orders .list-of-orders li .right .middle-wrapper .middle-right span { font-size: 20px; }
-.purchase-orders .list-of-orders li .right .middle-wrapper .middle-right p { font-size: 15px; }
-.purchase-orders .list-of-orders li .right .bottom-wrapper { display: flex; align-items: center; justify-content: space-between; }
-.purchase-orders .list-of-orders li .right .bottom-wrapper .purchase-state { font-size: 13px; }
-.purchase-orders .list-of-orders li .right .bottom-wrapper p { font-size: 18px; font-weight: 600;}
+.list-of-orders { display: flex; flex-direction: column; gap: 60px; width: 100%; }
+.list-of-orders li { display: flex; align-items: center; justify-content: space-between; gap: 50px; width: 100%; }
+.list-of-orders li .left { width: 165px; object-fit: cover; }
+.list-of-orders li .right { display: flex; flex-direction: column; width: 100%; }
+.list-of-orders li .right .top-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.list-of-orders li .right .top-wrapper p { font-size: 14px; font-weight: 700; text-transform: uppercase; }
+.list-of-orders li .right .top-wrapper i { font-size: 13px; }
+.list-of-orders li .right .title-product { font-size: 18px; font-weight: 600; margin-bottom: 15px; }
+.list-of-orders li .right .middle-wrapper { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.list-of-orders li .right .middle-wrapper .description { font-size: 13px; max-width: 500px; }
+.list-of-orders li .right .middle-wrapper .middle-right { padding-top: 5px; display: flex; flex-direction: column; gap: 10px; text-align: right; font-weight: 600; }
+.list-of-orders li .right .middle-wrapper .middle-right span { font-size: 16px; }
+.list-of-orders li .right .middle-wrapper .middle-right p { font-size: 15px; }
+.list-of-orders li .right .bottom-wrapper { display: flex; align-items: center; justify-content: space-between; }
+.list-of-orders li .right .bottom-wrapper .purchase-state { font-size: 13px; }
+.list-of-orders li .right .bottom-wrapper p { font-size: 18px; font-weight: 600;}
 
 /*Status*/
-.purchase-orders .list-of-orders li.approved .right .top-wrapper p { color: var(--primary); }
-.purchase-orders .list-of-orders li.approved .right .top-wrapper i { color: var(--primary); width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; }
-.purchase-orders .list-of-orders li.approved .right .bottom-wrapper .purchase-state { color: var(--primary); }
-.purchase-orders .list-of-orders li.pending .right .top-wrapper p { color: var(--secondary); }
-.purchase-orders .list-of-orders li.pending .right .top-wrapper i::after { content: ""; display: block; background-image: url("../img/icon-clock.png"); background-repeat: no-repeat; background-size: contain; width: 26px; height: 26px; }
-.purchase-orders .list-of-orders li.pending .right .bottom-wrapper .purchase-state { color: var(--white); background-color: var(--error); font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--error); text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
-.purchase-orders .list-of-orders li.pending .right .bottom-wrapper .purchase-state:hover { color: var(--error); background-color: transparent; }
-.purchase-orders .list-of-orders li.cancelled .right .top-wrapper p { color: var(--error); }
-.purchase-orders .list-of-orders li.cancelled .right .top-wrapper i { color: var(--error); font-size: 26px; }
-.purchase-orders .list-of-orders li.cancelled .right .bottom-wrapper .purchase-state { color: var(--error); text-transform: capitalize; }
+.list-of-orders li.approved .right .top-wrapper p { color: var(--primary); }
+.list-of-orders li.approved .right .top-wrapper i { color: var(--primary); width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; }
+.list-of-orders li.approved .right .bottom-wrapper .purchase-state { color: var(--primary); }
+.list-of-orders li.pending .right .top-wrapper p { color: var(--secondary); }
+.list-of-orders li.pending .right .top-wrapper i::after { content: ""; display: block; background-image: url("../img/icon-clock.png"); background-repeat: no-repeat; background-size: contain; width: 26px; height: 26px; }
+.list-of-orders li.pending .right .bottom-wrapper button.btn-cancel { color: var(--white); background-color: var(--error); font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--error); text-transform: uppercase; transition: all 0.3s; cursor: pointer; margin-right: 10px; }
+.list-of-orders li.pending .right .bottom-wrapper button.btn-cancel:hover { color: var(--error); background-color: transparent; }
+.list-of-orders li.pending .right .bottom-wrapper button.btn-aprove { color: var(--white); background-color: var(--primary); color: black; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--primary); text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
+.list-of-orders li.pending .right .bottom-wrapper button.btn-aprove:hover { color: var(--primary); background-color: transparent; }
+.list-of-orders li.cancelled .right .top-wrapper p { color: var(--error); }
+.list-of-orders li.cancelled .right .top-wrapper i { color: var(--error); font-size: 26px; }
+.list-of-orders li.cancelled .right .bottom-wrapper .purchase-state { color: var(--error); text-transform: capitalize; }

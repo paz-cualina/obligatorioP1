@@ -7,13 +7,549 @@
     <title>Obligatorio</title>
 </head>
 <body>
-    <header class="header">
-        <div class="content">
-            <img src="./assets/img/logo-white.png">
-            <span>x</span>
-            <img src="./assets/img/korn-logo.png">
+    <div id="admin">
+
+        <div class="admin-sidebar">
+            <img src="./assets/img/logo-white.png" class="logo">
+            <ul>
+                <li class="active"><i class="fa-solid fa-chart-simple"></i>Manage Products</li>
+                <li><i class="fa-solid fa-money-check-dollar"></i>Purchase Approval</li>
+                <li><i class="fa-solid fa-money-bill"></i>Earnings Report</li>
+                <li><i class="fa-solid fa-user"></i>Profiles</li>
+            </ul>
+            <div class="bottom-sidebar">
+                <figure class="user-img">
+                    <img src="./assets/img/avatar.png">
+                </figure>
+                <div class="column">
+                    <h3>Jonathan Davis</h3>
+                    <span class="cerrar-sesion">Close sesion</span>
+                </div>
+            </div>
         </div>
-    </header>
+
+        <section id="product-upload-section">
+            <div class="content">
+                <h2>PRODUCT UPLOAD</h2>
+                <div class="product-upload">
+                    <div class="column">
+                        <input type="text" id="product-upload-name" placeholder="name">
+                        <input type="number" id="product-upload-price" placeholder="price">
+                        <input type="number" id="product-upload-stock" placeholder="stock">
+                        <textarea id="product-upload-description" placeholder="description"></textarea>
+                        <button id="product-upload-add" class="btn secondary">ADD PRODUCT</button>
+                    </div>
+                    <div class="column">
+                        <img src="./assets/img/product-placeholder.jpg" class="">
+                        <img src="./assets/img/logo-flower.png" class="logo-flower">
+                    </div>
+                </div>
+            </div>        
+            <div class="content">
+                <h2>STOCK AND STATUS OF PRODUCTS</h2>
+                <div class="table stock-status">
+                    <div class="row table-titles">
+                        <div class="column">PRODUCT</div>
+                        <div class="column">IMAGE</div>
+                        <div class="column">STOCK</div>
+                        <div class="column">STATUS</div>
+                        <div class="column">ON SALE</div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">
+                            <img src="./assets/img/products/product-tshirt.png">
+                        </div>
+                        <div class="column">12</div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="switch">
+                                <input type="checkbox"/>
+                                <div class="switch-options">
+                                    <span class="left-option">Active</span>
+                                    <span class="right-option">Paused</span>
+                                    <span class="circle">
+                                        <i class="fa-solid fa-play"></i>
+                                        <i class="fa-solid fa-pause"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>    
+
+        <section id="earnings-report-section">      
+            <div class="content">
+                <h2>EARNINGS REPORT</h2>
+                <div class="table stock-status">
+                    <div class="row table-titles">
+                        <div class="column">PRODUCT</div>
+                        <div class="column">SOLD</div>
+                        <div class="column">PRICE</div>
+                        <div class="column">INCOMES</div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">12</div>
+                        <div class="column">150</div>
+                        <div class="column">1500</div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">12</div>
+                        <div class="column">150</div>
+                        <div class="column">1500</div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">12</div>
+                        <div class="column">150</div>
+                        <div class="column">1500</div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">12</div>
+                        <div class="column">150</div>
+                        <div class="column">1500</div>
+                    </div>
+                    <div class="row">
+                        <div class="column">T-shirt Adidas x Korn</div>
+                        <div class="column">12</div>
+                        <div class="column">150</div>
+                        <div class="column">1500</div>
+                    </div>
+                    <div class="row total">
+                        <div class="column">TOTAL</div>
+                        <div class="column">1500</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="purchase-approval-section">
+            <div class="content">
+                <h2>PURCHASE APPROVAL</h2>
+                <ul class="list-tabs-orders">
+                    <li data-tab="pending">Pending Purchase</li>
+                    <li data-tab="approved">Approved Purchase</li>
+                    <li data-tab="cancelled">Cancelled Purchase</li>
+                </ul>
+                <ul class="list-of-orders">
+                    <li class="approved">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>Approved Purchase</p>
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="middle-wrapper">
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-right">
+                                    <p><span>$150</span> x2</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <span class="purchase-state">Purchase Delivered</span>
+                                <p>Total: $300</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="pending">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>Pending Purchase</p>
+                                <i class="icon-pending"></i>
+                            </div>
+                            <div class="middle-wrapper">
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-right">
+                                    <p><span>$150</span> x2</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <div class="btn-wrapper">
+                                    <button class="btn-cancel">Cancel</button>
+                                    <button class="btn-aprove">Aprove</button>
+                                </div>
+                                <p>Total: $300</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="cancelled">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>Cancelled Purchase</p>
+                                <i class="fa-solid fa-ban"></i>
+                            </div>
+                            <div class="middle-wrapper">
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-right">
+                                    <p><span>$150</span> x2</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <span class="purchase-state">Cancelled by admin</span>
+                                <p>Total: $300</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
     <script src="./functions.js"></script>
     <script src="./main.js"></script>
 </body>
