@@ -8,9 +8,9 @@ function showCommonClass(showClassName) {
         element.style.display = "block";
     });
 }
-function hideSectionId(sectonId) {
-    document.querySelector(sectonId).style.display = "none";
+function hideSectionId(sectionId) {
+    document.querySelector(sectionId).style.display = "none";
 }
-function showSectionId(sectonId) {
-    document.querySelector(sectonId).style.display = "block";
+function showSectionId(sectionId) {
+    document.querySelector(sectionId).style.display = "block";
 }
