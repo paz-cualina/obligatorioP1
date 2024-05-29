@@ -1,3 +1,18 @@
+document.getElementById("register-button").addEventListener("click", registerBuyer) 
+function registerBuyer(){
+  const firstName = document.querySelector("#register-firstName").value.trim().toLowerCase();
+  const lastName = document.querySelector("#register-lastName").value.trim().toLowerCase();
+  const userName = document.querySelector("#register-user").value.trim().toLowerCase();
+  const password = document.querySelector("#register-pwd").value.trim();
+  const card = parseInt(document.querySelector("#credit-card").value.trim());
+  const cvc = parseInt(document.querySelector("#card-cvc").value.trim())
+  
+    if ( validateFirstName(firstName) && validateLastName(lastName) && validateUser(userName) && validatePassword(password) && validateCard(card) && validateCVC(cvc) ) {
+      alert("User registered successfully");
+    } else {
+      alert("User registration failed");
+    }
+}
 function containUpperCase(text) {
   for ( let i = 0; i < text.length; i++ ) {
     if ( text[i] >= "A" && text[i] <= "Z" ) {
@@ -85,25 +100,29 @@ function cardFormat(card) {
   }
   return true;
 }
-function luhn(card) {
+function luhn(card)
+{
   let switchTo = true;
   let total = 0;
-
-  for (let i = card.length - 1; i >= 0; i--) {
-    let digit = parseInt(card[i], 10);
-
-    if (switchTo) {
-      let subTotal = digit * 2;
-      if (subTotal > 9) subTotal -= 9;
+  for(let i = card.length-1; i >= 0; i--)
+  {
+    if(switchTo)
+    {
+      let subTotal = parseInt(card[i]) * 2;
+      if(subTotal > 9) subTotal -= 9;
       total += subTotal;
-    } else {
-      total += digit;
+      switchTo = false;
     }
-
-    switchTo = !switchTo;
+    else
+    {
+      total += parseInt(card[i]);
+      switchTo = true;
+    }
   }
-  console.log(total % 10 === 0)
-  return total % 10 === 0;
+  total = total * 9;
+  total = String(total);
+  console.log(total[total.length-1])
+  return total[total.length-1];
 }
 function validateCard (card) {
   if (!cardFormat(card)) {
@@ -129,18 +148,3 @@ function validateCVC (cvc) {
   }
   return true;
 }
-document.getElementById("register-button").addEventListener("click", function() {
-  const firstName = document.querySelector("#register-firstName").value.trim().toLowerCase();
-  const lastName = document.querySelector("#register-lastName").value.trim().toLowerCase();
-  const userName = document.querySelector("#register-user").value.trim().toLowerCase();
-  const password = document.querySelector("#register-pwd").value.trim();
-  const card = parseInt(document.querySelector("#credit-card").value.trim());
-  const cvc = parseInt(document.querySelector("#card-cvc").value.trim())
-
-  if ( validateFirstName(firstName) && validateLastName(lastName) && validateUser(userName) && validatePassword(password) && validateCard(card) && validateCVC(cvc) ) {
-    alert("User registered successfully");
-  } else {
-    alert("User registration failed");
-  }
-
-});
