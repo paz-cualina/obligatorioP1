@@ -74,71 +74,70 @@ function validatePassword(password) {
     }
   }
 }
-function luhn(card)
-{
+function cardFormat(card) {
+  if (card.length !== 16) {
+    return false;
+  }
+  for (let i = 0; i < card.length; i++) {
+    if (isNaN(card[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+function luhn(card) {
   let switchTo = true;
   let total = 0;
-  for(let i = card.length-1; i >= 0; i--)
-  {
-    if(switchTo)
-    {
-      let subTotal = parseInt(card[i]) * 2;
-      if(subTotal > 9) subTotal -= 9;
-      total += subTotal;
-      switchTo = false;
-    }
-    else
-    {
-      total += parseInt(card[i]);
-      switchTo = true;
-    }
-  }
-  total = total * 9;
-  total = String(total);
-  return total[total.length-1];
-}
-document.getElementById("credit-card").oninput = (e) => {
-  e.target.value = patternMatch({
-    input: e.target.value,
-    template: "xxxx xxxx xxxx xxxx",
-  });
-};
-function patternMatch({ input, template }) {
-  try {
-    let i = 0;
-    let plaintext = "";
-    let counter = 0;
-    while (i < template.length) {
-      if (counter > input.length - 1) {
-        template = template.substring(0, i);
-        break;
-      }
-      if (template[i] === input[i]) {
-        i++;
-        counter++;
-        continue;
-      }
-      if (template[i] === "x") {
-        template = template.substring(0, i) + input[counter] + template.substring(i + 1);
-        plaintext = plaintext + input[counter];
-        counter++;
-      }
-      i++;
-    }
-    return template
-  } catch {
-    return ""
-  }
-}
 
+  for (let i = card.length - 1; i >= 0; i--) {
+    let digit = parseInt(card[i], 10);
+
+    if (switchTo) {
+      let subTotal = digit * 2;
+      if (subTotal > 9) subTotal -= 9;
+      total += subTotal;
+    } else {
+      total += digit;
+    }
+
+    switchTo = !switchTo;
+  }
+  console.log(total % 10 === 0)
+  return total % 10 === 0;
+}
+function validateCard (card) {
+  if (!cardFormat(card)) {
+    alert("Card number must be 16 digits");
+    return false;
+  }
+  if (!luhn(card)) {
+    alert("Card number is invalid");
+    return false;
+  }
+  return true;
+}
+function validateCVC (cvc) {
+  if (cvc.length!== 3) {
+    alert("CVC must be 3 digits");
+    return false;
+  }
+  for (let i = 0; i < cvc.length; i++) {
+    if (isNaN(cvc[i])) {
+      alert("CVC must be 3 digits");
+      return false;
+    }
+  }
+  return true;
+}
 document.getElementById("register-button").addEventListener("click", function() {
   const firstName = document.querySelector("#register-firstName").value.trim().toLowerCase();
   const lastName = document.querySelector("#register-lastName").value.trim().toLowerCase();
   const userName = document.querySelector("#register-user").value.trim().toLowerCase();
   const password = document.querySelector("#register-pwd").value.trim();
   const card = parseInt(document.querySelector("#credit-card").value.trim());
+  const cvc = parseInt(document.querySelector("#card-cvc").value.trim())
 
-  if ( validateFirstName(firstName) && validateLastName(lastName) && validateUser(userName) && validatePassword(password) && luhn(card) ) {
+  if ( validateFirstName(firstName) && validateLastName(lastName) && validateUser(userName) && validatePassword(password) && validateCard(card) && validateCVC(cvc) ) {
     alert("User registered successfully");
   } else {
     alert("User registration failed");
