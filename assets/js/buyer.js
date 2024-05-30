@@ -11,11 +11,12 @@ class Buyer
         this.cvc = cvc;
         this.balance = 3000;
         this.admin = false;
-        this.id = counter++;
+        this.id = counter;
     }
     validate() {
         if ( validateFirstName(this.firstName) && validateLastName(this.lastName) && validateUser(this.userName) && validatePassword(this.password) && validateCard(this.card) && validateCVC(this.cvc) ) {
             alert("User registered successfully");
+            counter++;
             return true;
         } else {
             alert("User registration failed");
