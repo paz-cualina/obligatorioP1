@@ -2,24 +2,28 @@ class System {
     constructor() {
         this.allBuyers = [];
     }
-
     existBuyer(aBuyer) {
-        let exito = false;
-        let indice = 0;
-        while (!exito && indice < this.allBuyers.length) {
-            if (this.allBuyers[indice].nombre === aBuyer.nombre) {
-                exito = true;
+        let success = false;
+        let i = 0;
+        while (!success && i < this.allBuyers.length) {
+            if (this.allBuyers[i].userName === aBuyer.userName) {
+                success = true;
             }
             else {
-                indice++;
+                i++;
             }
         }
-        return exito;
+        return success;
     }
     addBuyer(aBuyer) {
-        if (aBuyer.validate() && !this.existBuyer(aBuyer)) {
+        if (!this.existBuyer(aBuyer)) {
             this.allBuyers.push(aBuyer);
-            console.log(allBuyers);
+            alert(`${aBuyer} was successfully added`);
+            console.log(this.allBuyers)
+            return true;
+        } else {
+            alert(`${aBuyer} was already added`);
+            return false;
         }
     }
 }

@@ -1,10 +1,10 @@
-function hideCommonClass(hideClassName) {
-    document.querySelectorAll(hideClassName).forEach(element => {
+function hideCommonClass(className) {
+    document.querySelectorAll(className).forEach(element => {
         element.style.display = "none";
     });
 }
-function showCommonClass(showClassName) {
-    document.querySelectorAll(showClassName).forEach(element => {
+function showCommonClass(className) {
+    document.querySelectorAll(className).forEach(element => {
         element.style.display = "block";
     });
 }

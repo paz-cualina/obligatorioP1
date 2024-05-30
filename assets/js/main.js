@@ -1,3 +1,5 @@
+const newSystem = new System();
+
 document.getElementById("register-button").addEventListener("click", registerBuyer);
 function registerBuyer(){
   const firstName = document.querySelector("#register-firstName").value.trim().toLowerCase();
@@ -8,6 +10,10 @@ function registerBuyer(){
   const cvc = document.querySelector("#card-cvc").value.trim();
 
   const newBuyer = new Buyer(firstName, lastName, userName, password, card, cvc);
-  newBuyer.validate();
-  console.log(newBuyer);
+
+  if (newBuyer.validate()) {
+      newSystem.addBuyer(newBuyer);
+  } else {
+    alert("Can not be added to system");
+  }
 }
