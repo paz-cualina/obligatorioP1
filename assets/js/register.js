@@ -1,18 +1,3 @@
-document.getElementById("register-button").addEventListener("click", registerBuyer) 
-function registerBuyer(){
-  const firstName = document.querySelector("#register-firstName").value.trim().toLowerCase();
-  const lastName = document.querySelector("#register-lastName").value.trim().toLowerCase();
-  const userName = document.querySelector("#register-user").value.trim().toLowerCase();
-  const password = document.querySelector("#register-pwd").value.trim();
-  const card = parseInt(document.querySelector("#credit-card").value.trim());
-  const cvc = parseInt(document.querySelector("#card-cvc").value.trim())
-  
-    if ( validateFirstName(firstName) && validateLastName(lastName) && validateUser(userName) && validatePassword(password) && validateCard(card) && validateCVC(cvc) ) {
-      alert("User registered successfully");
-    } else {
-      alert("User registration failed");
-    }
-}
 function containUpperCase(text) {
   for ( let i = 0; i < text.length; i++ ) {
     if ( text[i] >= "A" && text[i] <= "Z" ) {
@@ -109,8 +94,10 @@ function luhn(card)
     if(switchTo)
     {
       let subTotal = parseInt(card[i]) * 2;
-      if(subTotal > 9) subTotal -= 9;
-      total += subTotal;
+      if(subTotal > 9) {
+        subTotal -= 9;
+        total += subTotal;
+      }
       switchTo = false;
     }
     else
@@ -121,10 +108,10 @@ function luhn(card)
   }
   total = total * 9;
   total = String(total);
-  console.log(total[total.length-1])
+
   return total[total.length-1];
 }
-function validateCard (card) {
+function validateCard(card) {
   if (!cardFormat(card)) {
     alert("Card number must be 16 digits");
     return false;
@@ -135,8 +122,8 @@ function validateCard (card) {
   }
   return true;
 }
-function validateCVC (cvc) {
-  if (cvc.length!== 3) {
+function validateCVC(cvc) {
+  if (cvc.length !== 3) {
     alert("CVC must be 3 digits");
     return false;
   }
