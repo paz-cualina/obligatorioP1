@@ -10,10 +10,10 @@ section { position: relative; }
 .btn.secondary:hover { color: var(--secondary); }
 
 /*Toast*/
-.toast{ position: fixed; top: 0; left: 0; visibility: hidden; background: var(--error); background: var(--error); padding: 40px; z-index: 10000; }
-.toast.success{ background: var(--primary); }
-.toast.error{ background: var(--error); }
-.toast.show{ visibility: visible; }
+.toast { position: fixed; top: 40px; right: 40px; visibility: hidden; background: var(--error); font-size: 14px; padding: 20px 30px; border-radius: 4px; z-index: 1000; }
+.toast.success { background: var(--primary); color: var(--black); }
+.toast.error { background: var(--error); }
+.toast.show { visibility: visible; }
 
 /*Form*/
 input,

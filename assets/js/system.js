@@ -1,7 +1,7 @@
 class System {
     constructor() {
         this.allBuyers = [];
-        //this.Precarga();
+        //this.Preload();
     }
     existBuyer(aBuyer) {
         let success = false;
@@ -30,7 +30,7 @@ class System {
         this.allProducts.push(aProduct);
     }
 /*
-    Precarga() {
+    Preload() {
         this.addBuyer(new Persona("Alejandro", "al_usr", "al_pwd", 7583));
     }
 */

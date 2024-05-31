@@ -1,7 +1,7 @@
 // html elements
 const toast = document.querySelector(".toast");
 
-// sistema
+// system
 const newSystem = new System();
 
 document.getElementById("register-button").addEventListener("click", registerBuyer);

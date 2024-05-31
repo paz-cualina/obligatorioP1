@@ -1,5 +1,5 @@
 
-//gereral fuctions
+// General functions
 function hideCommonClass(className) {
     document.querySelectorAll(className).forEach(element => {
         element.style.display = "none";
@@ -18,27 +18,27 @@ function showSectionId(sectionId) {
 }
 function notEmpty(value) {
     if ( value === "" ) {
-      return false; 
-    }else{
-        return true;
+      return true; 
+    } else {
+        return false;
     }
 }
 function isNumber(value) {
     if ( isNaN(value) ) {
       return false; 
-    }else{
+    } else {
         return true;
     }
 }
 function graterZero(value) {
     if ( value > 0 ) {
       return true; 
-    }else{
+    } else {
         return false;
     }
 }
 
-//toast
+// Toast
 function error(message, statusType) {
     toast.innerHTML = message;
     toast.classList.add(statusType);
@@ -47,4 +47,4 @@ function error(message, statusType) {
         toast.classList.remove(statusType);
         toast.classList.remove("show");
     }, 3000);
-  }
+}
