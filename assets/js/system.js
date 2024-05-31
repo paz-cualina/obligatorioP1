@@ -1,6 +1,7 @@
 class System {
     constructor() {
         this.allBuyers = [];
+        //this.Precarga();
     }
     existBuyer(aBuyer) {
         let success = false;
@@ -18,12 +19,19 @@ class System {
     addBuyer(aBuyer) {
         if (!this.existBuyer(aBuyer)) {
             this.allBuyers.push(aBuyer);
-            alert(`${aBuyer} was successfully added`);
-            console.log(this.allBuyers)
+            error(`${aBuyer.userName} was successfully added`, "success")
             return true;
         } else {
-            alert(`${aBuyer} was already added`);
+            error(`the user ${aBuyer.userName} already exist`, "error")
             return false;
         }
     }
+    addProduct(aProduct) {
+        this.allProducts.push(aProduct);
+    }
+/*
+    Precarga() {
+        this.addBuyer(new Persona("Alejandro", "al_usr", "al_pwd", 7583));
+    }
+*/
 }

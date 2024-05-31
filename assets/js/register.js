@@ -23,53 +23,53 @@ function containNumber(text) {
   return false;
 }
 function validateFirstName(firstName) {
-  if ( firstName === "") {
-    alert("First Name cannot be empty");
+  if ( notEmpty(firstName)) {
+    error("First Name cannot be empty", "error")
     return false; 
   } else {
     if ( firstName.length >= 2 && firstName.length <= 12 ) {
       return true;
     } else {
-      alert("First Name must be between 2 and 12 characters");
+      error("First Name must be between 2 and 12 characters", "error")
       return false;
     }
   }
 }
 function validateLastName(lastName) {
-  if ( lastName === "") {
-    alert("Last Name cannot be empty");
+  if ( notEmpty(lastName)) {
+    error("Last Name cannot be empty", "error")
     return false; 
   } else {
     if ( lastName.length >= 2 && lastName.length <= 12 ) {
       return true;
     } else {
-      alert("Last Name must be between 2 and 12 characters");
+      error("Last Name must be between 2 and 12 characters", "error")
       return false;
     }
   }
 }
 function validateUser(userName) {
-  if ( userName === "" ) {
-    alert("Username cannot be empty")
+  if ( notEmpty(userName)) {
+    error("Username cannot be empty", "error")
     return false; 
   } else {
     if ( userName.length >= 6 && userName.length <= 20 ) {
       return true;
     } else {
-      alert("Username must be between 6 and 20 characters");
+      error("Username must be between 6 and 20 characters", "error")
       return false;
     }
   }
 }
 function validatePassword(password) {
-  if ( password === "" ) {
-    alert("Password cannot be empty");
+  if ( notEmpty(password) ) {
+    error("Password cannot be empty", "error")
     return false; 
   } else {
     if ( password.length >= 5 && containUpperCase(password) && containLowerCase(password) && containNumber(password) ) {
       return true;
     } else {
-      alert("Password failed");
+      error("Password failed", "error")
       return false;
     }
   }
@@ -113,23 +113,23 @@ function luhn(card)
 }
 function validateCard(card) {
   if (!cardFormat(card)) {
-    alert("Card number must be 16 digits");
+    error("Card number must be 16 digits", "error")
     return false;
   }
   if (!luhn(card)) {
-    alert("Card number is invalid");
+    error("Card number is invalid", "error")
     return false;
   }
   return true;
 }
 function validateCVC(cvc) {
   if (cvc.length !== 3) {
-    alert("CVC must be 3 digits");
+    error("CVC must be 3 digits", "error")
     return false;
   }
   for (let i = 0; i < cvc.length; i++) {
     if (isNaN(cvc[i])) {
-      alert("CVC must be 3 digits");
+      error("CVC must be numbers", "error")
       return false;
     }
   }

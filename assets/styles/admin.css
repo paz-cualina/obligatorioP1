@@ -1,7 +1,7 @@
 /* ADMIN */
-#admin section { padding-left: 450px; padding-top: 80px;padding-bottom: 80px; }
-#admin section .content { max-width: 960px; }
-#admin section .content h2{ font-size: 30px; font-weight: 600; margin-bottom: 55px; }
+#admin-view section { padding-left: 450px; padding-top: 80px;padding-bottom: 80px; }
+#admin-view section .content { max-width: 960px; }
+#admin-view section .content h2{ font-size: 30px; font-weight: 600; margin-bottom: 55px; }
 
 #product-upload-section .product-upload .display-flex { gap: 60px; margin-bottom: 150px; }
 #product-upload-section .product-upload .column{ position: relative; display: flex; flex-direction: column; gap: 30px; width: 100%; }
@@ -22,5 +22,5 @@
 #earnings-report-section .table .row .column:nth-child(3){ max-width: 150px; }
 #earnings-report-section .table .row .column:nth-child(4){ max-width: 150px; justify-content: end; }
 
-#admin .list-of-orders li .left { width: 115px; height: 130px; object-fit: cover; }
+#admin-view .list-of-orders li .left { width: 115px; height: 130px; object-fit: cover; }
 #purchase-approval-section .list-tabs-orders{ margin-top: 90px; }

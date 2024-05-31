@@ -1,4 +1,4 @@
-let counter = 0;
+let counterBuyer = 0;
 class Buyer
 {
     constructor(firstName, lastName, userName, password, card, cvc)
@@ -11,15 +11,14 @@ class Buyer
         this.cvc = cvc;
         this.balance = 3000;
         this.admin = false;
-        this.id = counter;
+        this.id = counterBuyer;
     }
     validate() {
         if ( validateFirstName(this.firstName) && validateLastName(this.lastName) && validateUser(this.userName) && validatePassword(this.password) && validateCard(this.card) && validateCVC(this.cvc) ) {
-            alert("User registered successfully");
-            counter++;
+            error("User registered successfully", "success")
+            counterBuyer++;
             return true;
         } else {
-            alert("User registration failed");
             return false;
         }
     }
