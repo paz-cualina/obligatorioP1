@@ -13,11 +13,12 @@ class Product
         this.productId = counterProduct;
     }
     validate() {
-        if ( notEmpty(productName) && notEmpty(productPrice) && notEmpty(productDescription) && notEmpty(productStock) && isNumber(productPrice) && isNumber(productStock) && graterZero(productPrice) &&graterZero(productStock)) {
-            error("Product has been loaded successfully", "success")
+        if ( notEmpty(this.productName) && notEmpty(this.productPrice) && notEmpty(this.productDescription) && notEmpty(this.productStock) && isNumber(this.productPrice) && isNumber(this.productStock) && greaterZero(this.productPrice) && greaterZero(this.productStock)) {
+            toastMessage("Product has been loaded successfully", "success")
             counterProduct++;
             return true;
         } else {
+            console.log("Product has not been loaded")
             return false;
         }
     }

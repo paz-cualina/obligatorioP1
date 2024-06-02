@@ -18,19 +18,19 @@ function showSectionId(sectionId) {
 }
 function notEmpty(value) {
     if ( value === "" ) {
-      return true; 
-    } else {
-        return false;
-    }
-}
-function isNumber(value) {
-    if ( isNaN(value) ) {
       return false; 
     } else {
         return true;
     }
 }
-function graterZero(value) {
+function isNumber(value) {
+    if ( !isNaN(value) ) {
+      return true; 
+    } else {
+        return false;
+    }
+}
+function greaterZero(value) {
     if ( value > 0 ) {
       return true; 
     } else {
@@ -39,7 +39,7 @@ function graterZero(value) {
 }
 
 // Toast
-function error(message, statusType) {
+function toastMessage(message, statusType) {
     toast.innerHTML = message;
     toast.classList.add(statusType);
     toast.classList.add("show");

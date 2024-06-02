@@ -9,12 +9,11 @@ class Admin
         this.id = counterAdmin;
     }
     validate() {
-        if ( validateUser(this.userName) && validatePassword(this.password) && validateCard(this.card) && validateCVC(this.cvc) ) {
-            alert("User registered successfully");
+        if ( validateUser(this.userName) && validatePassword(this.password) ) {
+            toastMessage("User registered successfully", "success")
             counterAdmin++;
             return true;
         } else {
-            alert("User registration failed");
             return false;
         }
     }

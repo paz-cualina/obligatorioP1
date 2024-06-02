@@ -23,55 +23,55 @@ function containNumber(text) {
   return false;
 }
 function validateFirstName(firstName) {
-  if ( notEmpty(firstName)) {
-    error("First Name cannot be empty", "error")
-    return false; 
-  } else {
+  if ( notEmpty(firstName) ) {
     if ( firstName.length >= 2 && firstName.length <= 12 ) {
       return true;
     } else {
-      error("First Name must be between 2 and 12 characters", "error")
+      toastMessage("First Name must be between 2 and 12 characters", "error")
       return false;
     }
+  } else {
+    toastMessage("First Name cannot be empty", "error")
+    return false; 
   }
 }
 function validateLastName(lastName) {
-  if ( notEmpty(lastName)) {
-    error("Last Name cannot be empty", "error")
-    return false; 
-  } else {
+  if ( notEmpty(lastName) ) {
     if ( lastName.length >= 2 && lastName.length <= 12 ) {
       return true;
     } else {
-      error("Last Name must be between 2 and 12 characters", "error")
+      toastMessage("Last Name must be between 2 and 12 characters", "error")
       return false;
     }
+  } else {
+    toastMessage("Last Name cannot be empty", "error")
+    return false; 
   }
 }
 function validateUser(userName) {
   if ( notEmpty(userName)) {
-    error("Username cannot be empty", "error")
-    return false; 
-  } else {
     if ( userName.length >= 6 && userName.length <= 20 ) {
       return true;
     } else {
-      error("Username must be between 6 and 20 characters", "error")
+      toastMessage("Username must be between 6 and 20 characters", "error")
       return false;
     }
+  } else {
+    toastMessage("Username cannot be empty", "error")
+    return false; 
   }
 }
 function validatePassword(password) {
   if ( notEmpty(password) ) {
-    error("Password cannot be empty", "error")
-    return false; 
-  } else {
     if ( password.length >= 5 && containUpperCase(password) && containLowerCase(password) && containNumber(password) ) {
       return true;
     } else {
-      error("Password failed", "error")
+      toastMessage("Password failed", "error")
       return false;
     }
+  } else { 
+    toastMessage("Password cannot be empty", "error")
+    return false; 
   }
 }
 function cardFormat(card) {
@@ -113,23 +113,23 @@ function luhn(card)
 }
 function validateCard(card) {
   if (!cardFormat(card)) {
-    error("Card number must be 16 digits", "error")
+    toastMessage("Card number must be 16 digits", "error")
     return false;
   }
   if (!luhn(card)) {
-    error("Card number is invalid", "error")
+    toastMessage("Card number is invalid", "error")
     return false;
   }
   return true;
 }
 function validateCVC(cvc) {
   if (cvc.length !== 3) {
-    error("CVC must be 3 digits", "error")
+    toastMessage("CVC must be 3 digits", "error")
     return false;
   }
   for (let i = 0; i < cvc.length; i++) {
     if (isNaN(cvc[i])) {
-      error("CVC must be numbers", "error")
+      toastMessage("CVC must be numbers", "error")
       return false;
     }
   }

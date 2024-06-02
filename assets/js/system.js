@@ -1,6 +1,7 @@
 class System {
     constructor() {
         this.allBuyers = [];
+        this.allProducts = [];
         //this.Preload();
     }
     existBuyer(aBuyer) {
@@ -19,15 +20,16 @@ class System {
     addBuyer(aBuyer) {
         if (!this.existBuyer(aBuyer)) {
             this.allBuyers.push(aBuyer);
-            error(`${aBuyer.userName} was successfully added`, "success")
+            toastMessage(`${aBuyer.userName} was successfully added`, "success")
             return true;
         } else {
-            error(`the user ${aBuyer.userName} already exist`, "error")
+            toastMessage(`the user ${aBuyer.userName} already exist`, "error")
             return false;
         }
     }
     addProduct(aProduct) {
         this.allProducts.push(aProduct);
+        console.log(this.allProducts)
     }
 /*
     Preload() {
