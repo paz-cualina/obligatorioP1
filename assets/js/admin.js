@@ -10,7 +10,7 @@ class Admin
     }
     validate() {
         if ( validateUser(this.userName) && validatePassword(this.password) ) {
-            toastMessage("User registered successfully", "success")
+            toastMessage("User with role admin registered successfully", "success")
             counterAdmin++;
             return true;
         } else {

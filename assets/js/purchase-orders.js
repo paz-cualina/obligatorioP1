@@ -1,5 +1,5 @@
-let counterProduct = 0;
-class Product
+let counterPurchase = 0;
+class Purchase
 {
     constructor(productName, productPrice, productDescription, productImg, productStock)
     {
@@ -10,12 +10,12 @@ class Product
         this.productStock = productStock;
         this.productStatus = true;
         this.productSale = false;
-        this.productId = counterProduct;
+        this.productId = counterPurchase;
     }
     validate() {
         if ( notEmpty(this.productName) && notEmpty(this.productPrice) && notEmpty(this.productDescription) && notEmpty(this.productStock) && isNumber(this.productPrice) && isNumber(this.productStock) && greaterZero(this.productPrice) && greaterZero(this.productStock)) {
             toastMessage("Product has been loaded successfully", "success")
-            counterProduct++;
+            counterPurchase++;
             return true;
         } else {
             return false;
