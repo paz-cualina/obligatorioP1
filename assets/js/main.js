@@ -4,6 +4,11 @@ const toast = document.querySelector(".toast");
 // system
 const aSystem = new System();
 
+function initialState(){
+  aSystem.crateProductList();
+}
+initialState();
+
 document.getElementById("register-button").addEventListener("click", registerBuyer);
 function registerBuyer(){
   const firstName = document.getElementById("register-firstName").value.trim().toLowerCase();
@@ -15,11 +20,8 @@ function registerBuyer(){
 
   const newBuyer = new Buyer(firstName, lastName, userName, password, card, cvc);
 
-  if (newBuyer.validate()) {
-      aSystem.addBuyer(newBuyer);
-  } else {
-    //toastMessage(`Can not be added to system`, "error")
-  }
+  aSystem.addBuyer(newBuyer);
+
 }
 
 document.getElementById("product-upload-add").addEventListener("click", addNewProduct);
@@ -30,13 +32,20 @@ function addNewProduct(){
   const productUploadImg = document.getElementById("product-upload-img").value.trim();
   const productUploadStock = parseInt(document.getElementById("product-upload-stock").value.trim());
 
-  const newProduct = new Product(productUploadName, productUploadPrice, productUploadDescription, productUploadImg, productUploadStock);
+  const newProduct = new Product(productUploadName, productUploadPrice, productUploadDescription, productUploadImg, productUploadStock, true, false);
 
-  if (newProduct.validate()) {
-    console.log(newProduct)
-    aSystem.addProduct(newProduct);
-  } else {
-    toastMessage("All inputs must be added. Price and stock must be greater than 0", "error")
-  }
+  aSystem.addProduct(newProduct);
+  aSystem.crateProductList();
 
 }
+
+
+
+
+document.querySelectorAll(".product-list-ul li").forEach(element => {
+  element.addEventListener("click", showProductDetails);
+  function showProductDetails(){
+    const dataIdProduct = element.getAttribute("data-productid");
+    aSystem.productDetail(dataIdProduct);
+  }
+});
