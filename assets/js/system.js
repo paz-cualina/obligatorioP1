@@ -3,6 +3,7 @@ class System {
         this.allBuyers = [];
         this.allAdmins = [];
         this.allProducts = [];
+        this.allPurchases = [];
         this.Preload();
     }
     existBuyer(aBuyer) {
@@ -61,24 +62,44 @@ class System {
         }
     }
 
-    /*
-    getDataProduct(dataIdProduct) {
-        let aDataProduct = null;
+    loginBuyer(dataUserName, password) {
+        let aDataUser = null;
         let index = 0;
-        while (aDataProduct === null && index < this.allProducts.length) {
-            if (this.allProducts[index].productId === dataIdProduct) aDataProduct = this.allProducts[index];
-            else index++;
+        while (aDataUser === null && index < this.allBuyers.length) {
+
+            if (this.allBuyers[index].userName === dataUserName) {
+                aDataUser = this.allBuyers[index];
+                if (aDataUser.password === password) {
+                    toastMessage(`${aDataUser.userName} welcome! `, "success");
+                    //  TODO: show product list and hero
+                    currentUser = aDataUser;
+                    showNextView("list-of-products");
+                }
+            }
+            else {index++;}
         }
-        console.log(aDataProduct);
-        return aDataProduct;
     }
-    */
 
+    loginAdmin(dataUserName, password) {
+        let aDataUser = null;
+        let index = 0;
+        while (aDataUser === null && index < this.allAdmins.length) {
 
+            if (this.allAdmins[index].userName === dataUserName) {
+                aDataUser = this.allAdmins[index];
+                if (aDataUser.password === password) {
+                    toastMessage(`${aDataUser.userName} welcome! `, "success");
+                    currentUser = aDataUser;
+                    showNextView("product-upload-section");
+                }
+            }
+            else {index++;}
+        }
+    }
     productDetail(dataIdProduct) {
 
         let contentDetailContainer = document.querySelector(".main-detail");
-        let aDataProduct = null;
+        aDataProduct = null;
         let index = 0;
         while (aDataProduct === null && index < this.allProducts.length) {
 
@@ -100,7 +121,7 @@ class System {
                         <li></li>
                         <li></li>
                     </ul>
-                    <span class="stock">${aDataProduct.productStock}</span>
+                    <span class="stock">Stock: ${aDataProduct.productStock}</span>
                     <div class="subtotal">
                         <div class="wrapper-counter">
                             <span class="btn-minus">-</span>
@@ -109,14 +130,22 @@ class System {
                         </div>
                         <span class="number">$${aDataProduct.productPrice}</span>
                     </div>
-                    <button class="btn secondary" data-buy="${aDataProduct.productId}">Buy</button>
                 </div>
             </div>`;
 
         return contentDetailContainer.innerHTML = contentDetail;
     }
-
-
+    addPurchase(aPurchase) {
+        if ( aPurchase.validate() ) {
+            this.allPurchases.push(aPurchase);
+            console.log(this.allPurchases); 
+            toastMessage(`The purchase order was successfully created`, "success");
+            return true;
+        } else {
+            toastMessage(`The purchase order couldn't be created`, "error");
+            return false;
+        }
+    }
     Preload() {
         // Buyers
         this.addBuyer(new Buyer("Tamara", "Sancristobal", "tam_sancri", "Tamara2024", "4916103567334187","123"));

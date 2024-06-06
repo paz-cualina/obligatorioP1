@@ -11,10 +11,10 @@ function showCommonClass(className) {
     });
 }
 function hideSectionId(sectionId) {
-    document.querySelector(sectionId).style.display = "none";
+    document.getElementById(sectionId).style.display = "none";
 }
 function showSectionId(sectionId) {
-    document.querySelector(sectionId).style.display = "block";
+    document.getElementById(sectionId).style.display = "block";
 }
 function notEmpty(value) {
     if ( value === "" ) {
@@ -47,4 +47,9 @@ function toastMessage(message, statusType) {
         toast.classList.remove(statusType);
         toast.classList.remove("show");
     }, 3000);
+}
+// Show next view
+function showNextView( nextView ) {
+    hideCommonClass(".view");
+    showSectionId(nextView);
 }

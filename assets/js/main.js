@@ -1,5 +1,7 @@
 // html elements
 const toast = document.querySelector(".toast");
+let currentUser = [];
+let aDataProduct = [];
 
 // system
 const aSystem = new System();
@@ -24,6 +26,16 @@ function registerBuyer(){
 
 }
 
+document.getElementById("login-button").addEventListener("click", loginUser);
+function loginUser(){
+  const userName = document.getElementById("login-user").value.trim().toLowerCase();
+  const password = document.getElementById("login-pwd").value.trim();
+
+  aSystem.loginBuyer(userName, password);
+  aSystem.loginAdmin(userName, password);
+
+}
+
 document.getElementById("product-upload-add").addEventListener("click", addNewProduct);
 function addNewProduct(){
   const productUploadName = document.getElementById("product-upload-name").value.trim();
@@ -39,13 +51,39 @@ function addNewProduct(){
 
 }
 
-
-
-
 document.querySelectorAll(".product-list-ul li").forEach(element => {
   element.addEventListener("click", showProductDetails);
   function showProductDetails(){
     const dataIdProduct = element.getAttribute("data-productid");
     aSystem.productDetail(dataIdProduct);
+    showNextView( "product-details" );
   }
 });
+
+document.getElementById("btn-buy").addEventListener("click", buyProduct);
+function buyProduct(){
+  const productQty = parseInt(document.getElementById("qty-product").value);
+  console.log(currentUser);
+  console.log(currentUser.id);
+  const newPurchase = new Purchase (currentUser.id, aDataProduct, productQty, "pending");
+
+  aSystem.addPurchase(newPurchase);
+  showNextView( "purchase-orders" );
+
+}
+
+document.getElementById("btn-go-register").addEventListener("click", goRegister);
+function goRegister(){
+  showNextView( "user-registration" );
+}
+
+document.getElementById("btn-go-login").addEventListener("click", goLogin);
+function goLogin(){
+  showNextView( "user-login" );
+}
+
+document.getElementById("btn-go-list").addEventListener("click", goList);
+function goList(){
+  showNextView( "list-of-products" );
+}
+

@@ -9,7 +9,6 @@
 </head>
 <body>
     
-    <div id="admin-view">
 
         <div class="admin-sidebar" style="display: none;">
             <img src="./assets/img/logo-white.png" class="logo">
@@ -30,7 +29,7 @@
             </div>
         </div>
 
-        <section id="product-upload-section" class="admin-common">
+        <section id="product-upload-section" class="view" style="display: none;">
             <div class="content">
                 <div class="product-upload">
                     <h2>PRODUCT UPLOAD</h2>
@@ -427,7 +426,7 @@
             </div>
         </section>    
 
-        <section id="earnings-report-section" class="admin-common">      
+        <section id="earnings-report-section" class="view" style="display: none;">      
             <div class="content">
                 <div class="table stock-status">
                     <h2>EARNINGS REPORT</h2>
@@ -475,7 +474,7 @@
             </div>
         </section>
 
-        <section id="purchase-approval-section" class="admin-common">
+        <section id="purchase-approval-section" class="view" style="display: none;">
             <div class="content">
                 <h2>PURCHASE APPROVAL</h2>
                 <ul class="list-tabs-orders">
@@ -554,18 +553,16 @@
             </div>
         </section>
 
-    </div>
 
-    <div id="buyer-view">
         <!--- Header --->    
-        <header class="header">
+        <header class="header" style="display: none;">
             <div class="content">
                 <img src="./assets/img/logo-white.png">
                 <span>x</span>
                 <img src="./assets/img/korn-logo.png">
             </div>
         </header>
-        <section id="list-of-products" class="buyer-common">
+        <section id="list-of-products" class="view" style="display: none;">
             <div class="hero-bg">
                 <div class="video-container">
                     <video width="320" height="240" autoplay loop muted playsinline>
@@ -594,7 +591,7 @@
             </div>
         </section>
         <!--- User Registration --->
-        <section id="user-registration" class="buyer-common">
+        <section id="user-registration" class="view" style="display: none;">
             <div class="content">
                 <div class="img-wrapper">
                     <img src="./assets/img/logo-flower.png">
@@ -618,12 +615,13 @@
                         </div>
                         <div id="register-button" class="btn secondary">Register</div>  
                     </form>
+                    <span id="btn-go-login" class="go-to-btn">I'm already registered. Go to Login.</span>
                     <p class="error-register"></p>
                 </div>
             </div>
         </section>
         <!--- User Login --->
-        <section  id="user-login" class="buyer-common">
+        <section  id="user-login" class="view" style="display: block;">
             <div class="display-flex">
                 <div class="left">
                     <div class="content">
@@ -632,7 +630,7 @@
                             <span>x</span>
                             <img src="./assets/img/korn-logo.png">
                         </div>
-                        <form>
+                        <div class="form">
                             <div class="radio-inputs-wrapper">
                                 <label class="radio">
                                     <input type="radio" name="radio" />
@@ -646,18 +644,21 @@
                                 </label>
                             </div>
                             <input type="text" id="login-user" placeholder="User" />
-                            <input type="text" id="login-pwd" placeholder="Password" />
-                            <input type="submit" value="Login" id="login-button" class="btn" >
-                        </form>
+                            <input type="password" id="login-pwd" placeholder="Password" />
+                            <button id="login-button" class="btn">Login</button>
+                            <span id="btn-go-register" class="go-to-btn">Are you register yet?</span>
+                        </div>
                     </div>
                 </div>
                 <div class="right"></div>
             </div>
         </section>
         <!--- Product Details --->    
-        <section id="product-details" class="buyer-common">
+        <section id="product-details" class="view" style="display: none;">
             <div class="main-detail">
+                
             </div>
+            <button id="btn-buy" class="btn secondary">Buy</button>
             <div class="related-products">
                 <div class="content">
                     <h2>Related Products</h2>
@@ -685,7 +686,7 @@
             </div>
         </section>
         <!--- Purchase Orders --->
-        <section id="purchase-orders" class="buyer-common">
+        <section id="purchase-orders" class="view" style="display: none;">
             <div class="hero">
                 <div class="content">
                     <h1>Purchase Orders</h1>
@@ -693,6 +694,7 @@
             </div>
             <div class="main-tabs-orders">
                 <div class="content">
+                    <span id="btn-go-list" class="go-to-btn">Continue buying</span>
                     <ul class="list-tabs-orders">
                         <li data-tab="pending">Pending Purchase</li>
                         <li data-tab="approved">Approved Purchase</li>
@@ -775,7 +777,7 @@
             </div>
         </section>    
         <!--- Footer --->    
-        <footer class="footer">
+        <footer class="footer" style="display: none;">
             <div class="overlay"></div>
             <div class="content">
                 <div class="top">
@@ -792,7 +794,6 @@
                 </div>
             </div>
         </footer>
-    </div>
 
     <!--- Toast ---> 
     <div class="toast"></div>
