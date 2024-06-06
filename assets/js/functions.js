@@ -53,3 +53,12 @@ function showNextView( nextView ) {
     hideCommonClass(".view");
     showSectionId(nextView);
 }
+
+// Show header and footer
+function showBuyerLayout(currentUser) {
+    if ( currentUser.admin === false ) {
+        showCommonClass(".buyer-layout");
+    } else {
+        hideCommonClass(".buyer-layout");
+    }
+}

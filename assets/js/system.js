@@ -62,40 +62,41 @@ class System {
         }
     }
 
-    loginBuyer(dataUserName, password) {
+    loginUser(dataUserName, password, checkbox) {
         let aDataUser = null;
         let index = 0;
-        while (aDataUser === null && index < this.allBuyers.length) {
 
-            if (this.allBuyers[index].userName === dataUserName) {
-                aDataUser = this.allBuyers[index];
-                if (aDataUser.password === password) {
-                    toastMessage(`${aDataUser.userName} welcome! `, "success");
-                    //  TODO: show product list and hero
-                    currentUser = aDataUser;
-                    showNextView("list-of-products");
+        if ( checkbox === true ) {
+            while (aDataUser === null && index < this.allBuyers.length) {
+    
+                if (this.allBuyers[index].userName === dataUserName) {
+                    aDataUser = this.allBuyers[index];
+                    if (aDataUser.password === password) {
+                        toastMessage(`${aDataUser.userName} welcome! `, "success");
+                        //  TODO: show product list and hero
+                        currentUser = aDataUser;
+                        showNextView("list-of-products");
+                        showBuyerLayout(currentUser);
+                    }
                 }
+                else {index++;}
+            } 
+        } else {
+            while (aDataUser === null && index < this.allAdmins.length) {
+
+                if (this.allAdmins[index].userName === dataUserName) {
+                    aDataUser = this.allAdmins[index];
+                    if (aDataUser.password === password) {
+                        toastMessage(`${aDataUser.userName} welcome! `, "success");
+                        currentUser = aDataUser;
+                        showNextView("product-upload-section");
+                    }
+                }
+                else {index++;}
             }
-            else {index++;}
-        }
+        }  
     }
 
-    loginAdmin(dataUserName, password) {
-        let aDataUser = null;
-        let index = 0;
-        while (aDataUser === null && index < this.allAdmins.length) {
-
-            if (this.allAdmins[index].userName === dataUserName) {
-                aDataUser = this.allAdmins[index];
-                if (aDataUser.password === password) {
-                    toastMessage(`${aDataUser.userName} welcome! `, "success");
-                    currentUser = aDataUser;
-                    showNextView("product-upload-section");
-                }
-            }
-            else {index++;}
-        }
-    }
     productDetail(dataIdProduct) {
 
         let contentDetailContainer = document.querySelector(".main-detail");
@@ -196,6 +197,43 @@ class System {
 
         }
         return productListContainer.innerHTML = allLiProductsList;
+    }
+
+    createPurchaseOrders(status) {
+        let allStatesList = "";
+        let orderBuyContainer = document.getElementById("list-of-orders-buyer");
+        for (let index = 0; index < this.allPurchases.length; index++) {
+            console.log(this.allPurchases[index].purchaseStatus);
+            console.log(this.allPurchases[index].buyerID);
+            console.log(currentUser.id);
+            if (this.allPurchases[index].purchaseStatus === status && this.allPurchases[index].buyerID === currentUser.id) {
+                allStatesList += `
+                    <li class="${this.allPurchases[index].purchaseStatus}">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>${this.allPurchases[index].purchaseStatus} order</p>
+                                <i></i>
+                            </div>
+                            <p class="title-product">
+                                ${this.allPurchases[index].product.productName}
+                            </p>
+                            <div class="middle-wrapper">
+                                <span class="description">Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior</span>
+                                <div class="middle-right">
+                                    <p><span>$${this.allPurchases[index].product.productPrice}</span> x${this.allPurchases[index].quantity}</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <span class="purchase-state">Purchase Delivered</span>
+                                <p>Total: $${this.allPurchases[index].totalOrder}</p>
+                            </div>
+                        </div>
+                    </li>`;
+            }
+
+        }
+        return orderBuyContainer.innerHTML = allStatesList;
     }
 
 }

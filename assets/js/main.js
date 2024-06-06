@@ -30,10 +30,17 @@ document.getElementById("login-button").addEventListener("click", loginUser);
 function loginUser(){
   const userName = document.getElementById("login-user").value.trim().toLowerCase();
   const password = document.getElementById("login-pwd").value.trim();
+  const checkbox = document.getElementById("buyer-radio").checked;
 
-  aSystem.loginBuyer(userName, password);
-  aSystem.loginAdmin(userName, password);
+  aSystem.loginUser(userName, password, checkbox);
 
+}
+
+document.getElementById("log-out-btn").addEventListener("click", logOut);
+function logOut(){
+  currentUser = [];
+  showNextView("user-login");
+  showBuyerLayout(currentUser);
 }
 
 document.getElementById("product-upload-add").addEventListener("click", addNewProduct);
@@ -63,12 +70,11 @@ document.querySelectorAll(".product-list-ul li").forEach(element => {
 document.getElementById("btn-buy").addEventListener("click", buyProduct);
 function buyProduct(){
   const productQty = parseInt(document.getElementById("qty-product").value);
-  console.log(currentUser);
-  console.log(currentUser.id);
-  const newPurchase = new Purchase (currentUser.id, aDataProduct, productQty, "pending");
+  const newPurchase = new Purchase (currentUser.id, aDataProduct, productQty, "pending", (productQty * aDataProduct.productPrice));
 
   aSystem.addPurchase(newPurchase);
-  showNextView( "purchase-orders" );
+  aSystem.createPurchaseOrders("pending");
+  showNextView("purchase-orders");
 
 }
 

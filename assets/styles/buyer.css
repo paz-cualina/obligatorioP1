@@ -103,12 +103,12 @@
 .main-tabs-orders .content { max-width: 860px; padding: 100px 0; position: relative; }
 .list-tabs-orders { display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px; width: 100%; }
 .list-tabs-orders li { font: 20px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
-.list-tabs-orders li[data-tab="approved"], 
-.list-tabs-orders li[data-tab="approved"]:hover { color: var(--primary); }
-.list-tabs-orders li[data-tab="pending"], 
-.list-tabs-orders li[data-tab="pending"]:hover { color: var(--secondary); }
-.list-tabs-orders li[data-tab="cancelled"], 
-.list-tabs-orders li[data-tab="cancelled"]:hover { color: var(--error); }
+.list-tabs-orders li.approved, 
+.list-tabs-orders li.approved:hover { color: var(--primary); }
+.list-tabs-orders li.pending, 
+.list-tabs-orders li.pending:hover { color: var(--secondary); }
+.list-tabs-orders li.cancelled, 
+.list-tabs-orders li.cancelled:hover { color: var(--error); }
 #btn-go-list { position: absolute; top: 25px; right: -25px; color: var(--primary); }
 
 /*List of orders*/
