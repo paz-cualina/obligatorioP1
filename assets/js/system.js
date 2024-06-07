@@ -180,19 +180,35 @@ class System {
 
             if (this.allProducts[index].productStatus) {
                 let divSale = "";
-                if (this.allProducts[index].productSale === true) {
-                    divSale = `<div class="on-sale-state"><span>SALE</span></div>`;
+                if (filterSale) {
+                    if (this.allProducts[index].productSale === true) {
+                        divSale = `<div class="on-sale-state"><span>SALE</span></div>`;
+                        allLiProductsList += `
+                        <li data-productId="${this.allProducts[index].productId}">
+                            <figure>
+                                ${divSale}
+                                <img src="./assets/img/products/${this.allProducts[index].productImg}.png">
+                            </figure>
+                            <p>${this.allProducts[index].productName}</p>
+                            <span>${this.allProducts[index].productDescription}</span>
+                            <span class="number">$${this.allProducts[index].productPrice}</span>
+                        </li>`;
+                    }
+                } else {
+                    if (this.allProducts[index].productSale === true) {
+                        divSale = `<div class="on-sale-state"><span>SALE</span></div>`;
+                    }
+                    allLiProductsList += `
+                    <li data-productId="${this.allProducts[index].productId}">
+                        <figure>
+                            ${divSale}
+                            <img src="./assets/img/products/${this.allProducts[index].productImg}.png">
+                        </figure>
+                        <p>${this.allProducts[index].productName}</p>
+                        <span>${this.allProducts[index].productDescription}</span>
+                        <span class="number">$${this.allProducts[index].productPrice}</span>
+                    </li>`;
                 }
-                allLiProductsList += `
-                <li data-productId="${this.allProducts[index].productId}">
-                    <figure>
-                        ${divSale}
-                        <img src="./assets/img/products/${this.allProducts[index].productImg}.png">
-                    </figure>
-                    <p>${this.allProducts[index].productName}</p>
-                    <span>${this.allProducts[index].productDescription}</span>
-                    <span class="number">$${this.allProducts[index].productPrice}</span>
-                </li>`;
             }
 
         }

@@ -2,6 +2,7 @@
 const toast = document.querySelector(".toast");
 let currentUser = [];
 let aDataProduct = [];
+let filterSale = false;
 
 // system
 const aSystem = new System();
@@ -66,6 +67,13 @@ document.querySelectorAll(".product-list-ul li").forEach(element => {
     showNextView( "product-details" );
   }
 });
+
+document.getElementById("filter-sale").addEventListener("click", onSale);
+
+function onSale(){
+  filterSale = this.checked;
+  aSystem.crateProductList();
+}
 
 document.getElementById("btn-buy").addEventListener("click", buyProduct);
 function buyProduct(){
