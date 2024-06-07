@@ -9,6 +9,7 @@ const aSystem = new System();
 
 function initialState(){
   aSystem.crateProductList();
+  currentUser = [];
 }
 initialState();
 
@@ -38,10 +39,11 @@ function loginUser(){
 }
 
 document.getElementById("log-out-btn").addEventListener("click", logOut);
+document.getElementById("log-out-btn-admin").addEventListener("click", logOut);
 function logOut(){
   currentUser = [];
   showNextView("user-login");
-  showBuyerLayout(currentUser);
+  showBuyerLayout();
 }
 
 document.getElementById("product-upload-add").addEventListener("click", addNewProduct);
@@ -101,3 +103,13 @@ function goList(){
   showNextView( "list-of-products" );
 }
 
+document.querySelectorAll(".admin-sidebar li").forEach(element => {
+  element.addEventListener("click", goAdminSection);
+  function goAdminSection(){
+    const sidebarItem = element.getAttribute("data-sidebar");
+    showNextView( sidebarItem );
+    if(sidebarItem === "purchase-approval-section"){
+      aSystem.createPurchaseOrders("pending");
+    }
+  }
+});

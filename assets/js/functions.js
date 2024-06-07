@@ -55,10 +55,25 @@ function showNextView( nextView ) {
 }
 
 // Show header and footer
-function showBuyerLayout(currentUser) {
-    if ( currentUser.admin === false ) {
+function showBuyerLayout() {
+    console.log(Object.keys(currentUser).length)
+    console.log(currentUser.admin)
+    if ( currentUser.admin === false && Object.keys(currentUser).length > 0) {
+        console.log("comprador")
         showCommonClass(".buyer-layout");
-    } else {
+        hideCommonClass(".admin-sidebar-wrapper");
+    }else if ( currentUser.admin && Object.keys(currentUser).length > 0){
+        console.log("admin")
+        showCommonClass(".admin-sidebar-wrapper");
         hideCommonClass(".buyer-layout");
     }
+    else {
+        console.log("logout")
+        hideCommonClass(".admin-sidebar-wrapper");
+        hideCommonClass(".buyer-layout");
+    }
+}
+
+function dataAdminUser(){
+    document.getElementById("sidebar-user-name").innerHTML = currentUser.userName;
 }

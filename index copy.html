@@ -9,29 +9,28 @@
 </head>
 <body>
     
+    <div id="admin-view">
 
-        <div class="admin-sidebar-wrapper" style="display: none;">
-            <div class="admin-sidebar">
-                <img src="./assets/img/logo-white.png" class="logo">
-                <ul>
-                    <li data-sidebar="product-upload-section"><i class="fa-solid fa-chart-simple"></i>Manage Products</li>
-                    <li data-sidebar="purchase-approval-section"><i class="fa-solid fa-money-check-dollar"></i>Purchase Approval</li>
-                    <li data-sidebar="earnings-report-section"><i class="fa-solid fa-money-bill"></i>Earnings Report</li>
-                    <li data-sidebar="profiles-section"><i class="fa-solid fa-user"></i>Profiles</li>
-                </ul>
-                <div class="bottom-sidebar">
-                    <figure class="user-img">
-                        <img src="./assets/img/avatar.png">
-                    </figure>
-                    <div class="column">
-                        <h3 id="sidebar-user-name"></h3>
-                        <span class="cerrar-sesion" id="log-out-btn-admin">Close sesion</span>
-                    </div>
+        <div class="admin-sidebar" style="display: none;">
+            <img src="./assets/img/logo-white.png" class="logo">
+            <ul>
+                <li class="active"><i class="fa-solid fa-chart-simple"></i>Manage Products</li>
+                <li><i class="fa-solid fa-money-check-dollar"></i>Purchase Approval</li>
+                <li><i class="fa-solid fa-money-bill"></i>Earnings Report</li>
+                <li><i class="fa-solid fa-user"></i>Profiles</li>
+            </ul>
+            <div class="bottom-sidebar">
+                <figure class="user-img">
+                    <img src="./assets/img/avatar.png">
+                </figure>
+                <div class="column">
+                    <h3>Jonathan Davis</h3>
+                    <span class="cerrar-sesion">Close sesion</span>
                 </div>
             </div>
         </div>
 
-        <section id="product-upload-section" class="view admin-view" style="display: none;">
+        <section id="product-upload-section" class="admin-common">
             <div class="content">
                 <div class="product-upload">
                     <h2>PRODUCT UPLOAD</h2>
@@ -428,7 +427,7 @@
             </div>
         </section>    
 
-        <section id="earnings-report-section" class="view admin-view" style="display: none;">      
+        <section id="earnings-report-section" class="admin-common">      
             <div class="content">
                 <div class="table stock-status">
                     <h2>EARNINGS REPORT</h2>
@@ -476,32 +475,97 @@
             </div>
         </section>
 
-        <section id="purchase-approval-section" class="view admin-view" style="display: none;">
+        <section id="purchase-approval-section" class="admin-common">
             <div class="content">
                 <h2>PURCHASE APPROVAL</h2>
                 <ul class="list-tabs-orders">
-                    <li class="pending">Pending Purchase</li>
-                    <li class="approved">Approved Purchase</li>
-                    <li class="cancelled">Cancelled Purchase</li>
+                    <li data-tab="pending">Pending Purchase</li>
+                    <li data-tab="approved">Approved Purchase</li>
+                    <li data-tab="cancelled">Cancelled Purchase</li>
                 </ul>
-                <ul id="list-of-orders-admin" class="list-of-orders">
+                <ul class="list-of-orders">
+                    <li class="approved">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>Approved Purchase</p>
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="middle-wrapper">
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-right">
+                                    <p><span>$150</span> x2</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <span class="purchase-state">Purchase Delivered</span>
+                                <p>Total: $300</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="pending">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>Pending Purchase</p>
+                                <i class="icon-pending"></i>
+                            </div>
+                            <div class="middle-wrapper">
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-right">
+                                    <p><span>$150</span> x2</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <div class="btn-wrapper">
+                                    <button class="btn-cancel">Cancel</button>
+                                    <button class="btn-aprove">Aprove</button>
+                                </div>
+                                <p>Total: $300</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="cancelled">
+                        <img src="./assets/img/products/product-tshirt.png" class="left">
+                        <div class="right">
+                            <div class="top-wrapper">
+                                <p>Cancelled Purchase</p>
+                                <i class="fa-solid fa-ban"></i>
+                            </div>
+                            <div class="middle-wrapper">
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-right">
+                                    <p><span>$150</span> x2</p>
+                                </div>
+                            </div>
+                            <div class="bottom-wrapper">
+                                <span class="purchase-state">Cancelled by admin</span>
+                                <p>Total: $300</p>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </section>
 
+    </div>
 
+    <div id="buyer-view">
         <!--- Header --->    
-        <header class="header buyer-layout" style="display: none;">
+        <header class="header">
             <div class="content">
-                <div>
-                    <img src="./assets/img/logo-white.png">
-                    <span>x</span>
-                    <img src="./assets/img/korn-logo.png">
-                </div>
-                <span id="log-out-btn">Log out</span>
+                <img src="./assets/img/logo-white.png">
+                <span>x</span>
+                <img src="./assets/img/korn-logo.png">
             </div>
         </header>
-        <section id="list-of-products" class="view" style="display: none;">
+        <section id="list-of-products" class="buyer-common">
             <div class="hero-bg">
                 <div class="video-container">
                     <video width="320" height="240" autoplay loop muted playsinline>
@@ -524,14 +588,13 @@
             <div class="main-products">
                 <div class="content">
                     <h2>Lorem ipsum dolor sit amet.</h2>
-                    <input type="checkbox" id="filter-sale" />
                     <ul class="product-list-ul">
                     </ul>
                 </div>
             </div>
         </section>
         <!--- User Registration --->
-        <section id="user-registration" class="view" style="display: none;">
+        <section id="user-registration" class="buyer-common">
             <div class="content">
                 <div class="img-wrapper">
                     <img src="./assets/img/logo-flower.png">
@@ -555,13 +618,12 @@
                         </div>
                         <div id="register-button" class="btn secondary">Register</div>  
                     </form>
-                    <span id="btn-go-login" class="go-to-btn">I'm already registered. Go to Login.</span>
                     <p class="error-register"></p>
                 </div>
             </div>
         </section>
         <!--- User Login --->
-        <section id="user-login" class="view" style="display: block;">
+        <section  id="user-login" class="buyer-common">
             <div class="display-flex">
                 <div class="left">
                     <div class="content">
@@ -570,35 +632,32 @@
                             <span>x</span>
                             <img src="./assets/img/korn-logo.png">
                         </div>
-                        <div class="form">
+                        <form>
                             <div class="radio-inputs-wrapper">
                                 <label class="radio">
-                                    <input type="radio" value="admin" name="radio" />
+                                    <input type="radio" name="radio" />
                                     <span></span>
                                     <p>Admin</p>
                                 </label>
                                 <label class="radio">
-                                    <input id="buyer-radio" type="radio" value="buyer" name="radio" />
+                                    <input type="radio" name="radio" />
                                     <span></span>
                                     <p>Buyer</p>
                                 </label>
                             </div>
                             <input type="text" id="login-user" placeholder="User" />
-                            <input type="password" id="login-pwd" placeholder="Password" />
-                            <button id="login-button" class="btn">Login</button>
-                            <span id="btn-go-register" class="go-to-btn">Are you register yet?</span>
-                        </div>
+                            <input type="text" id="login-pwd" placeholder="Password" />
+                            <input type="submit" value="Login" id="login-button" class="btn" >
+                        </form>
                     </div>
                 </div>
                 <div class="right"></div>
             </div>
         </section>
         <!--- Product Details --->    
-        <section id="product-details" class="view" style="display: none;">
+        <section id="product-details" class="buyer-common">
             <div class="main-detail">
-                
             </div>
-            <button id="btn-buy" class="btn secondary">Buy</button>
             <div class="related-products">
                 <div class="content">
                     <h2>Related Products</h2>
@@ -626,7 +685,7 @@
             </div>
         </section>
         <!--- Purchase Orders --->
-        <section id="purchase-orders" class="view" style="display: none;">
+        <section id="purchase-orders" class="buyer-common">
             <div class="hero">
                 <div class="content">
                     <h1>Purchase Orders</h1>
@@ -634,19 +693,89 @@
             </div>
             <div class="main-tabs-orders">
                 <div class="content">
-                    <span id="btn-go-list" class="go-to-btn">Continue buying</span>
                     <ul class="list-tabs-orders">
-                        <li class="pending">Pending Purchase</li>
-                        <li class="approved">Approved Purchase</li>
-                        <li class="cancelled">Cancelled Purchase</li>
+                        <li data-tab="pending">Pending Purchase</li>
+                        <li data-tab="approved">Approved Purchase</li>
+                        <li data-tab="cancelled">Cancelled Purchase</li>
                     </ul>
-                    <ul id="list-of-orders-buyer" class="list-of-orders">
+                    <ul class="list-of-orders">
+                        <li class="approved">
+                            <img src="./assets/img/products/product-tshirt.png" class="left">
+                            <div class="right">
+                                <div class="top-wrapper">
+                                    <p>Approved Purchase</p>
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-wrapper">
+                                    <span class="description">Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior</span>
+                                    <div class="middle-right">
+                                        <span>$150</span>
+                                        <p>x2</p>
+                                    </div>
+                                </div>
+                                <div class="bottom-wrapper">
+                                    <span class="purchase-state">Purchase Delivered</span>
+                                    <p>Total: $300</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="pending">
+                            <img src="./assets/img/products/product-tshirt.png" class="left">
+                            <div class="right">
+                                <div class="top-wrapper">
+                                    <p>Pending Purchase</p>
+                                    <i class="icon-pending"></i>
+                                </div>
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-wrapper">
+                                    <span class="description">Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior</span>
+                                    <div class="middle-right">
+                                        <span>$150</span>
+                                        <p>x2</p>
+                                    </div>
+                                </div>
+                                <div class="bottom-wrapper">
+                                    <div class="btn-wrapper">
+                                        <button class="btn-cancel">Cancel</button>
+                                    </div>
+                                    <p>Total: $300</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cancelled">
+                            <img src="./assets/img/products/product-tshirt.png" class="left">
+                            <div class="right">
+                                <div class="top-wrapper">
+                                    <p>Cancelled Purchase</p>
+                                    <i class="fa-solid fa-ban"></i>
+                                </div>
+                                <p class="title-product">
+                                    Loreim impsum dolior
+                                </p>
+                                <div class="middle-wrapper">
+                                    <span class="description">Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior Loreim impsum dolior</span>
+                                    <div class="middle-right">
+                                        <span>$150</span>
+                                        <p>x2</p>
+                                    </div>
+                                </div>
+                                <div class="bottom-wrapper">
+                                    <span class="purchase-state">Cancelled by admin</span>
+                                    <p>Total: $300</p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>    
         <!--- Footer --->    
-        <footer class="footer buyer-layout" style="display: none;">
+        <footer class="footer">
             <div class="overlay"></div>
             <div class="content">
                 <div class="top">
@@ -663,6 +792,7 @@
                 </div>
             </div>
         </footer>
+    </div>
 
     <!--- Toast ---> 
     <div class="toast"></div>
