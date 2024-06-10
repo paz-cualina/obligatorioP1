@@ -72,3 +72,23 @@ function showUserLayout() {
 function dataAdminUser(){
     document.getElementById("sidebar-user-name").innerHTML = currentUser.userName;
 }
+
+// Counter quantity of products
+function counterQty() {
+    const btnMinus = document.querySelector(".btn-minus");
+    const btnPlus = document.querySelector(".btn-plus");
+    const qtyProduct = document.getElementById("qty-product");
+  
+    btnMinus.addEventListener("click", function() {
+        let currentValue = parseInt(qtyProduct.value);
+        if (currentValue > 0) {
+            qtyProduct.value = currentValue - 1;
+        }
+    });
+
+    btnPlus.addEventListener("click", function() {
+        let currentValue = parseInt(qtyProduct.value);
+        qtyProduct.value = currentValue + 1;
+    });
+
+  };

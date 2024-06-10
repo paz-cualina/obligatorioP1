@@ -11,7 +11,7 @@ const aSystem = new System();
 
 // initial state
 function initialState(){
-  aSystem.crateProductList();
+  aSystem.createProductList();
   currentUser = [];
 }
 initialState();
@@ -29,7 +29,6 @@ function registerBuyer(){
   const newBuyer = new Buyer(firstName, lastName, userName, password, card, cvc);
 
   aSystem.addBuyer(newBuyer);
-
 }
 
 // login users
@@ -40,7 +39,6 @@ function loginUser(){
   const checkbox = document.querySelector('input[name="radio"]:checked');
 
   aSystem.loginUser(userName, password, checkbox);
-
 }
 
 // logout users
@@ -58,14 +56,13 @@ function addNewProduct(){
   const productUploadName = document.getElementById("product-upload-name").value.trim();
   const productUploadPrice = parseInt(document.getElementById("product-upload-price").value.trim());
   const productUploadDescription = document.getElementById("product-upload-description").value.trim();
-  const productUploadImg = document.getElementById("product-upload-img").value.trim();
+  const productUploadImg = document.getElementById("product-upload-img").value.trim().toLowerCase();
   const productUploadStock = parseInt(document.getElementById("product-upload-stock").value.trim());
 
   const newProduct = new Product(productUploadName, productUploadPrice, productUploadDescription, productUploadImg, productUploadStock, true, false);
 
   aSystem.addProduct(newProduct);
-  aSystem.crateProductList();
-
+  aSystem.createProductList();
 }
 
 // show product details
@@ -75,6 +72,7 @@ document.querySelectorAll(".product-list-ul li").forEach(element => {
     const dataIdProduct = element.getAttribute("data-productid");
     aSystem.productDetail(dataIdProduct);
     showNextView("product-details");
+    counterQty();
   }
 });
 
@@ -82,7 +80,7 @@ document.querySelectorAll(".product-list-ul li").forEach(element => {
 document.getElementById("filter-sale").addEventListener("click", onSale);
 function onSale(){
   filterSale = this.checked;
-  aSystem.crateProductList();
+  aSystem.createProductList();
 }
 
 // buy product, create purchase order
@@ -94,7 +92,6 @@ function buyProduct(){
   aSystem.addPurchase(newPurchase);
   aSystem.createPurchaseOrders("pending");
   showNextView("purchase-orders");
-
 }
 
 // go to register page
