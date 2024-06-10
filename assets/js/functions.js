@@ -54,26 +54,21 @@ function showNextView( nextView ) {
     showSectionId(nextView);
 }
 
-// Show header and footer
-function showBuyerLayout() {
-    console.log(Object.keys(currentUser).length)
-    console.log(currentUser.admin)
+// Show layout for each type of user
+function showUserLayout() {
     if ( currentUser.admin === false && Object.keys(currentUser).length > 0) {
-        console.log("comprador")
         showCommonClass(".buyer-layout");
         hideCommonClass(".admin-sidebar-wrapper");
-    }else if ( currentUser.admin && Object.keys(currentUser).length > 0){
-        console.log("admin")
+    } else if ( currentUser.admin && Object.keys(currentUser).length > 0) {
         showCommonClass(".admin-sidebar-wrapper");
         hideCommonClass(".buyer-layout");
-    }
-    else {
-        console.log("logout")
+    } else {
         hideCommonClass(".admin-sidebar-wrapper");
         hideCommonClass(".buyer-layout");
     }
 }
 
+// Show current admin userName on sidebar
 function dataAdminUser(){
     document.getElementById("sidebar-user-name").innerHTML = currentUser.userName;
 }

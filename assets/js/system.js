@@ -13,14 +13,12 @@ class System {
             if (this.allBuyers[i].userName === aBuyer.userName) {
                 success = true;
             }
-            else {
-                i++;
-            }
+            else { i++; }
         }
         return success;
     }
     addBuyer(aBuyer) {
-        if ( aBuyer.validate() && !this.existBuyer(aBuyer) ) {
+        if (aBuyer.validate() && !this.existBuyer(aBuyer)) {
             this.allBuyers.push(aBuyer);
             toastMessage(`${aBuyer.userName} was successfully added`, "success");
             return true;
@@ -30,7 +28,7 @@ class System {
         }
     }
     addProduct(aProduct) {
-        if ( aProduct.validate() ){
+        if (aProduct.validate()){
             this.allProducts.push(aProduct);
             return true
         } else {
@@ -45,14 +43,12 @@ class System {
             if (this.allAdmins[i].userName === anAdmin.userName) {
                 success = true;
             }
-            else {
-                i++;
-            }
+            else { i++; }
         }
         return success;
     }
     addAdmin(anAdmin) {
-        if ( anAdmin.validate() && !this.existAdmin(anAdmin) ) {
+        if (anAdmin.validate() && !this.existAdmin(anAdmin)) {
             this.allAdmins.push(anAdmin);
             toastMessage(`${anAdmin.userName} was successfully added`, "success");
             return true;
@@ -66,38 +62,38 @@ class System {
         let aDataUser = null;
         let index = 0;
 
-        if ( checkbox === true ) {
-            while (aDataUser === null && index < this.allBuyers.length) {
-    
-                if (this.allBuyers[index].userName === dataUserName) {
-                    aDataUser = this.allBuyers[index];
-                    if (aDataUser.password === password) {
-                        toastMessage(`${aDataUser.userName} welcome! `, "success");
-                        //  TODO: show product list and hero
-                        currentUser = aDataUser;
-                        showNextView("list-of-products");
-                        showBuyerLayout();
+        if (checkbox) {
+            const userType = checkbox.value;
+        
+            if (userType === "buyer") {
+                while (aDataUser === null && index < this.allBuyers.length) {
+                    if (this.allBuyers[index].userName === dataUserName) {
+                        aDataUser = this.allBuyers[index];
+                        if (aDataUser.password === password) {
+                            toastMessage(`${aDataUser.userName} welcome! `, "success");
+                            currentUser = aDataUser;
+                            showNextView("list-of-products");
+                            showUserLayout();
+                        }
                     }
-                }
-                else {index++;}
-            } 
-        } else {
-            while (aDataUser === null && index < this.allAdmins.length) {
-
-                if (this.allAdmins[index].userName === dataUserName) {
-                    aDataUser = this.allAdmins[index];
-                    if (aDataUser.password === password) {
-                        toastMessage(`${aDataUser.userName} welcome! `, "success");
-                        currentUser = aDataUser;
-                        showNextView("product-upload-section");
-                        showBuyerLayout();
-                        dataAdminUser();
-
+                    else { index++; }
+                } 
+            } else if (userType === "admin") {
+                while (aDataUser === null && index < this.allAdmins.length) {
+                    if (this.allAdmins[index].userName === dataUserName) {
+                        aDataUser = this.allAdmins[index];
+                        if (aDataUser.password === password) {
+                            toastMessage(`${aDataUser.userName} welcome! `, "success");
+                            currentUser = aDataUser;
+                            showNextView("product-upload-section");
+                            showUserLayout();
+                            dataAdminUser();
+                        }
                     }
+                    else { index++; }
                 }
-                else {index++;}
-            }
-        }  
+            }  
+        }
     }
 
     productDetail(dataIdProduct) {
@@ -110,8 +106,9 @@ class System {
             if ( this.allProducts[index].productId === dataIdProduct ) {
                 aDataProduct = this.allProducts[index];               
             }
-            else {index++;}
+            else { index++; }
         }
+
         let contentDetail = `
                 <div class="content">
                 <div class="left">
@@ -140,7 +137,7 @@ class System {
         return contentDetailContainer.innerHTML = contentDetail;
     }
     addPurchase(aPurchase) {
-        if ( aPurchase.validate() ) {
+        if (aPurchase.validate()) {
             this.allPurchases.push(aPurchase);
             console.log(this.allPurchases); 
             toastMessage(`The purchase order was successfully created`, "success");
@@ -249,7 +246,7 @@ class System {
                             </div>
                         </li>`;
                 }
-            }else{
+            } else {
                 orderBuyContainer = document.getElementById("list-of-orders-buyer");
                 if (this.allPurchases[index].purchaseStatus === status && this.allPurchases[index].buyerID === currentUser.id) {
                     allStatesList += `
@@ -277,8 +274,6 @@ class System {
                         </li>`;
                 }
             }
-
-
         }
         return orderBuyContainer.innerHTML = allStatesList;
     }

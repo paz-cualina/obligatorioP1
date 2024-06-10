@@ -1,18 +1,22 @@
 // html elements
 const toast = document.querySelector(".toast");
+
+// global variables
 let currentUser = [];
 let aDataProduct = [];
 let filterSale = false;
 
-// system
+// system instance
 const aSystem = new System();
 
+// initial state
 function initialState(){
   aSystem.crateProductList();
   currentUser = [];
 }
 initialState();
 
+// register buyer
 document.getElementById("register-button").addEventListener("click", registerBuyer);
 function registerBuyer(){
   const firstName = document.getElementById("register-firstName").value.trim().toLowerCase();
@@ -28,24 +32,27 @@ function registerBuyer(){
 
 }
 
+// login users
 document.getElementById("login-button").addEventListener("click", loginUser);
 function loginUser(){
   const userName = document.getElementById("login-user").value.trim().toLowerCase();
   const password = document.getElementById("login-pwd").value.trim();
-  const checkbox = document.getElementById("buyer-radio").checked;
+  const checkbox = document.querySelector('input[name="radio"]:checked');
 
   aSystem.loginUser(userName, password, checkbox);
 
 }
 
+// logout users
 document.getElementById("log-out-btn").addEventListener("click", logOut);
 document.getElementById("log-out-btn-admin").addEventListener("click", logOut);
 function logOut(){
   currentUser = [];
   showNextView("user-login");
-  showBuyerLayout();
+  showUserLayout();
 }
 
+// upload new product
 document.getElementById("product-upload-add").addEventListener("click", addNewProduct);
 function addNewProduct(){
   const productUploadName = document.getElementById("product-upload-name").value.trim();
@@ -61,22 +68,24 @@ function addNewProduct(){
 
 }
 
+// show product details
 document.querySelectorAll(".product-list-ul li").forEach(element => {
   element.addEventListener("click", showProductDetails);
   function showProductDetails(){
     const dataIdProduct = element.getAttribute("data-productid");
     aSystem.productDetail(dataIdProduct);
-    showNextView( "product-details" );
+    showNextView("product-details");
   }
 });
 
+// filter on sale products
 document.getElementById("filter-sale").addEventListener("click", onSale);
-
 function onSale(){
   filterSale = this.checked;
   aSystem.crateProductList();
 }
 
+// buy product, create purchase order
 document.getElementById("btn-buy").addEventListener("click", buyProduct);
 function buyProduct(){
   const productQty = parseInt(document.getElementById("qty-product").value);
@@ -88,26 +97,30 @@ function buyProduct(){
 
 }
 
+// go to register page
 document.getElementById("btn-go-register").addEventListener("click", goRegister);
 function goRegister(){
-  showNextView( "user-registration" );
+  showNextView("user-registration");
 }
 
+// go to login page
 document.getElementById("btn-go-login").addEventListener("click", goLogin);
 function goLogin(){
-  showNextView( "user-login" );
+  showNextView("user-login");
 }
 
+// return to list of products after purchase
 document.getElementById("btn-go-list").addEventListener("click", goList);
 function goList(){
-  showNextView( "list-of-products" );
+  showNextView("list-of-products");
 }
 
+// navigate on admin bar sections 
 document.querySelectorAll(".admin-sidebar li").forEach(element => {
   element.addEventListener("click", goAdminSection);
   function goAdminSection(){
     const sidebarItem = element.getAttribute("data-sidebar");
-    showNextView( sidebarItem );
+    showNextView(sidebarItem);
     if(sidebarItem === "purchase-approval-section"){
       aSystem.createPurchaseOrders("pending");
     }
