@@ -25,7 +25,7 @@
                     </figure>
                     <div class="column">
                         <h3 id="sidebar-user-name"></h3>
-                        <span class="cerrar-sesion" id="log-out-btn-admin">Close sesion</span>
+                        <span class="cerrar-sesion" id="log-out-btn-admin">Sign off</span>
                     </div>
                 </div>
             </div>
@@ -38,8 +38,10 @@
                     <div class="display-flex">
                         <div class="column">
                             <input type="text" id="product-upload-name" placeholder="name">
-                            <input type="number" id="product-upload-price" placeholder="price">
-                            <input type="number" id="product-upload-stock" placeholder="stock">
+                            <div class="two-columns">
+                                <input type="number" id="product-upload-price" placeholder="price">
+                                <input type="number" id="product-upload-stock" placeholder="stock">
+                            </div>
                             <textarea id="product-upload-description" placeholder="description"></textarea>
                             <input type="text" id="product-upload-img" placeholder="img">
                             <button id="product-upload-add" class="btn secondary">ADD PRODUCT</button>
@@ -493,12 +495,12 @@
         <!--- Header --->    
         <header class="header buyer-layout" style="display: none;">
             <div class="content">
-                <div>
+                <div class="logos-wrapper">
                     <img src="./assets/img/logo-white.png">
                     <span>x</span>
                     <img src="./assets/img/korn-logo.png">
                 </div>
-                <span id="log-out-btn">Log out</span>
+                <span id="log-out-btn" class="go-to-btn">Log out</span>
             </div>
         </header>
         <section id="list-of-products" class="view" style="display: none;">
@@ -524,7 +526,20 @@
             <div class="main-products">
                 <div class="content">
                     <h2>Lorem ipsum dolor sit amet.</h2>
-                    <input type="checkbox" id="filter-sale" />
+                    <div class="input-wrapper">
+                        <label>Filter on sale products</label>
+                        <div class="switch">
+                            <input type="checkbox" id="filter-sale" />
+                            <div class="switch-options">
+                                <span class="left-option">on sale</span>
+                                <span class="right-option">OFF</span>
+                                <span class="circle">
+                                    <i class="fa-solid fa-play"></i>
+                                    <i class="fa-solid fa-pause"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                     <ul class="product-list-ul">
                     </ul>
                 </div>
@@ -598,7 +613,9 @@
             <div class="main-detail">
                 
             </div>
-            <button id="btn-buy" class="btn secondary">Buy</button>
+            <div class="content">
+                <button id="btn-buy" class="btn secondary">Buy</button>
+            </div>
             <div class="related-products">
                 <div class="content">
                     <h2>Related Products</h2>

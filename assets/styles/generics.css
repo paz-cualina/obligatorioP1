@@ -31,6 +31,8 @@ textarea { height: 150px; }
 button { font-family: "Poppins", sans-serif; }
 
 input[type="password"] { text-transform: none; }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
 .input-wrapper { display: flex; flex-direction: column; }
 
@@ -42,10 +44,12 @@ input[type="password"] { text-transform: none; }
 .radio p { display: inline-block; padding-left: 5px; }
 
 /*Header*/
-.header { position: relative; top: 0; width: 100%; height: 65px; background-color: var(--black); padding: 12px 8px 8px; display: block; }
+.header { position: fixed; top: 0; width: 100%; height: 65px; background-color: var(--black); padding: 12px 8px 8px; display: block; z-index: 100; }
 .header .content { display: flex; align-items: center; justify-content: space-between; }
+.header .logos-wrapper { display: flex; align-items: center; gap: 40px; }
 .header .content img { width: 60px; }
 .header .content img:last-of-type { width: 50px; }
+.header .go-to-btn { padding: 0; }
 
 /*Footer*/
 .footer { height: auto; width: 100%; position: relative; background-image: url("../img//bg-footer.png"); background-repeat: no-repeat; background-position: center; background-size: cover; padding: 50px 20px 100px; }
@@ -60,50 +64,56 @@ input[type="password"] { text-transform: none; }
 .footer .content .bottom p { text-align: center; font-weight: 600; }
 
 /*Sidebar*/
-.admin-sidebar{ width: 450px; position: fixed; top: 0; left: 0; z-index: 100; height: 100vh;  padding: 40px 0 0 0; color: #FFF; display: flex; flex-direction: column; border-right: #FFF 5px solid; }
+.admin-sidebar{ width: 450px; position: fixed; top: 0; left: 0; z-index: 100; height: 100vh;  padding: 40px 0 0 0; color: var(--white); display: flex; flex-direction: column; border-right: #FFF 5px solid; }
 .admin-sidebar::before,
-.admin-sidebar::after{ content: ""; display: block; height: 100%; position: absolute; top: 0; right: 10px; border-right: #FFF 5px solid; }
+.admin-sidebar::after{ content: ""; display: block; height: 100%; position: absolute; top: 0; right: 10px; border-right: var(--white) 5px solid; }
 .admin-sidebar::after{ right: -20px; }
 .admin-sidebar .logo{ width: 80px; margin-left: 40px; }
 .admin-sidebar ul{ margin-top: 40px; }
 .admin-sidebar ul li{ padding: 15px 40px; text-transform: uppercase; font-weight: 600; transition: all .3s; cursor: pointer; }
-.admin-sidebar ul li:hover{ background: #0f0f0f; color: #FFF; }
-.admin-sidebar ul li:hover i{  color: #00FFA3; }
-.admin-sidebar ul li.active{ background: #0f0f0f; color: #00FFA3; }
+.admin-sidebar ul li:hover{ background: #0f0f0f; color: var(--white); }
+.admin-sidebar ul li:hover i{  color: var(--primary); }
+.admin-sidebar ul li.active{ background: #0f0f0f; color: var(--primary); }
 .admin-sidebar ul li i{ margin-right: 15px; }
 .admin-sidebar .bottom-sidebar{ margin-top: auto; display: flex; align-items: center; background: #0f0f0f; padding: 30px 40px; }
 .admin-sidebar .bottom-sidebar .user-img{ width: 50px; height: 50px; border-radius: 50%; overflow: hidden;  margin-right: 20px; }
 .admin-sidebar .bottom-sidebar .user-img img{ height: 100%; width: 100%; object-fit: contain; }
 .admin-sidebar .bottom-sidebar .column h3{ font-weight: 600; }
 .admin-sidebar .bottom-sidebar .column span{ text-transform: uppercase; font-weight: 600; font-size: 13px; transition: all .3s; margin-top: 9px; display: block; }
-.admin-sidebar .bottom-sidebar .column span:hover{ color: red; cursor: pointer; }
+.admin-sidebar .bottom-sidebar .column span:hover{ color: var(--error); cursor: pointer; }
 
 /*Switch*/
 .switch { position: relative; width: 100%; max-width: 100px; height: 37px; border: var(--black) solid 1px; overflow: hidden; }
-.switch .switch-options { width: 100%; height: 100%; transition: all .3s; border-radius: 14px; font-size: 11px; text-transform: uppercase; font-weight: 700; font-weight: 600; padding: 0 10px; display: flex; justify-content: space-between; align-items: center; border: 1px #FFF solid; border-radius: 50px; }
-.switch .switch-options .left-option{ position: absolute; left: 15px; font-weight: 800; color: #000; }
-.switch .switch-options .right-option{ position: absolute; right: 13px; }
-.switch .switch-options .circle { display: block; position: absolute; left: 1px; height: 32px; width: 32px; border-radius: 50%; border: 2px solid #FFF; background: #000; transition: all .3s; display: flex; align-items: center; justify-content: center; color: #000; }
-.switch .switch-options .circle i{ position: absolute; font-size: 12px; color: #FFF; }
-.switch .switch-options .circle i.fa-play{ opacity: 0; }
+.switch .switch-options { width: 100%; height: 100%; transition: all .3s; border-radius: 14px; font-size: 11px; text-transform: uppercase; font-weight: 700; font-weight: 600; padding: 0 10px; display: flex; justify-content: space-between; align-items: center; border: 1px var(--white) solid; border-radius: 50px; }
+.switch .switch-options .left-option { position: absolute; left: 15px; font-weight: 800; color: var(--black); }
+.switch .switch-options .right-option { position: absolute; right: 13px; }
+.switch .switch-options .circle { display: block; position: absolute; left: 0; height: 34px; width: 34px; border-radius: 50%; border: 2px solid var(--white); background: var(--black); transition: all .3s; display: flex; align-items: center; justify-content: center; color: var(--black); }
+.switch .switch-options .circle i { position: absolute; font-size: 12px; color: var(--white); }
+.switch .switch-options .circle i.fa-play { opacity: 0; }
 .switch input[type="checkbox"] { opacity: 0; position: absolute; left: 0; top: 0; margin: 0; z-index: 1000; cursor: pointer; width: 100%; height: 100%; }
-.switch input[type="checkbox"]:checked + .switch-options .circle { left: calc(100% - 32px); }
-.switch input[type="checkbox"]:checked + .switch-options .circle i.fa-play{ opacity: 1;  color: var(--primary); }
-.switch input[type="checkbox"]:checked + .switch-options .circle i.fa-pause{ opacity: 0; }
+.switch input[type="checkbox"]:checked + .switch-options .circle { left: calc(100% - 34px); }
+.switch input[type="checkbox"]:checked + .switch-options .circle i.fa-play { opacity: 1;  color: var(--primary); }
+.switch input[type="checkbox"]:checked + .switch-options .circle i.fa-pause { opacity: 0; }
 .switch input[type="checkbox"]:checked + .switch-options { background: var(--primary); }
-.switch input[type="checkbox"]:checked + .switch-options .right-option{ opacity: 0; }
-.switch input[type="checkbox"]:checked + .switch-options .left-option{ opacity: 1; }
+.switch input[type="checkbox"]:checked + .switch-options .right-option { opacity: 0; }
+.switch input[type="checkbox"]:checked + .switch-options .left-option { opacity: 1; }
 
 /*Table*/
-.table .row{ width: 100%; display: flex; }
-.table .row.table-titles{ background: var(--secondary); margin-bottom: 15px; border-radius: 4px 4px 0 0; font-weight: 600; }
-.table .row .column{ padding: 10px; width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: flex; align-items: center; padding: 15px; }
-.table .row .column img{ width: 70px; height: 70px; object-fit: cover; }
-.table .row.total{ justify-content: space-between; font-weight: 700; color: var(--primary); border-top: var(--secondary) solid 1px; margin-top: 30px; padding-top: 20px; }
-.table .row.total .column:nth-child(2){ justify-content: end; }
+.table .row { width: 100%; display: flex; }
+.table .row.table-titles { background: var(--secondary); margin-bottom: 15px; border-radius: 4px 4px 0 0; font-weight: 600; }
+.table .row .column { padding: 10px; width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: flex; align-items: center; padding: 15px; }
+.table .row .column img { width: 70px; height: 70px; object-fit: cover; }
+.table .row.total { justify-content: space-between; font-weight: 700; color: var(--primary); border-top: var(--secondary) solid 1px; margin-top: 30px; padding-top: 20px; }
+.table .row.total .column:nth-child(2) { justify-content: end; }
 
 /*Display Flex*/
 .display-flex { display: flex; width: inherit; height: inherit; min-height: inherit; }
 
 .go-to-btn { font-size: 14px; cursor: pointer; transition: all 0.3s; padding: 0 20px 20px 0; } 
 .go-to-btn:hover { color: var(--secondary); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 15px; height: 10px; }
+::-webkit-scrollbar-track { border-radius: 20px; }
+::-webkit-scrollbar-thumb { background-color: #393939; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background-color: #414141; }

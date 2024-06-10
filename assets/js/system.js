@@ -97,20 +97,19 @@ class System {
     }
 
     productDetail(dataIdProduct) {
-
         let contentDetailContainer = document.querySelector(".main-detail");
         aDataProduct = null;
         let index = 0;
         while (aDataProduct === null && index < this.allProducts.length) {
 
-            if ( this.allProducts[index].productId === dataIdProduct ) {
+            if (this.allProducts[index].productId === dataIdProduct) {
                 aDataProduct = this.allProducts[index];               
             }
             else { index++; }
         }
 
         let contentDetail = `
-                <div class="content">
+            <div class="content">
                 <div class="left">
                     <img src="./assets/img/products/${aDataProduct.productImg}.png">
                 </div>
