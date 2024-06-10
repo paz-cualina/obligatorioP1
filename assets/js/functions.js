@@ -91,4 +91,4 @@ function counterQty() {
         qtyProduct.value = currentValue + 1;
     });
 
-  };
+};

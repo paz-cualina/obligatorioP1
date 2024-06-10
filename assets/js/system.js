@@ -104,8 +104,7 @@ class System {
         while (aDataProduct === null && index < this.allProducts.length) {
 
             if (this.allProducts[index].productId === dataIdProduct) {
-                aDataProduct = this.allProducts[index];
-                console.log(aDataProduct);          
+                aDataProduct = this.allProducts[index];         
             }
             else { index++; }
         }

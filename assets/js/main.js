@@ -66,15 +66,30 @@ function addNewProduct(){
 }
 
 // show product details
-document.querySelectorAll(".product-list-ul li").forEach(element => {
-  element.addEventListener("click", showProductDetails);
-  function showProductDetails(){
-    const dataIdProduct = element.getAttribute("data-productid");
-    aSystem.productDetail(dataIdProduct);
-    showNextView("product-details");
-    counterQty();
+document.querySelector(".product-list-ul").addEventListener("click", ($event) => {
+  const product = $event.target.closest("li");
+  if (product.getAttribute('data-productId')) {
+    showProductDetails(product);
   }
 });
+
+function showProductDetails(element) {
+  const dataIdProduct = element.getAttribute("data-productid");
+  aSystem.productDetail(dataIdProduct);
+  showNextView("product-details");
+  counterQty();
+  window.scrollTo(0, 0);
+}
+
+// document.querySelectorAll(".product-list-ul li").forEach(element => {
+//   element.addEventListener("click", showProductDetails);
+//   function showProductDetails(){
+//     const dataIdProduct = element.getAttribute("data-productid");
+//     aSystem.productDetail(dataIdProduct);
+//     showNextView("product-details");
+//     counterQty();
+//   }
+// });
 
 // filter on sale products
 document.getElementById("filter-sale").addEventListener("click", onSale);
@@ -110,6 +125,7 @@ function goLogin(){
 document.getElementById("btn-go-list").addEventListener("click", goList);
 function goList(){
   showNextView("list-of-products");
+  document.getElementsByClassName('main-products')[0].scrollIntoView();
 }
 
 // navigate on admin bar sections 
