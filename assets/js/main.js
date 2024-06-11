@@ -132,6 +132,10 @@ function goList(){
 document.querySelectorAll(".admin-sidebar li").forEach(element => {
   element.addEventListener("click", goAdminSection);
   function goAdminSection(){
+     document.querySelectorAll(".admin-sidebar li.active").forEach(activeElement => {
+      activeElement.classList.remove("active");
+    });
+    element.classList.add("active");
     const sidebarItem = element.getAttribute("data-sidebar");
     showNextView(sidebarItem);
     if(sidebarItem === "purchase-approval-section"){

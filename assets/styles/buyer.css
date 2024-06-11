@@ -134,10 +134,10 @@
 .list-of-orders li.approved .right .bottom-wrapper .purchase-state { color: var(--primary); }
 .list-of-orders li.pending .right .top-wrapper p { color: var(--secondary); }
 .list-of-orders li.pending .right .top-wrapper i::after { content: ""; display: block; background-image: url("../img/icon-clock.png"); background-repeat: no-repeat; background-size: contain; width: 26px; height: 26px; }
-.list-of-orders li.pending .right .bottom-wrapper .pending { color: var(--white); background-color: var(--error); font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--error); text-transform: uppercase; transition: all 0.3s; cursor: pointer; margin-right: 10px; }
-.list-of-orders li.pending .right .bottom-wrapper .pending:hover { color: var(--error); background-color: transparent; }
-.list-of-orders li.pending .right .bottom-wrapper .approved { color: var(--white); background-color: var(--primary); color: black; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--primary); text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
-.list-of-orders li.pending .right .bottom-wrapper .approved:hover { color: var(--primary); background-color: transparent; }
+.list-of-orders li.pending .right .bottom-wrapper .btn-purchase.pending { color: var(--white); background-color: var(--error); font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--error); text-transform: uppercase; transition: all 0.3s; cursor: pointer; margin-right: 10px; }
+.list-of-orders li.pending .right .bottom-wrapper .btn-purchase.pending:hover { color: var(--error); background-color: transparent; }
+.list-of-orders li.pending .right .bottom-wrapper .btn-purchase.approved { color: var(--white); background-color: var(--primary); color: black; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 4px; border: 1px solid var(--primary); text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
+.list-of-orders li.pending .right .bottom-wrapper .btn-purchase.approved:hover { color: var(--primary); background-color: transparent; }
 .list-of-orders li.cancelled .right .top-wrapper p { color: var(--error); }
 .list-of-orders li.cancelled .right .top-wrapper i { color: var(--error); font-size: 26px; }
 .list-of-orders li.cancelled .right .bottom-wrapper .purchase-state { color: var(--error); text-transform: capitalize; }

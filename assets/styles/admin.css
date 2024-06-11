@@ -25,3 +25,5 @@
 #admin-view .list-of-orders li .left { width: 115px; height: 130px; object-fit: cover; }
 #purchase-approval-section .list-tabs-orders { margin-top: 90px; }
 #purchase-approval-section .list-of-orders { max-width: 860px; }
+#purchase-approval-section .list-of-orders li .right .bottom-wrapper .pending { display: none; }
+#purchase-approval-section .list-of-orders li.pending .right .bottom-wrapper .pending { display: flex; gap: 10px; }

@@ -220,7 +220,10 @@ class System {
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
-                                    <span class="${this.allPurchases[index].purchaseStatus}">Cancel Purchase</span>
+                                    <div class="${this.allPurchases[index].purchaseStatus}">
+                                        <span class="btn-purchase approved">Approve</span>
+                                        <span class="btn-purchase pending">Cancel</span>
+                                    </div>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
                             </div>
@@ -249,7 +252,7 @@ class System {
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
-                                    <span class="${this.allPurchases[index].purchaseStatus}">Cancel Purchase</span>
+                                    <span class="${this.allPurchases[index].purchaseStatus} btn-purchase">Cancel Purchase</span>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
                             </div>
