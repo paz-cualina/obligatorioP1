@@ -202,7 +202,9 @@ class System {
                 if (this.allPurchases[index].purchaseStatus === status) {
                     allStatesList += `
                         <li class="${this.allPurchases[index].purchaseStatus}">
-                            <img src="./assets/img/products/${this.allPurchases[index].product.productImg}.png" class="left">
+                            <figure class="left">
+                                <img src="./assets/img/products/${this.allPurchases[index].product.productImg}.png">
+                            </figure>
                             <div class="right">
                                 <div class="top-wrapper">
                                     <p>${this.allPurchases[index].purchaseStatus} order</p>
@@ -218,7 +220,7 @@ class System {
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
-                                    <span class="purchase-state">Purchase Delivered</span>
+                                    <span class="${this.allPurchases[index].purchaseStatus}">Cancel Purchase</span>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
                             </div>
@@ -229,7 +231,9 @@ class System {
                 if (this.allPurchases[index].purchaseStatus === status && this.allPurchases[index].buyerID === currentUser.id) {
                     allStatesList += `
                         <li class="${this.allPurchases[index].purchaseStatus}">
-                            <img src="./assets/img/products/${this.allPurchases[index].product.productImg}.png" class="left">
+                            <figure class="left">
+                                <img src="./assets/img/products/${this.allPurchases[index].product.productImg}.png">
+                            </figure>
                             <div class="right">
                                 <div class="top-wrapper">
                                     <p>${this.allPurchases[index].purchaseStatus} order</p>
@@ -245,7 +249,7 @@ class System {
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
-                                    <span class="purchase-state">Purchase Delivered</span>
+                                    <span class="${this.allPurchases[index].purchaseStatus}">Cancel Purchase</span>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
                             </div>
