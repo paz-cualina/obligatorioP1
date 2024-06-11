@@ -1,5 +1,5 @@
 /* ADMIN */
-.admin-view { margin-left: 450px; padding-left: 40px; padding-top: 80px; padding-bottom: 80px; }
+.admin-view { margin-left: 450px; padding-left: 40px; padding-top: 80px; padding-bottom: 80px; overflow-x: hidden; }
 .admin-view .content { max-width: 960px; }
 .admin-view .content h2 { font-size: 30px; font-weight: 600; margin-bottom: 55px; }
 
@@ -11,6 +11,8 @@
 #product-upload-section .product-upload .column img.logo-flower { position: absolute; top: 30px; right: -40px; width: 100px; transform: rotate(22deg); }
 
 /*Tables*/
+#product-upload-section .table { overflow-x: scroll; }
+#product-upload-section .table .row { min-width: 900px; }
 #product-upload-section .table .row .column:nth-child(1) { min-width: 300px; }
 #product-upload-section .table .row .column:nth-child(3) { max-width: 120px;}
 #product-upload-section .table .row .column:nth-child(4),
