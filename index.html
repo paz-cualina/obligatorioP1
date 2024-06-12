@@ -482,9 +482,9 @@
             <div class="content">
                 <h2>PURCHASE APPROVAL</h2>
                 <ul class="list-tabs-orders">
-                    <li class="pending">Pending Purchase</li>
-                    <li class="approved">Approved Purchase</li>
-                    <li class="cancelled">Cancelled Purchase</li>
+                    <li data-orders="pending" class="pending">Pending Purchase</li>
+                    <li data-orders="approved" class="approved">Approved Purchase</li>
+                    <li data-orders="cancelled" class="cancelled">Cancelled Purchase</li>
                 </ul>
                 <ul id="list-of-orders-admin" class="list-of-orders">
                 </ul>
@@ -588,7 +588,7 @@
                         <div class="form">
                             <div class="radio-inputs-wrapper">
                                 <label class="radio">
-                                    <input type="radio" value="admin" name="radio" />
+                                    <input type="radio" value="admin" name="radio" checked />
                                     <span></span>
                                     <p>Admin</p>
                                 </label>
@@ -598,8 +598,8 @@
                                     <p>Buyer</p>
                                 </label>
                             </div>
-                            <input type="text" id="login-user" placeholder="User" />
-                            <input type="password" id="login-pwd" placeholder="Password" />
+                            <input type="text" id="login-user" placeholder="User" value="tam_sancri" />
+                            <input type="password" id="login-pwd" placeholder="Password" value="Tamara2024" />
                             <button id="login-button" class="btn">Login</button>
                             <span id="btn-go-register" class="go-to-btn">Are you register yet?</span>
                         </div>
@@ -653,9 +653,9 @@
                 <div class="content">
                     <span id="btn-go-list" class="go-to-btn">Continue buying</span>
                     <ul class="list-tabs-orders">
-                        <li class="pending">Pending Purchase</li>
-                        <li class="approved">Approved Purchase</li>
-                        <li class="cancelled">Cancelled Purchase</li>
+                        <li data-orders="pending" class="pending">Pending Purchase</li>
+                        <li data-orders="approved" class="approved">Approved Purchase</li>
+                        <li data-orders="cancelled" class="cancelled">Cancelled Purchase</li>
                     </ul>
                     <ul id="list-of-orders-buyer" class="list-of-orders">
                     </ul>
@@ -681,8 +681,9 @@
             </div>
         </footer>
 
-    <!--- Toast ---> 
-    <div class="toast"></div>
+    <!--- Toast --->
+    <ul class="toast-wrapper"></ul>
+    
      <!--- Scripts ---> 
     <script src="./assets/js/functions.js"></script>
     <script src="./assets/js/register.js"></script>

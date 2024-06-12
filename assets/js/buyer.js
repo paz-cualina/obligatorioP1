@@ -15,10 +15,9 @@ class Buyer
     }
     validate() {
         if ( validateFirstName(this.firstName) && validateLastName(this.lastName) && validateUser(this.userName) && validatePassword(this.password) && validateCard(this.card) && validateCVC(this.cvc) ) {
-            toastMessage("User registered successfully", "success")
             counterBuyer++;
             return true;
-        } else {
+            } else {
             return false;
         }
     }

@@ -40,12 +40,13 @@ function greaterZero(value) {
 
 // Toast
 function toastMessage(message, statusType) {
+    let toast = document.createElement("li");
+    toast.classList.add("toast");
     toast.innerHTML = message;
     toast.classList.add(statusType);
-    toast.classList.add("show");
+    toastWrapper.appendChild(toast);
     setTimeout(() => {
-        toast.classList.remove(statusType);
-        toast.classList.remove("show");
+        toastWrapper.innerHTML = "";
     }, 3000);
 }
 // Show next view

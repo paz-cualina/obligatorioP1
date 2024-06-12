@@ -22,8 +22,10 @@ class System {
             this.allBuyers.push(aBuyer);
             toastMessage(`${aBuyer.userName} was successfully added`, "success");
             return true;
-        } else {
+        } else if ( this.existBuyer(aBuyer) ) {
             toastMessage(`The user ${aBuyer.userName} already exist`, "error");
+            return false;
+        } else {
             return false;
         }
     }
@@ -192,7 +194,22 @@ class System {
         return productListContainer.innerHTML = allLiProductsList;
     }
 
-    createPurchaseOrders(status) {
+    findPurchaseToCancel(purchaseID) {
+        aDataProduct = null;
+        let index = 0;
+
+        while (aDataProduct === null && index < this.allPurchases.length) {
+
+            if (this.allPurchases[index].purchaseID === purchaseID) {
+                aDataProduct = this.allPurchases[index];         
+            }
+            else { index++; }
+        }
+        aDataProduct.purchaseStatus = `cancelled`;
+
+    }
+
+    showPurchaseOrders(status) {
         let allStatesList = "";
         let orderBuyContainer;
 
@@ -201,7 +218,7 @@ class System {
                 orderBuyContainer = document.getElementById("list-of-orders-admin");
                 if (this.allPurchases[index].purchaseStatus === status) {
                     allStatesList += `
-                        <li class="${this.allPurchases[index].purchaseStatus}">
+                        <li class="${this.allPurchases[index].purchaseStatus}" data-purchaseId="${this.allPurchases[index].purchaseID}">
                             <figure class="left">
                                 <img src="./assets/img/products/${this.allPurchases[index].product.productImg}.png">
                             </figure>
@@ -221,8 +238,8 @@ class System {
                                 </div>
                                 <div class="bottom-wrapper">
                                     <div class="${this.allPurchases[index].purchaseStatus}">
-                                        <span class="btn-purchase approved">Approve</span>
-                                        <span class="btn-purchase pending">Cancel</span>
+                                        <span class="btn-purchase approved" data-purchaseId="${this.allPurchases[index].purchaseID}">Approve</span>
+                                        <span class="btn-purchase cancel" data-purchaseId="${this.allPurchases[index].purchaseID}">Cancel</span>
                                     </div>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
@@ -233,7 +250,7 @@ class System {
                 orderBuyContainer = document.getElementById("list-of-orders-buyer");
                 if (this.allPurchases[index].purchaseStatus === status && this.allPurchases[index].buyerID === currentUser.id) {
                     allStatesList += `
-                        <li class="${this.allPurchases[index].purchaseStatus}">
+                        <li class="${this.allPurchases[index].purchaseStatus}" data-purchaseId="${this.allPurchases[index].purchaseID}">
                             <figure class="left">
                                 <img src="./assets/img/products/${this.allPurchases[index].product.productImg}.png">
                             </figure>
@@ -252,7 +269,7 @@ class System {
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
-                                    <span class="${this.allPurchases[index].purchaseStatus} btn-purchase">Cancel Purchase</span>
+                                    <span class="${this.allPurchases[index].purchaseStatus} btn-purchase cancel" data-purchaseId="${this.allPurchases[index].purchaseID}">Cancel Purchase</span>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
                             </div>
@@ -260,7 +277,8 @@ class System {
                 }
             }
         }
-        return orderBuyContainer.innerHTML = allStatesList;
+        orderBuyContainer.innerHTML = allStatesList;
+
     }
     
     Preload() {
@@ -279,7 +297,7 @@ class System {
         // Products
         this.addProduct(new Product("T-shirt Violet", 500, "Centered violet print with Korn logo", "product-tshirt", 10, true, false));
         this.addProduct(new Product("T-shirt Golden Years", 600, "Centered gold print with vintage Adidas logo", "product-golden-tshirt", 5, false, false));
-        this.addProduct(new Product("Hoodie Korn", 1100, "Black hoodie with white centered Korn logo", "product-hoodie", 0, true, true));
+        this.addProduct(new Product("Hoodie Korn", 1100, "Black hoodie with white centered Korn logo", "product-hoodie", 1, true, true));
         this.addProduct(new Product("Black Sport Pants", 1500, "Black sport pants with side pockets", "product-black-pants", 10, true, true));
         this.addProduct(new Product("Scottish Miniskirt", 600, "Miniskirt with black and white scottish print", "product-skirt", 5, true, false));
         this.addProduct(new Product("Long Sleeve", 800, "Long sleeve with front print", "product-long-sleeve", 5, true, true));
@@ -288,6 +306,12 @@ class System {
         this.addProduct(new Product("Green Korn Socks", 100, "Green socks with Korn print", "product-green-socks", 20, true, false));
         this.addProduct(new Product("Violet Jacket", 1300, "Black sport jacket with a regular fit", "product-violet-jacket", 10, true, false));
         this.addProduct(new Product("Black Sunglasses", 200, "Regular black sunglasses ", "product-sunglasses", 10, true, false));
+        // Purchases
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_3" }, 2,"pending", 1200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 2200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"cancelled", 2200 ));
+
     }
 
 }
+

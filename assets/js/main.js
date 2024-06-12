@@ -1,10 +1,11 @@
 // html elements
-const toast = document.querySelector(".toast");
+const toastWrapper = document.querySelector(".toast-wrapper");
 
 // global variables
 let currentUser = [];
 let aDataProduct = [];
 let filterSale = false;
+let tabStatus = "pending";
 
 // system instance
 const aSystem = new System();
@@ -81,16 +82,6 @@ function showProductDetails(element) {
   window.scrollTo(0, 0);
 }
 
-// document.querySelectorAll(".product-list-ul li").forEach(element => {
-//   element.addEventListener("click", showProductDetails);
-//   function showProductDetails(){
-//     const dataIdProduct = element.getAttribute("data-productid");
-//     aSystem.productDetail(dataIdProduct);
-//     showNextView("product-details");
-//     counterQty();
-//   }
-// });
-
 // filter on sale products
 document.getElementById("filter-sale").addEventListener("click", onSale);
 function onSale(){
@@ -105,7 +96,7 @@ function buyProduct(){
   const newPurchase = new Purchase (currentUser.id, aDataProduct, productQty, "pending", (productQty * aDataProduct.productPrice));
 
   aSystem.addPurchase(newPurchase);
-  aSystem.createPurchaseOrders("pending");
+  aSystem.showPurchaseOrders("pending");
   showNextView("purchase-orders");
 }
 
@@ -139,7 +130,27 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
     const sidebarItem = element.getAttribute("data-sidebar");
     showNextView(sidebarItem);
     if(sidebarItem === "purchase-approval-section"){
-      aSystem.createPurchaseOrders("pending");
+      aSystem.showPurchaseOrders("pending");
     }
   }
 });
+
+// purchase orders by status
+document.querySelectorAll(".list-tabs-orders li").forEach(element => {
+  element.addEventListener("click", showViewOrder);
+  function showViewOrder(){
+    tabStatus = element.getAttribute("data-orders");
+    aSystem.showPurchaseOrders(tabStatus);
+  }
+});
+
+
+document.querySelectorAll(".cancel").forEach(element => {
+    element.addEventListener("click", cancelPurchaseClick);
+    function cancelPurchaseClick(){
+      console.log("cancelling ");
+      const cancelId = element.getAttribute("data-purchaseId");
+      this.findPurchaseToCancel(cancelId);
+      this.showPurchaseOrders(tabStatus);
+    }
+  });
