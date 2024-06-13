@@ -145,12 +145,22 @@ document.querySelectorAll(".list-tabs-orders li").forEach(element => {
 });
 
 
-document.querySelectorAll(".cancel").forEach(element => {
-    element.addEventListener("click", cancelPurchaseClick);
-    function cancelPurchaseClick(){
-      console.log("cancelling ");
-      const cancelId = element.getAttribute("data-purchaseId");
-      this.findPurchaseToCancel(cancelId);
-      this.showPurchaseOrders(tabStatus);
-    }
-  });
+// cancel purchase button buyer
+document.getElementById("list-of-orders-buyer").addEventListener("click", ($event) => {
+  const itemPurchase = $event.target.closest("li .btn-purchase").getAttribute('data-purchaseId');
+  const btnStatusAction = $event.target.closest("li .btn-purchase").getAttribute('data-status-action');
+
+  aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
+  aSystem.showPurchaseOrders(tabStatus);
+  
+});
+
+// cancel purchase button admin
+document.getElementById("list-of-orders-admin").addEventListener("click", ($event) => {
+  const itemPurchase = $event.target.closest("li .btn-purchase").getAttribute('data-purchaseId');
+  const btnStatusAction = $event.target.closest("li .btn-purchase").getAttribute('data-status-action');
+  
+  aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
+  aSystem.showPurchaseOrders(tabStatus);
+  
+});

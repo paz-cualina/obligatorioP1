@@ -194,19 +194,55 @@ class System {
         return productListContainer.innerHTML = allLiProductsList;
     }
 
-    findPurchaseToCancel(purchaseID) {
-        aDataProduct = null;
+    findPurchaseToChangeStatus(purchaseID, dataStatusAction) {
+        let aDataOrder = null;
         let index = 0;
 
-        while (aDataProduct === null && index < this.allPurchases.length) {
+        while (aDataOrder === null && index < this.allPurchases.length) {
 
-            if (this.allPurchases[index].purchaseID === purchaseID) {
-                aDataProduct = this.allPurchases[index];         
+            if (parseInt(this.allPurchases[index].purchaseID) === parseInt(purchaseID)) {
+                aDataOrder = this.allPurchases[index];         
             }
             else { index++; }
         }
-        aDataProduct.purchaseStatus = `cancelled`;
+        
+        aDataOrder.purchaseStatus = dataStatusAction;
 
+        this.updateBalanceAndStock(dataStatusAction, aDataOrder)
+
+    }
+
+    updateBalanceAndStock(actionApprove, aDataOrder) {
+    
+        if (currentUser.admin && actionApprove === "approved") {
+            let orderSpent = aDataOrder.totalOrder;
+            let aDataBuyer = null;
+            let index = 0;
+            
+            while (aDataBuyer === null && index < this.allBuyers.length) {
+
+                if (this.allBuyers[index].id === aDataOrder.buyerID) {
+                    aDataBuyer = this.allBuyers[index];
+                }
+                else { index++; }
+            }
+
+            aDataBuyer.balance -= orderSpent;
+
+            let productData = null;
+            let i = 0;
+
+            while (productData  === null && i < this.allProducts.length) {
+
+                if (this.allProducts[i].productId === aDataOrder.product.productId) {
+                    productData = this.allProducts[i];
+                }
+                else { i++; }
+            }
+
+            productData.productStock -= aDataOrder.quantity;
+            
+        }
     }
 
     showPurchaseOrders(status) {
@@ -238,8 +274,8 @@ class System {
                                 </div>
                                 <div class="bottom-wrapper">
                                     <div class="${this.allPurchases[index].purchaseStatus}">
-                                        <span class="btn-purchase approved" data-purchaseId="${this.allPurchases[index].purchaseID}">Approve</span>
-                                        <span class="btn-purchase cancel" data-purchaseId="${this.allPurchases[index].purchaseID}">Cancel</span>
+                                        <span class="btn-purchase approved" data-purchaseId="${this.allPurchases[index].purchaseID}" data-status-action="approved">Approve</span>
+                                        <span class="btn-purchase cancel" data-purchaseId="${this.allPurchases[index].purchaseID}" data-status-action="cancelled">Cancel</span>
                                     </div>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
@@ -269,7 +305,7 @@ class System {
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
-                                    <span class="${this.allPurchases[index].purchaseStatus} btn-purchase cancel" data-purchaseId="${this.allPurchases[index].purchaseID}">Cancel Purchase</span>
+                                    <span class="${this.allPurchases[index].purchaseStatus} btn-purchase cancel" data-purchaseId="${this.allPurchases[index].purchaseID}" data-status-action="cancelled">Cancel Purchase</span>
                                     <p>Total: $${this.allPurchases[index].totalOrder}</p>
                                 </div>
                             </div>
