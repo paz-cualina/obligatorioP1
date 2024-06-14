@@ -32,6 +32,7 @@ class System {
     addProduct(aProduct) {
         if (aProduct.validate()){
             this.allProducts.push(aProduct);
+            this.stockStatusList();
             return true
         } else {
             toastMessage(`The product cant be added`, "error");
@@ -63,38 +64,68 @@ class System {
     loginUser(dataUserName, password, checkbox) {
         let aDataUser = null;
         let index = 0;
+        let notFoundUser = true;
 
         if (checkbox) {
             const userType = checkbox.value;
-        
-            if (userType === "buyer") {
-                while (aDataUser === null && index < this.allBuyers.length) {
-                    if (this.allBuyers[index].userName === dataUserName) {
-                        aDataUser = this.allBuyers[index];
-                        if (aDataUser.password === password) {
-                            toastMessage(`${aDataUser.userName} welcome! `, "success");
-                            currentUser = aDataUser;
-                            showNextView("list-of-products");
-                            showUserLayout();
+            if(!notEmpty(dataUserName)){
+                console.log("Empty username")
+                toastMessage(`Empty username`, "error");
+            }
+            else if (!notEmpty(password)){
+                console.log("Empty password")
+                toastMessage(`Empty password`, "error");
+            }
+            else{
+                if (userType === "buyer") {
+                    while (aDataUser === null && index < this.allBuyers.length) {
+                        if (this.allBuyers[index].userName === dataUserName) {
+                            aDataUser = this.allBuyers[index];
+                            if (aDataUser.password === password) {
+                                toastMessage(`${aDataUser.userName} welcome! `, "success");
+                                currentUser = aDataUser;
+                                showNextView("list-of-products");
+                                showUserLayout();
+                                this.createProductList();
+                            }
+                            else{
+                                toastMessage(`Invalis password`, "error");
+                            }
+                            notFoundUser = false;
+                            break;
                         }
+                        else { index++; }
+                    } 
+
+                    if(notFoundUser){
+                        toastMessage(`Invalis user`, "error");
                     }
-                    else { index++; }
-                } 
-            } else if (userType === "admin") {
-                while (aDataUser === null && index < this.allAdmins.length) {
-                    if (this.allAdmins[index].userName === dataUserName) {
-                        aDataUser = this.allAdmins[index];
-                        if (aDataUser.password === password) {
-                            toastMessage(`${aDataUser.userName} welcome! `, "success");
-                            currentUser = aDataUser;
-                            showNextView("product-upload-section");
-                            showUserLayout();
-                            dataAdminUser();
+
+                } else if (userType === "admin") {
+                    while (aDataUser === null && index < this.allAdmins.length) {
+                        if (this.allAdmins[index].userName === dataUserName) {
+                            aDataUser = this.allAdmins[index];
+                            if (aDataUser.password === password) {
+                                toastMessage(`${aDataUser.userName} welcome! `, "success");
+                                currentUser = aDataUser;
+                                showNextView("product-upload-section");
+                                showUserLayout();
+                                dataAdminUser();
+                                this.stockStatusList();
+                            }else{
+                                toastMessage(`Invalid password`, "error");
+                            }
+                            notFoundUser = false;
+                            break;
                         }
+                        else { index++; }
                     }
-                    else { index++; }
-                }
-            }  
+                    if(notFoundUser){
+                        toastMessage(`Invalis user`, "error");
+                    }
+                }  
+            }
+
         }
     }
 
@@ -209,7 +240,6 @@ class System {
         aDataOrder.purchaseStatus = dataStatusAction;
 
         this.updateBalanceAndStock(dataStatusAction, aDataOrder)
-
     }
 
     updateBalanceAndStock(actionApprove, aDataOrder) {
@@ -243,6 +273,8 @@ class System {
             productData.productStock -= aDataOrder.quantity;
             
         }
+
+        this.stockStatusList();
     }
 
     showPurchaseOrders(status) {
@@ -316,7 +348,76 @@ class System {
         orderBuyContainer.innerHTML = allStatesList;
 
     }
-    
+   
+    stockStatusList() {
+        let allStockStatusList = "";
+        let stockStatusList = document.getElementById("stock-status-list");
+
+        for (let index = 0; index < this.allProducts.length; index++) {
+            let checkedStatus = "";
+            let checkedOnSale = "";
+            if(this.allProducts[index].productStatus){
+                checkedStatus = "checked";
+            }
+            if(this.allProducts[index].productSale){
+                checkedOnSale = "checked";
+            }
+            allStockStatusList += `
+                <div class="row">
+                    <div class="column">${this.allProducts[index].productName}</div>
+                    <div class="column">
+                        <img src="./assets/img/products/${this.allProducts[index].productImg}.png">
+                    </div>
+                    <div class="column">${this.allProducts[index].productStock}</div>
+                    <div class="column">
+                        <div class="switch">
+                            <input type="checkbox" ${checkedStatus} data-product-id=${this.allProducts[index].productId} data-swich-action="productStatus"/>
+                            <div class="switch-options">
+                                <span class="left-option">Active</span>
+                                <span class="right-option">Paused</span>
+                                <span class="circle">
+                                    <i class="fa-solid fa-play"></i>
+                                    <i class="fa-solid fa-pause"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="switch">
+                            <input type="checkbox"  ${checkedOnSale} data-product-id=${this.allProducts[index].productId} data-swich-action="productSale"/>
+                            <div class="switch-options">
+                                <span class="left-option">Active</span>
+                                <span class="right-option">Paused</span>
+                                <span class="circle">
+                                    <i class="fa-solid fa-play"></i>
+                                    <i class="fa-solid fa-pause"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        }
+        stockStatusList.innerHTML = allStockStatusList;
+
+    }
+
+    findProductToChangeStatus(dataProductId, dataSwichAction, booleanSwichAction) {
+        let aDataProductList = null;
+        let index = 0;
+
+        while (aDataProductList === null && index < this.allProducts.length) {
+
+            if (this.allProducts[index].productId === dataProductId) {
+                aDataProductList = this.allProducts[index];         
+            }
+            else { index++; }
+        }
+        aDataProductList[dataSwichAction] = booleanSwichAction;
+
+        this.stockStatusList()
+    }
+
+
     Preload() {
         // Buyers
         this.addBuyer(new Buyer("Tamara", "Sancristobal", "tam_sancri", "Tamara2024", "4916103567334187","123"));

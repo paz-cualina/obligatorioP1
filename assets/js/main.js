@@ -63,7 +63,6 @@ function addNewProduct(){
   const newProduct = new Product(productUploadName, productUploadPrice, productUploadDescription, productUploadImg, productUploadStock, true, false);
 
   aSystem.addProduct(newProduct);
-  aSystem.createProductList();
 }
 
 // show product details
@@ -162,5 +161,20 @@ document.getElementById("list-of-orders-admin").addEventListener("click", ($even
   
   aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
   aSystem.showPurchaseOrders(tabStatus);
+  
+});
+
+
+// cancel purchase button admin
+document.getElementById("stock-status-list").addEventListener("click", ($event) => {
+  const dataProductId = $event.target.closest("input").getAttribute('data-product-id');
+  const dataSwichAction = $event.target.closest("input").getAttribute('data-swich-action');
+  const booleanSwichAction = $event.target.closest('input').checked;
+
+  console.log("dataProductId: " + dataProductId)
+  console.log("booleanSwichAction: " + booleanSwichAction)
+  
+  aSystem.findProductToChangeStatus(dataProductId, dataSwichAction, booleanSwichAction);
+  aSystem.stockStatusList()
   
 });
