@@ -130,6 +130,8 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
     showNextView(sidebarItem);
     if(sidebarItem === "purchase-approval-section"){
       aSystem.showPurchaseOrders("pending");
+    } else if (sidebarItem === "profile-section"){
+      aSystem.createProfilesList();
     }
   }
 });
@@ -154,7 +156,7 @@ document.getElementById("list-of-orders-buyer").addEventListener("click", ($even
   
 });
 
-// cancel purchase button admin
+// cancel and approve purchase button admin
 document.getElementById("list-of-orders-admin").addEventListener("click", ($event) => {
   const itemPurchase = $event.target.closest("li .btn-purchase").getAttribute('data-purchaseId');
   const btnStatusAction = $event.target.closest("li .btn-purchase").getAttribute('data-status-action');
@@ -165,7 +167,7 @@ document.getElementById("list-of-orders-admin").addEventListener("click", ($even
 });
 
 
-// cancel purchase button admin
+// table STOCK AND STATUS OF PRODUCTS
 document.getElementById("stock-status-list").addEventListener("click", ($event) => {
   const dataProductId = $event.target.closest("input").getAttribute('data-product-id');
   const dataSwichAction = $event.target.closest("input").getAttribute('data-swich-action');

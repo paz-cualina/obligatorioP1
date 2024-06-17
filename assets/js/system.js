@@ -237,9 +237,41 @@ class System {
             else { index++; }
         }
         
-        aDataOrder.purchaseStatus = dataStatusAction;
+        if ( dataStatusAction === "cancelled" ) {
+            aDataOrder.purchaseStatus = dataStatusAction;
+        } else {
+            let dataBuyer = null;
+            let i = 0;
 
-        this.updateBalanceAndStock(dataStatusAction, aDataOrder)
+            while (dataBuyer === null && i < this.allBuyers.length) {
+
+                if (parseInt(this.allBuyers[i].id) === parseInt(aDataOrder.buyerID)) {
+                    dataBuyer = this.allBuyers[i];         
+                }
+                else { i++; }
+            }
+
+            let dataProduct = null;
+            let pIndex = 0;
+
+            while (dataProduct === null && pIndex < this.allProducts.length) {
+                if (this.allProducts[pIndex].productId === aDataOrder.product.productId) {
+                    dataProduct = this.allProducts[pIndex];         
+                }
+                else { pIndex++; }
+            }
+            console.log(dataProduct)
+            if ( dataBuyer.balance >= aDataOrder.totalOrder && dataProduct.productStatus && dataProduct.productStock >= aDataOrder.quantity ) {
+                aDataOrder.purchaseStatus = dataStatusAction;
+                this.updateBalanceAndStock(dataStatusAction, aDataOrder);
+                toastMessage(`The purchase order was approved.`, "success");
+            } else {
+                this.findPurchaseToChangeStatus(purchaseID, "cancelled");
+                toastMessage(`The purchase order couldn't be approved. We have to cancel it.`, "error");
+            }
+        }
+        
+        this.createProfilesList();
     }
 
     updateBalanceAndStock(actionApprove, aDataOrder) {
@@ -271,7 +303,10 @@ class System {
             }
 
             productData.productStock -= aDataOrder.quantity;
-            
+
+            if ( productData.productStock <= 0 ) {
+                productData.productStatus = false;
+            }
         }
 
         this.stockStatusList();
@@ -413,8 +448,40 @@ class System {
             else { index++; }
         }
         aDataProductList[dataSwichAction] = booleanSwichAction;
-
+        console.log(aDataProductList);
         this.stockStatusList()
+    }
+
+    createProfilesList() {
+        let allProfilesAdmin = "";
+        let profileAdminContainer = document.getElementById("list-of-admins");
+
+        for (let index = 0; index < this.allAdmins.length; index++) {
+
+            allProfilesAdmin += `
+            <li>
+                <p>${this.allAdmins[index].userName}</p>
+                <p>${this.allAdmins[index].id}</p>
+            </li>`;   
+
+        }
+
+        profileAdminContainer.innerHTML = allProfilesAdmin;
+
+        let allProfilesBuyers = "";
+        let profileBuyerContainer = document.getElementById("list-of-buyers");
+
+        for (let i = 0; i < this.allAdmins.length; i++) {
+
+            allProfilesBuyers += `
+            <li>
+                <p>${this.allBuyers[i].userName}</p>
+                <p>${this.allBuyers[i].balance}</p>
+                <p>${this.allBuyers[i].id}</p>
+            </li>`;   
+
+        }
+        profileBuyerContainer.innerHTML = allProfilesBuyers;
     }
 
 
@@ -432,7 +499,7 @@ class System {
         this.addAdmin(new Admin("alice_admin", "AliceAdmin1990"));
         this.addAdmin(new Admin("bob_admin", "BobAdmin123"));
         // Products
-        this.addProduct(new Product("T-shirt Violet", 500, "Centered violet print with Korn logo", "product-tshirt", 10, true, false));
+        this.addProduct(new Product("T-shirt Violet", 500, "Centered violet print with Korn logo", "product-tshirt", 4, true, false));
         this.addProduct(new Product("T-shirt Golden Years", 600, "Centered gold print with vintage Adidas logo", "product-golden-tshirt", 5, false, false));
         this.addProduct(new Product("Hoodie Korn", 1100, "Black hoodie with white centered Korn logo", "product-hoodie", 1, true, true));
         this.addProduct(new Product("Black Sport Pants", 1500, "Black sport pants with side pockets", "product-black-pants", 10, true, true));
@@ -444,7 +511,7 @@ class System {
         this.addProduct(new Product("Violet Jacket", 1300, "Black sport jacket with a regular fit", "product-violet-jacket", 10, true, false));
         this.addProduct(new Product("Black Sunglasses", 200, "Regular black sunglasses ", "product-sunglasses", 10, true, false));
         // Purchases
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_3" }, 2,"pending", 1200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"pending", 1200 ));
         this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 2200 ));
         this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"cancelled", 2200 ));
 
