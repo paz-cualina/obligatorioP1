@@ -7,15 +7,7 @@ class System {
         this.Preload();
     }
     existBuyer(aBuyer) {
-        let success = false;
-        let i = 0;
-        while (!success && i < this.allBuyers.length) {
-            if (this.allBuyers[i].userName === aBuyer.userName) {
-                success = true;
-            }
-            else { i++; }
-        }
-        return success;
+        return findObjectByValue(this.allBuyers, "userName", aBuyer.userName) !== null;
     }
     addBuyer(aBuyer) {
         if (aBuyer.validate() && !this.existBuyer(aBuyer)) {
@@ -40,15 +32,7 @@ class System {
         }
     }
     existAdmin(anAdmin) {
-        let success = false;
-        let i = 0;
-        while (!success && i < this.allAdmins.length) {
-            if (this.allAdmins[i].userName === anAdmin.userName) {
-                success = true;
-            }
-            else { i++; }
-        }
-        return success;
+        return findObjectByValue(this.allAdmins, "userName", anAdmin.userName) !== null;
     }
     addAdmin(anAdmin) {
         if (anAdmin.validate() && !this.existAdmin(anAdmin)) {
@@ -62,9 +46,6 @@ class System {
     }
 
     loginUser(dataUserName, password, checkbox) {
-        let aDataUser = null;
-        let index = 0;
-        let notFoundUser = true;
 
         if (checkbox) {
             const userType = checkbox.value;
@@ -76,57 +57,42 @@ class System {
             }
             else{
                 if (userType === "buyer") {
-                    while (aDataUser === null && index < this.allBuyers.length) {
-                        if (this.allBuyers[index].userName === dataUserName) {
-                            aDataUser = this.allBuyers[index];
-                            if (aDataUser.password === password) {
-                                toastMessage(`${aDataUser.userName} welcome! `, "success");
-                                currentUser = aDataUser;
-                                showNextView("list-of-products");
-                                showUserLayout();
-                                this.createProductList();
-                            }
-                            else{
-                                toastMessage(`Invalis password`, "error");
-                            }
-                            notFoundUser = false;
-                            break;
-                        }
-                        else { index++; }
-                    } 
+                    const foundBuyer = findObjectByValue(this.allBuyers, "userName", dataUserName);
 
-                    if(notFoundUser){
-                        toastMessage(`Invalis user`, "error");
+                    if(!foundBuyer){
+                        toastMessage(`Invalid user`, "error");
+                    }else if (foundBuyer.password === password) {
+                        toastMessage(`${foundBuyer.userName} welcome! `, "success");
+                        currentUser = foundBuyer;
+                        showNextView("list-of-products");
+                        showUserLayout();
+                        this.createProductList();
+                    }else{
+                        toastMessage(`Invalid password`, "error");
                     }
+
 
                 } else if (userType === "admin") {
-                    while (aDataUser === null && index < this.allAdmins.length) {
-                        if (this.allAdmins[index].userName === dataUserName) {
-                            aDataUser = this.allAdmins[index];
-                            if (aDataUser.password === password) {
-                                toastMessage(`${aDataUser.userName} welcome! `, "success");
-                                currentUser = aDataUser;
-                                showNextView("product-upload-section");
-                                showUserLayout();
-                                dataAdminUser();
-                                this.stockStatusList();
-                            }else{
-                                toastMessage(`Invalid password`, "error");
-                            }
-                            notFoundUser = false;
-                            break;
-                        }
-                        else { index++; }
+                    const foundAdmin = findObjectByValue(this.allAdmins, "userName", dataUserName);
+                    
+                    if(!foundAdmin){
+                        toastMessage(`Invalid user`, "error");
                     }
-                    if(notFoundUser){
-                        toastMessage(`Invalis user`, "error");
+                    else if (foundAdmin.password === password) {
+                            toastMessage(`${foundAdmin.userName} welcome! `, "success");
+                            currentUser = foundAdmin;
+                            showNextView("product-upload-section");
+                            showUserLayout();
+                            dataAdminUser();
+                            this.stockStatusList();
+                    }else{
+                        toastMessage(`Invalid password`, "error");
                     }
                 }  
             }
 
         }
     }
-
     productDetail(dataIdProduct) {
         let contentDetailContainer = document.querySelector(".main-detail");
         aDataProduct = null;

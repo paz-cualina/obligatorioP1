@@ -93,3 +93,27 @@ function counterQty() {
     });
 
 };
+
+function findObjectByNumericId(allObject, propertyName, matchingId) {
+    let foundObject = null;
+    let index = 0;
+    
+    while (foundObject === null && index < allObject.length) {
+        if (parseInt(allObject[index][propertyName]) === parseInt(matchingId)) {
+            foundObject = allObject[index];         
+        }else { index++; }
+    }
+    return foundObject
+}
+
+function findObjectByValue(allObject, propertyName, matchingValue) {
+    let foundObject = null;
+    let index = 0;
+    
+    while (foundObject === null && index < allObject.length) {
+        if (allObject[index][propertyName] === matchingValue) {
+            foundObject = allObject[index];         
+        }else { index++; }
+    }
+    return foundObject
+}
