@@ -69,11 +69,9 @@ class System {
         if (checkbox) {
             const userType = checkbox.value;
             if(!notEmpty(dataUserName)){
-                console.log("Empty username")
                 toastMessage(`Empty username`, "error");
             }
             else if (!notEmpty(password)){
-                console.log("Empty password")
                 toastMessage(`Empty password`, "error");
             }
             else{
@@ -172,7 +170,6 @@ class System {
     addPurchase(aPurchase) {
         if (aPurchase.validate()) {
             this.allPurchases.push(aPurchase);
-            console.log(this.allPurchases); 
             toastMessage(`The purchase order was successfully created`, "success");
             return true;
         } else {
@@ -239,6 +236,7 @@ class System {
         
         if ( dataStatusAction === "cancelled" ) {
             aDataOrder.purchaseStatus = dataStatusAction;
+            toastMessage(`The purchase order is cancelled`, "error");
         } else {
             let dataBuyer = null;
             let i = 0;
@@ -260,7 +258,6 @@ class System {
                 }
                 else { pIndex++; }
             }
-            console.log(dataProduct)
             if ( dataBuyer.balance >= aDataOrder.totalOrder && dataProduct.productStatus && dataProduct.productStock >= aDataOrder.quantity ) {
                 aDataOrder.purchaseStatus = dataStatusAction;
                 this.updateBalanceAndStock(dataStatusAction, aDataOrder);
@@ -448,7 +445,6 @@ class System {
             else { index++; }
         }
         aDataProductList[dataSwichAction] = booleanSwichAction;
-        console.log(aDataProductList);
         this.stockStatusList()
     }
 
@@ -483,7 +479,40 @@ class System {
         }
         profileBuyerContainer.innerHTML = allProfilesBuyers;
     }
+    createEarningsList() {
+        totalEarnings = 0;
+        let allEarnings = "";
+        let earningsReportTable = document.getElementById("earnings-report-table");
 
+        for (let indexP = 0; indexP < this.allProducts.length; indexP++) {
+            const currentProduct = this.allProducts[indexP];
+            let quantityProduct = 0;
+            let totalPurshaseProduct = 0;
+
+            for (let index = 0; index < this.allPurchases.length; index++) {
+                let productIdPurchase = this.allProducts[indexP].productId;
+                if(this.allPurchases[index].purchaseStatus === "approved" && this.allPurchases[index].product.productId === productIdPurchase) {
+
+                    quantityProduct += this.allPurchases[index].quantity;
+                    totalPurshaseProduct += this.allPurchases[index].totalOrder;
+                }
+            }
+            if(quantityProduct > 0){
+                totalEarnings += totalPurshaseProduct;
+                allEarnings += `
+                <div class="row">
+                    <div class="column">${currentProduct.productName}</div>
+                    <div class="column">${quantityProduct}</div>
+                    <div class="column">$${currentProduct.productPrice}</div>
+                    <div class="column">$${totalPurshaseProduct}</div>
+                </div>`;  
+            }
+
+
+        }
+        earningsReportTable.innerHTML = allEarnings;
+        document.getElementById("totalEarnings").innerHTML = totalEarnings;
+    }
 
     Preload() {
         // Buyers
@@ -514,7 +543,10 @@ class System {
         this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"pending", 1200 ));
         this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 2200 ));
         this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"cancelled", 2200 ));
-
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 100,"approved", 1200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 50,"approved", 1200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 30,"approved", 1200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 2200 ));
     }
 
 }

@@ -6,6 +6,7 @@ let currentUser = [];
 let aDataProduct = [];
 let filterSale = false;
 let tabStatus = "pending";
+let totalEarnings = 0;
 
 // system instance
 const aSystem = new System();
@@ -68,13 +69,13 @@ function addNewProduct(){
 // show product details
 document.querySelector(".product-list-ul").addEventListener("click", ($event) => {
   const product = $event.target.closest("li");
-  if (product.getAttribute('data-productId')) {
-    showProductDetails(product);
+  const dataIdProduct = product.getAttribute("data-productId");
+  if (dataIdProduct) {
+    showProductDetails(dataIdProduct);
   }
 });
 
-function showProductDetails(element) {
-  const dataIdProduct = element.getAttribute("data-productid");
+function showProductDetails(dataIdProduct) {
   aSystem.productDetail(dataIdProduct);
   showNextView("product-details");
   counterQty();
@@ -132,6 +133,8 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
       aSystem.showPurchaseOrders("pending");
     } else if (sidebarItem === "profile-section"){
       aSystem.createProfilesList();
+    }else if (sidebarItem === "earnings-report-section"){
+      aSystem.createEarningsList();
     }
   }
 });
