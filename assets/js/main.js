@@ -155,12 +155,14 @@ document.querySelectorAll(".list-tabs-orders li").forEach(element => {
 
 // cancel purchase button buyer
 document.getElementById("list-of-orders-buyer").addEventListener("click", ($event) => {
-  const itemPurchase = $event.target.closest("li .btn-purchase").getAttribute('data-purchaseId');
-  const btnStatusAction = $event.target.closest("li .btn-purchase").getAttribute('data-status-action');
+  const actionButton = $event.target.closest(".btn-purchase");
+  if (actionButton) {
+    const itemPurchase = actionButton.getAttribute('data-purchaseId');
+    const btnStatusAction = actionButton.getAttribute('data-status-action');
 
-  aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
-  aSystem.showPurchaseOrders(tabStatus);
-  
+    aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
+    aSystem.showPurchaseOrders(tabStatus);
+  }
 });
 
 // cancel and approve purchase button admin

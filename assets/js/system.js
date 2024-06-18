@@ -182,7 +182,6 @@ class System {
                     </li>`;
                 }
             }
-
         }
 
         return productListContainer.innerHTML = allLiProductsList;
@@ -343,8 +342,28 @@ class System {
                 }
             }
         }
+        
         orderBuyContainer.innerHTML = allStatesList;
 
+        this.showCurrentBalanceAndTotal(status);
+    }
+
+    showCurrentBalanceAndTotal(status) {
+        const showTotalApproved = document.getElementById("buyer-approved-orders");
+        if (currentUser.admin || status !== "approved") {
+            showTotalApproved.innerHTML = "";
+        } else {
+            let totalApproved = 0;
+        
+            for (let index = 0; index < this.allPurchases.length; index++) {
+                if (this.allPurchases[index].purchaseStatus === "approved" && this.allPurchases[index].buyerID === currentUser.id) {
+                    totalApproved += this.allPurchases[index].quantity * this.allPurchases[index].product.productPrice;
+                }
+            }
+            
+            showTotalApproved.innerHTML = `<p>Total approved orders: $ ${totalApproved}</p> 
+                                        <p>Total balance: $ ${currentUser.balance}</p>`;
+        }
     }
    
     stockStatusList() {
@@ -382,7 +401,7 @@ class System {
                     </div>
                     <div class="column">
                         <div class="switch">
-                            <input type="checkbox"  ${checkedOnSale} data-product-id=${this.allProducts[index].productId} data-swich-action="productSale"/>
+                            <input type="checkbox" ${checkedOnSale} data-product-id=${this.allProducts[index].productId} data-swich-action="productSale"/>
                             <div class="switch-options">
                                 <span class="left-option">Active</span>
                                 <span class="right-option">Paused</span>
@@ -505,13 +524,30 @@ class System {
         this.addProduct(new Product("Green Korn Socks", 100, "Green socks with Korn print", "product-green-socks", 20, true, false));
         this.addProduct(new Product("Violet Jacket", 1300, "Black sport jacket with a regular fit", "product-violet-jacket", 10, true, false));
         this.addProduct(new Product("Black Sunglasses", 200, "Regular black sunglasses", "product-sunglasses", 10, true, false));
+        
         // Purchases
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"approved", 1200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 1,"pending", 600 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 2,"approved", 2200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 1100 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Black Sport Pants", "productPrice": 1500, "productDescription": "Black sport pants with side pockets", "productImg": "product-black-pants", "productStock": 10, "productStatus": true, "productSale": true, "productId": "PROD_ID_3" }, 1,"approved", 1500 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Black Sunglasses", "productPrice": 200, "productDescription": "Regular black sunglasses", "productImg": "product-sunglasses", "productStock": 10, "productStatus": true, "productSale": false, "productId": "PROD_ID_10" }, 3,"approved", 600 ));
+        currentUser = this.allAdmins[0];
+        this.addPurchase(new Purchase(0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"pending", 1200 ));
+        this.findPurchaseToChangeStatus(0, "approved");
+
+        this.addPurchase(new Purchase(0, { "productName": "Black Sunglasses", "productPrice": 200, "productDescription": "Regular black sunglasses", "productImg": "product-sunglasses", "productStock": 10, "productStatus": true, "productSale": false, "productId": "PROD_ID_10" }, 3,"pending", 600 ));
+        this.findPurchaseToChangeStatus(1, "cancelled");
+
+        // This will remain pending
+        this.addPurchase(new Purchase(0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 1,"pending", 600 ));
+
+        this.addPurchase(new Purchase(1, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 2,"pending", 2200 ));
+        this.findPurchaseToChangeStatus(3, "approved");
+
+        this.addPurchase(new Purchase(0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"pending", 1100 ));
+        this.findPurchaseToChangeStatus(4, "approved");
+
+        this.addPurchase(new Purchase(2, { "productName": "Black Sport Pants", "productPrice": 1500, "productDescription": "Black sport pants with side pockets", "productImg": "product-black-pants", "productStock": 10, "productStatus": true, "productSale": true, "productId": "PROD_ID_3" }, 1,"pending", 1500 ));
+        this.findPurchaseToChangeStatus(5, "approved");
+
+        this.addPurchase(new Purchase(0, { "productName": "Black Sunglasses", "productPrice": 200, "productDescription": "Regular black sunglasses", "productImg": "product-sunglasses", "productStock": 10, "productStatus": true, "productSale": false, "productId": "PROD_ID_10" }, 3,"pending", 600 ));
+        this.findPurchaseToChangeStatus(6, "approved");
+
     }
 
 }
