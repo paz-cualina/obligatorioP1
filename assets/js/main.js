@@ -123,7 +123,7 @@ function goList(){
 document.querySelectorAll(".admin-sidebar li").forEach(element => {
   element.addEventListener("click", goAdminSection);
   function goAdminSection(){
-     document.querySelectorAll(".admin-sidebar li.active").forEach(activeElement => {
+    document.querySelectorAll(".admin-sidebar li.active").forEach(activeElement => {
       activeElement.classList.remove("active");
     });
     element.classList.add("active");
@@ -133,7 +133,7 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
       aSystem.showPurchaseOrders("pending");
     } else if (sidebarItem === "profile-section"){
       aSystem.createProfilesList();
-    }else if (sidebarItem === "earnings-report-section"){
+    } else if (sidebarItem === "earnings-report-section"){
       aSystem.createEarningsList();
     }
   }
@@ -143,11 +143,15 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
 document.querySelectorAll(".list-tabs-orders li").forEach(element => {
   element.addEventListener("click", showViewOrder);
   function showViewOrder(){
+    document.querySelectorAll(".list-tabs-orders li.active").forEach(activeElement => {
+      activeElement.classList.remove("active");
+    });
+    element.classList.add("active");
+
     tabStatus = element.getAttribute("data-orders");
     aSystem.showPurchaseOrders(tabStatus);
   }
 });
-
 
 // cancel purchase button buyer
 document.getElementById("list-of-orders-buyer").addEventListener("click", ($event) => {
@@ -169,15 +173,11 @@ document.getElementById("list-of-orders-admin").addEventListener("click", ($even
   
 });
 
-
 // table STOCK AND STATUS OF PRODUCTS
 document.getElementById("stock-status-list").addEventListener("click", ($event) => {
   const dataProductId = $event.target.closest("input").getAttribute('data-product-id');
   const dataSwichAction = $event.target.closest("input").getAttribute('data-swich-action');
   const booleanSwichAction = $event.target.closest('input').checked;
-
-  console.log("dataProductId: " + dataProductId)
-  console.log("booleanSwichAction: " + booleanSwichAction)
   
   aSystem.findProductToChangeStatus(dataProductId, dataSwichAction, booleanSwichAction);
   aSystem.stockStatusList()

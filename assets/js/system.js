@@ -422,8 +422,8 @@ class System {
 
             allProfilesAdmin += `
             <li>
-                <p>${this.allAdmins[index].userName}</p>
-                <p>${this.allAdmins[index].id}</p>
+                <p>Username: ${this.allAdmins[index].userName}</p>
+                <p>Id: ${this.allAdmins[index].id}</p>
             </li>`;   
 
         }
@@ -437,9 +437,9 @@ class System {
 
             allProfilesBuyers += `
             <li>
-                <p>${this.allBuyers[i].userName}</p>
-                <p>${this.allBuyers[i].balance}</p>
-                <p>${this.allBuyers[i].id}</p>
+                <p>Username: ${this.allBuyers[i].userName}</p>
+                <p>Balance: $ ${this.allBuyers[i].balance}</p>
+                <p>Id: ${this.allBuyers[i].id}</p>
             </li>`;   
 
         }
@@ -477,7 +477,7 @@ class System {
 
         }
         earningsReportTable.innerHTML = allEarnings;
-        document.getElementById("totalEarnings").innerHTML = totalEarnings;
+        document.getElementById("totalEarnings").innerHTML = `$ ${totalEarnings}`;
     }
 
     Preload() {
@@ -504,15 +504,14 @@ class System {
         this.addProduct(new Product("Sneakers Classic White", 1200, "White sneakers with a classic design", "product-white-sneakers", 15, true, false));
         this.addProduct(new Product("Green Korn Socks", 100, "Green socks with Korn print", "product-green-socks", 20, true, false));
         this.addProduct(new Product("Violet Jacket", 1300, "Black sport jacket with a regular fit", "product-violet-jacket", 10, true, false));
-        this.addProduct(new Product("Black Sunglasses", 200, "Regular black sunglasses ", "product-sunglasses", 10, true, false));
+        this.addProduct(new Product("Black Sunglasses", 200, "Regular black sunglasses", "product-sunglasses", 10, true, false));
         // Purchases
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"pending", 1200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 2200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"cancelled", 2200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 100,"approved", 1200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 50,"approved", 1200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 30,"approved", 1200 ));
-        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 2200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"approved", 1200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 1,"pending", 600 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 2,"approved", 2200 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"approved", 1100 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Black Sport Pants", "productPrice": 1500, "productDescription": "Black sport pants with side pockets", "productImg": "product-black-pants", "productStock": 10, "productStatus": true, "productSale": true, "productId": "PROD_ID_3" }, 1,"approved", 1500 ));
+        this.addPurchase(new Purchase( 0, { "productName": "Black Sunglasses", "productPrice": 200, "productDescription": "Regular black sunglasses", "productImg": "product-sunglasses", "productStock": 10, "productStatus": true, "productSale": false, "productId": "PROD_ID_10" }, 3,"approved", 600 ));
     }
 
 }

@@ -26,4 +26,15 @@
 #purchase-approval-section .list-tabs-orders { margin-top: 90px; }
 #purchase-approval-section .list-of-orders { max-width: 860px; }
 #purchase-approval-section .list-of-orders li .right .bottom-wrapper .pending { display: none; }
-#purchase-approval-section .list-of-orders li.pending .right .bottom-wrapper .pending { display: flex; gap: 10px; }
+#purchase-approval-section .list-of-orders li .right .bottom-wrapper .pending { display: flex; gap: 10px; }
+#purchase-approval-section .list-of-orders li.approved .btn-purchase,
+#purchase-approval-section .list-of-orders li.cancelled .btn-purchase { display: none; }
+
+#totalEarnings { display: flex; justify-content: end; margin-top: 30px; padding-right: 15px; font-size: 18px; color: var(--primary); }
+
+/*Profile*/
+#profile-section h2 { color: var(--primary); }
+#profile-section ul { margin-bottom: 40px; }
+#profile-section ul li { display: flex; }
+#profile-section ul li p:first-of-type { width: 300px; }
+#profile-section ul li p:nth-of-type(2) { width: 200px; }

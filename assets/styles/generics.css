@@ -71,7 +71,7 @@ input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .admin-sidebar .logo{ width: 80px; margin-left: 40px; }
 .admin-sidebar ul{ margin-top: 40px; }
 .admin-sidebar ul li{ padding: 15px 40px; text-transform: uppercase; font-weight: 600; transition: all .3s; cursor: pointer; }
-.admin-sidebar ul li:hover{ background: #0f0f0f; color: var(--white); }
+.admin-sidebar ul li:hover{ background: #0f0f0f; color: var(--primary); }
 .admin-sidebar ul li:hover i{  color: var(--primary); }
 .admin-sidebar ul li.active{ background: #0f0f0f; color: var(--primary); }
 .admin-sidebar ul li i{ margin-right: 15px; }
