@@ -10,8 +10,8 @@ section { position: relative; }
 .btn.secondary:hover { color: var(--secondary); }
 
 /*Toast*/
-.toast-wrapper { position: fixed;  top: 40px; right: 40px; display: flex; flex-direction: column; gap: 20px; }
-.toast-wrapper .toast { background: var(--error); font-size: 14px; padding: 20px 30px; border-radius: 4px; z-index: 1000; }
+.toast-wrapper { position: fixed;  top: 40px; right: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 1000; }
+.toast-wrapper .toast { background: var(--error); font-size: 14px; padding: 20px 30px; border-radius: 4px;}
 .toast-wrapper .toast.success { background: var(--primary); color: var(--black); }
 .toast-wrapper .toast.error { background: var(--error); }
 

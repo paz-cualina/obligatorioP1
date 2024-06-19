@@ -7,6 +7,7 @@ let aDataProduct = [];
 let filterSale = false;
 let tabStatus = "pending";
 let totalEarnings = 0;
+let loggedIn = false;
 
 // system instance
 const aSystem = new System();
@@ -36,6 +37,7 @@ function registerBuyer(){
 // login users
 document.getElementById("login-button").addEventListener("click", loginUser);
 function loginUser(){
+  loggedIn = true;
   const userName = document.getElementById("login-user").value.trim().toLowerCase();
   const password = document.getElementById("login-pwd").value.trim();
   const checkbox = document.querySelector('input[name="radio"]:checked');
@@ -104,6 +106,7 @@ function buyProduct(){
 document.getElementById("btn-go-register").addEventListener("click", goRegister);
 function goRegister(){
   showNextView("user-registration");
+  loggedIn = true;
 }
 
 // go to login page
@@ -132,6 +135,7 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
     if(sidebarItem === "purchase-approval-section"){
       aSystem.showPurchaseOrders("pending");
     } else if (sidebarItem === "profile-section"){
+      console.log(aSystem.allBuyers)
       aSystem.createProfilesList();
     } else if (sidebarItem === "earnings-report-section"){
       aSystem.createEarningsList();
@@ -167,8 +171,8 @@ document.getElementById("list-of-orders-buyer").addEventListener("click", ($even
 
 // cancel and approve purchase button admin
 document.getElementById("list-of-orders-admin").addEventListener("click", ($event) => {
-  const itemPurchase = $event.target.closest("li .btn-purchase").getAttribute('data-purchaseId');
-  const btnStatusAction = $event.target.closest("li .btn-purchase").getAttribute('data-status-action');
+  const itemPurchase = $event.target.closest(".btn-purchase").getAttribute('data-purchaseId');
+  const btnStatusAction = $event.target.closest(".btn-purchase").getAttribute('data-status-action');
   
   aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
   aSystem.showPurchaseOrders(tabStatus);

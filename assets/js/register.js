@@ -66,7 +66,7 @@ function validatePassword(password) {
     if ( password.length >= 5 && containUpperCase(password) && containLowerCase(password) && containNumber(password) ) {
       return true;
     } else {
-      toastMessage("Password failed", "error")
+      toastMessage("Password must contain uppercase, lowercase, at least 5 characters, and at least a number", "error")
       return false;
     }
   } else { 
@@ -75,39 +75,44 @@ function validatePassword(password) {
   }
 }
 function cardFormat(card) {
-  if (card.length !== 16) {
+  if (card.length !== 16 && isNaN(card)) {
+    console.log("card format:" + card)
     return false;
-  }
-  for (let i = 0; i < card.length; i++) {
-    if (isNaN(card[i])) {
-      return false;
-    }
-  }
-  return true;
+  }else
+  { return true; }
 }
 function luhn(card)
 {
   let switchTo = true;
   let total = 0;
+  console.log("card lunh:" + card)
   for(let i = card.length-1; i >= 0; i--)
   {
+    console.log("card position" + i)
     if(switchTo)
     {
       let subTotal = parseInt(card[i]) * 2;
       if(subTotal > 9) {
         subTotal -= 9;
         total += subTotal;
-      }
+      }else {total += subTotal;}
       switchTo = false;
+      console.log("card i = " + card[i])
+      console.log("subTotal = " + subTotal)
+      console.log("total = " + total)
     }
     else
     {
       total += parseInt(card[i]);
       switchTo = true;
+      console.log("card i = " + card[i])
+      console.log("total = " + total)
     }
   }
   total = total * 9;
   total = String(total);
+
+  console.log("TOTAL FINAL = " + total)
 
   return total[total.length-1];
 }

@@ -40,14 +40,16 @@ function greaterZero(value) {
 
 // Toast
 function toastMessage(message, statusType) {
-    let toast = document.createElement("li");
-    toast.classList.add("toast");
-    toast.innerHTML = message;
-    toast.classList.add(statusType);
-    toastWrapper.appendChild(toast);
-    setTimeout(() => {
-        toastWrapper.innerHTML = "";
-    }, 3000);
+    if ( loggedIn ) {
+        let toast = document.createElement("li");
+        toast.classList.add("toast");
+        toast.innerHTML = message;
+        toast.classList.add(statusType);
+        toastWrapper.appendChild(toast);
+        setTimeout(() => {
+            toastWrapper.innerHTML = "";
+        }, 3000);
+    }
 }
 // Show next view
 function showNextView( nextView ) {
@@ -57,10 +59,10 @@ function showNextView( nextView ) {
 
 // Show layout for each type of user
 function showUserLayout() {
-    if ( currentUser.admin === false && Object.keys(currentUser).length > 0) {
+    if ( currentUser.admin === false) {
         showCommonClass(".buyer-layout");
         hideCommonClass(".admin-sidebar-wrapper");
-    } else if ( currentUser.admin && Object.keys(currentUser).length > 0) {
+    } else if ( currentUser.admin) {
         showCommonClass(".admin-sidebar-wrapper");
         hideCommonClass(".buyer-layout");
     } else {

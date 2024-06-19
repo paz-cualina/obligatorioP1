@@ -4,8 +4,9 @@ class System {
         this.allAdmins = [];
         this.allProducts = [];
         this.allPurchases = [];
-        this.Preload();
+        this.preload();
     }
+
     existBuyer(aBuyer) {
         return findObjectByValue(this.allBuyers, "userName", aBuyer.userName) !== null;
     }
@@ -13,6 +14,12 @@ class System {
         if (aBuyer.validate() && !this.existBuyer(aBuyer)) {
             this.allBuyers.push(aBuyer);
             toastMessage(`${aBuyer.userName} was successfully added`, "success");
+            if(loggedIn){
+                currentUser = aBuyer;
+                showNextView("list-of-products");
+                showUserLayout();
+            }
+            console.log(this.allBuyers)
             return true;
         } else if ( this.existBuyer(aBuyer) ) {
             toastMessage(`The user ${aBuyer.userName} already exist`, "error");
@@ -66,6 +73,7 @@ class System {
                         currentUser = foundBuyer;
                         showNextView("list-of-products");
                         showUserLayout();
+                        loggedIn = true;
                         this.createProductList();
                     }else{
                         toastMessage(`Invalid password`, "error");
@@ -84,6 +92,7 @@ class System {
                             showNextView("product-upload-section");
                             showUserLayout();
                             dataAdminUser();
+                            loggedIn = true;
                             this.stockStatusList();
                     }else{
                         toastMessage(`Invalid password`, "error");
@@ -150,7 +159,7 @@ class System {
 
         for (let index = 0; index < this.allProducts.length; index++) {
 
-            if (this.allProducts[index].productStatus) {
+            if (this.allProducts[index].productStatus && this.allProducts[index].productStock > 0) {
                 let divSale = "";
                 if (filterSale) {
                     if (this.allProducts[index].productSale === true) {
@@ -437,8 +446,9 @@ class System {
         let allProfilesAdmin = "";
         let profileAdminContainer = document.getElementById("list-of-admins");
 
+        
         for (let index = 0; index < this.allAdmins.length; index++) {
-
+            
             allProfilesAdmin += `
             <li>
                 <p>Username: ${this.allAdmins[index].userName}</p>
@@ -451,8 +461,7 @@ class System {
 
         let allProfilesBuyers = "";
         let profileBuyerContainer = document.getElementById("list-of-buyers");
-
-        for (let i = 0; i < this.allAdmins.length; i++) {
+        for (let i = 0; i < this.allBuyers.length; i++) {
 
             allProfilesBuyers += `
             <li>
@@ -499,7 +508,7 @@ class System {
         document.getElementById("totalEarnings").innerHTML = `$ ${totalEarnings}`;
     }
 
-    Preload() {
+    preload() {
         // Buyers
         this.addBuyer(new Buyer("Tamara", "Sancristobal", "tam_sancri", "Tamara2024", "4916103567334187","123"));
         this.addBuyer(new Buyer("John", "Doe", "john_doe", "John2024", "4916112345678901", "456"));
