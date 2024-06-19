@@ -52,6 +52,7 @@ function logOut(){
   currentUser = [];
   showNextView("user-login");
   showUserLayout();
+  cleanInputs("login-form");
 }
 
 // upload new product
@@ -107,6 +108,7 @@ document.getElementById("btn-go-register").addEventListener("click", goRegister)
 function goRegister(){
   showNextView("user-registration");
   loggedIn = true;
+  cleanInputs("register-form");
 }
 
 // go to login page
@@ -139,6 +141,20 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
       aSystem.createProfilesList();
     } else if (sidebarItem === "earnings-report-section"){
       aSystem.createEarningsList();
+    }
+  }
+});
+
+// navigate on buyer header 
+document.querySelectorAll(".header nav ul li").forEach(element => {
+  element.addEventListener("click", goBuyerSection);
+  function goBuyerSection(){
+    const navItem = element.getAttribute("data-nav");
+    showNextView(navItem);
+    if(navItem === "list-of-products"){
+      aSystem.createProductList();
+    } else if (navItem === "purchase-orders"){
+      aSystem.showPurchaseOrders("pending");
     }
   }
 });
@@ -176,7 +192,6 @@ document.getElementById("list-of-orders-admin").addEventListener("click", ($even
   
   aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
   aSystem.showPurchaseOrders(tabStatus);
-  
 });
 
 // table STOCK AND STATUS OF PRODUCTS
@@ -186,6 +201,42 @@ document.getElementById("stock-status-list").addEventListener("click", ($event) 
   const booleanSwichAction = $event.target.closest('input').checked;
   
   aSystem.findProductToChangeStatus(dataProductId, dataSwichAction, booleanSwichAction);
-  aSystem.stockStatusList()
-  
+  aSystem.stockStatusList()  
+});
+
+document.getElementById("btn-img").addEventListener("click", ($event) => {
+  toggleClass("img-gallery", "show")
+});
+document.getElementById("close-gallery").addEventListener("click", ($event) => {
+  toggleClass("img-gallery", "show")
+});
+document.querySelectorAll("#img-gallery ul li").forEach(element => {
+  element.addEventListener("click", selectImageGallery);
+  function selectImageGallery(){
+    document.getElementById("product-upload-img").value = element.getAttribute("data-img-name");
+    toggleClass("img-gallery", "show");
+    document.getElementById("loaded-img").src = `./assets/img/products/${element.getAttribute("data-img-name")}.png`;
+  }
+});
+
+document.getElementById("credit-card").addEventListener('input', function() {
+
+  let value = document.getElementById("credit-card").value.replace(/-/g, '');
+  if (value.length > 16) {
+      value = value.substring(0, 16);
+  }
+  let formattedValue = '';
+  for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+          formattedValue += '-';
+      }
+      formattedValue += value[i];
+  }
+  document.getElementById("fake-input").textContent = formattedValue;
+});
+document.getElementById("credit-card").addEventListener('focus', function() {
+  document.getElementById("fake-input").classList.add('active');
+});
+document.getElementById("credit-card").addEventListener('blur', function() {
+  document.getElementById("fake-input").classList.remove('active');
 });

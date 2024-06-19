@@ -13,7 +13,7 @@ class Product
         this.productId = "PROD_ID_" + counterProduct;
     }
     validate() {
-        if ( notEmpty(this.productName) && notEmpty(this.productPrice) && notEmpty(this.productDescription) && notEmpty(this.productStock) && isNumber(this.productPrice) && isNumber(this.productStock) && greaterZero(this.productPrice) && greaterZero(this.productStock)) {
+        if ( notEmpty(this.productName) && notEmpty(this.productPrice) && notEmpty(this.productDescription) && notEmpty(this.productStock) && notEmpty(this.productImg) && isNumber(this.productPrice) && isNumber(this.productStock) && greaterZero(this.productPrice) && greaterZero(this.productStock)) {
             toastMessage("Product has been loaded successfully", "success")
             counterProduct++;
             return true;

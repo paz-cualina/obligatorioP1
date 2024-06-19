@@ -32,6 +32,8 @@ class System {
         if (aProduct.validate()){
             this.allProducts.push(aProduct);
             this.stockStatusList();
+            restoreImgPlaceholder();
+            cleanInputs("product-form");
             return true
         } else {
             toastMessage(`The product cant be added`, "error");
@@ -291,6 +293,9 @@ class System {
             if(currentUser.admin){
                 orderBuyContainer = document.getElementById("list-of-orders-admin");
                 if (this.allPurchases[index].purchaseStatus === status) {
+                    const buyerObjectId = this.allPurchases[index].buyerID;
+                    const buyerObject = findObjectByNumericId(this.allBuyers, "id", buyerObjectId);
+                    
                     allStatesList += `
                         <li class="${this.allPurchases[index].purchaseStatus}" data-purchaseId="${this.allPurchases[index].purchaseID}">
                             <figure class="left">
@@ -298,14 +303,16 @@ class System {
                             </figure>
                             <div class="right">
                                 <div class="top-wrapper">
-                                    <p>${this.allPurchases[index].purchaseStatus} order</p>
-                                    <i></i>
+                                    <p>${this.allPurchases[index].purchaseStatus} order
+                                    <span class="user"><i class="fa-solid fa-user"></i> ${buyerObject.userName}</span>
+                                    </p>
+                                    <i class="icon-order"></i>
                                 </div>
                                 <p class="title-product">
                                     ${this.allPurchases[index].product.productName}
                                 </p>
                                 <div class="middle-wrapper">
-                                    <span class="description">${this.allPurchases[index].product.productDescription}</span>
+                                    <p class="description"> ${this.allPurchases[index].product.productDescription} </p>
                                     <div class="middle-right">
                                         <p><span>$${this.allPurchases[index].product.productPrice}</span> x${this.allPurchases[index].quantity}</p>
                                     </div>
@@ -331,7 +338,7 @@ class System {
                             <div class="right">
                                 <div class="top-wrapper">
                                     <p>${this.allPurchases[index].purchaseStatus} order</p>
-                                    <i></i>
+                                    <i class="icon-order"></i>
                                 </div>
                                 <p class="title-product">
                                     ${this.allPurchases[index].product.productName}

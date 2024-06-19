@@ -119,3 +119,26 @@ function findObjectByValue(allObject, propertyName, matchingValue) {
     }
     return foundObject
 }
+
+function toggleClass(elemetId, className){
+    const element = document.getElementById(elemetId);
+    element.classList.toggle(className);
+}
+
+function restoreImgPlaceholder(){
+    document.getElementById("loaded-img").src = `./assets/img/product-placeholder.png`;
+}
+
+function cleanInputs(formId){
+    const form = document.getElementById(formId);
+    const inputs = form.querySelectorAll('input');
+    const textarea = form.querySelectorAll('textarea');
+    inputs.forEach(input => {
+        input.value = '';
+    });
+    if(textarea !== undefined || textarea !== null) {
+        textarea.forEach(texta => {
+            texta.value = '';
+        });
+    }
+}

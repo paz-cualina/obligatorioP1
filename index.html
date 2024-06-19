@@ -32,22 +32,39 @@
         </div>
 
         <section id="product-upload-section" class="view admin-view" style="display: none;">
+            <div id="img-gallery">
+                <ul>
+                    <li data-img-name="product-black-pants"> <img src="./assets/img/products/product-black-pants.png" > </li>
+                    <li data-img-name="product-black-sneakers"> <img src="./assets/img/products/product-black-sneakers.png" > </li>
+                    <li data-img-name="product-golden-tshirt"> <img src="./assets/img/products/product-golden-tshirt.png" > </li>
+                    <li data-img-name="product-green-jacket"> <img src="./assets/img/products/product-green-jacket.png" > </li>
+                    <li data-img-name="sport-tshirt"> <img src="./assets/img/products/sport-tshirt.png" > </li>
+                    <li data-img-name="product-three-socks"> <img src="./assets/img/products/product-three-socks.png" > </li>
+                    <li data-img-name="shoes"> <img src="./assets/img/products/shoes.png" > </li>
+                    <li data-img-name="clssic-adidas"> <img src="./assets/img/products/clssic-adidas.png" > </li>
+                    <li data-img-name="product-white-socks"> <img src="./assets/img/products/product-white-socks.png" > </li>
+                </ul>
+                <i class="fa-solid fa-xmark" id="close-gallery"></i>
+            </div>
             <div class="content">
                 <div class="product-upload">
                     <h2>PRODUCT UPLOAD</h2>
                     <div class="display-flex">
-                        <div class="column">
+                        <div class="column" id="product-form">
                             <input type="text" id="product-upload-name" placeholder="name">
                             <div class="two-columns">
                                 <input type="number" id="product-upload-price" placeholder="price">
                                 <input type="number" id="product-upload-stock" placeholder="stock">
+                                <button id="btn-img" class="btn secondary">SELECT IMAGE</button>
+                                <input type="text" id="product-upload-img">
                             </div>
                             <textarea id="product-upload-description" placeholder="description"></textarea>
-                            <input type="text" id="product-upload-img" placeholder="img">
                             <button id="product-upload-add" class="btn secondary">ADD PRODUCT</button>
                         </div>
                         <div class="column">
-                            <img src="./assets/img/product-placeholder.jpg" class="">
+                            <figure>
+                                <img src="./assets/img/product-placeholder.jpg" id="loaded-img">
+                            </figure>
                             <img src="./assets/img/logo-flower.png" class="logo-flower">
                         </div>
                     </div>
@@ -118,9 +135,16 @@
                     <span>x</span>
                     <img src="./assets/img/korn-logo.png">
                 </div>
-                <span id="log-out-btn" class="go-to-btn">Log out</span>
+                <nav>
+                    <ul>
+                        <li data-nav="list-of-products"><a class="go-to-btn">Products</a></li>
+                        <li data-nav="purchase-orders"><a class="go-to-btn">My orders</a></li>
+                        <li data-nav="user-login"><span id="log-out-btn" class="go-to-btn">Log out</span></li>
+                    </ul>
+                </nav>
             </div>
         </header>
+
         <section id="list-of-products" class="view" style="display: none;">
             <div class="hero-bg">
                 <div class="video-container">
@@ -171,7 +195,7 @@
                     <span class="vertical-line"></span>
                     <img src="./assets/img/korn-logo.png">
                 </div>
-                <div class="form-wrapper">
+                <div class="form-wrapper" id="register-form">
                     <h1>User Registration</h1>
                     <form>
                         <input type="text" id="register-firstName" placeholder="First Name" value="wewrweqw"/>
@@ -180,7 +204,11 @@
                         <input type="password" id="register-pwd" placeholder="Password" value="wewrweqwWWWW333" />
                         <div class="input-wrapper">
                             <label>Credit Card</label>
-                            <input type="number" id="credit-card" placeholder="0000-2222-4444-6666"  value="123"/>
+                            <div class="card-wrapper">
+                                <span class="fake-input" id="fake-input"></span>
+                                <input type="number" id="credit-card" placeholder="0000-2222-4444-6666"  value="123"/>
+                            </div>
+                            
                         </div>
                         <div class="input-wrapper input-cvc">
                             <label>CVC</label>
@@ -203,7 +231,7 @@
                             <span>x</span>
                             <img src="./assets/img/korn-logo.png">
                         </div>
-                        <div class="form">
+                        <div class="form" id="login-form">
                             <div class="radio-inputs-wrapper">
                                 <label class="radio">
                                     <input type="radio" value="admin" name="radio" />

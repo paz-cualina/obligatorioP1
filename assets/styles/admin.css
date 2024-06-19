@@ -6,9 +6,21 @@
 #product-upload-section .product-upload .display-flex { gap: 60px; margin-bottom: 150px; }
 #product-upload-section .product-upload .column { position: relative; display: flex; flex-direction: column; gap: 30px; width: 100%; }
 #product-upload-section .product-upload .column .two-columns { display: flex; gap: 15px; }
-#product-upload-section .product-upload .column:nth-child(2) { width: 525px; }
-#product-upload-section .product-upload .column img { width: 100%; }
+#product-upload-section .product-upload .column:nth-child(2){ width: 414px; }
+#product-upload-section .product-upload .column figure { width: 100%; height: 373px; }
+#product-upload-section .product-upload .column img#loaded-img { width: 100%; height: 100%; object-fit: cover; }
 #product-upload-section .product-upload .column img.logo-flower { position: absolute; top: 30px; right: -40px; width: 100px; transform: rotate(22deg); }
+#product-upload-img{ display: none; }
+#product-upload-section #img-gallery{ visibility: hidden; opacity: 0; transition: all .3s; position: fixed; top: 0; left: 0; z-index: 100; height: 100vh; width: 100%; overflow: auto; }
+#product-upload-section #img-gallery::-webkit-scrollbar-thumb { background-color: var(--secondary); border-radius: 10px; }
+#product-upload-section #img-gallery::before{ content: ""; display: block; background: #000000cf; height: 100%; width: 100%; position: fixed; top: 0; left: 0; z-index: -1; }
+#product-upload-section #img-gallery ul{ width: 100%; padding: 70px 0; max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+#product-upload-section #img-gallery ul li{ width: 30%; overflow: hidden; height: 350px; cursor: pointer; border: 0; transition: all .3s; }
+#product-upload-section #img-gallery ul li img{ height: 100%; width: 100%; object-fit: cover; }
+#product-upload-section #img-gallery ul li:hover{ border: var(--primary) 6px solid; }
+#product-upload-section #img-gallery i{ position: absolute; top: 40px; right: 40px; color: #FFF; font-size: 28px; transition: all .3s; cursor: pointer; }
+#product-upload-section #img-gallery i:hover{ color: var(--secondary); }
+#product-upload-section #img-gallery.show{ visibility: visible; opacity: 1; }
 
 /*Tables*/
 #product-upload-section .table { overflow-x: scroll; }
