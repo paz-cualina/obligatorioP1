@@ -76,7 +76,7 @@ function validatePassword(password) {
 }
 
 function cardFormat(card) {
-  if (card.length !== 16 && isNaN(card)) {
+  if (card.length !== 16) {
     return false;
   } else { 
     return true; 
@@ -108,10 +108,11 @@ function validateCard(card) {
   if (!cardFormat(card)) {
     toastMessage("Card number must be 16 digits", "error")
     return false;
-  }
-  if (!luhn(card)) {
-    toastMessage("Card number is invalid", "error")
-    return false;
+  } else {
+    if (!luhn(card)) {
+      toastMessage("Card number is invalid", "error")
+      return false;
+    }
   }
   return true;
 }
