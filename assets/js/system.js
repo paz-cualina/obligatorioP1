@@ -211,7 +211,7 @@ class System {
         
         if ( dataStatusAction === "cancelled" ) {
             aDataOrder.purchaseStatus = dataStatusAction;
-            toastMessage(`The purchase order is cancelled`, "error");
+            toastMessage(`The purchase order is cancelled`, "success");
         } else {
             let dataBuyer = null;
             let i = 0;
