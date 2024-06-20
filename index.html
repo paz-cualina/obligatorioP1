@@ -161,11 +161,19 @@
             <div class="content">
                 <div class="hero-left">
                     <h1>Lorem ipsum <span>dolor sit amet.</span></h1>
-                    <img src="./assets/img/korn-singer.png">
+                    <div class="hero-imgs-container">
+                        <img src="./assets/img/hero-a.png">
+                        <img src="./assets/img/hero-d.png">
+                    </div>
                 </div>
                 <div class="hero-right">
-                    <img src="./assets/img/korn-guitar.png" class="korn-guitar">
-                    <img src="./assets/img/logo-flower.png" class="logo-flower">
+                    <div class="hero-imgs-container">
+                        <img src="./assets/img/hero1.jpg">
+                        <img src="./assets/img/hero2.jpg">
+                        <img src="./assets/img/hero3.jpg">
+                        <img src="./assets/img/hero4.jpg">
+                        <img src="./assets/img/logo-flower.png" class="logo-flower">                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -240,7 +248,7 @@
                     <div class="form" id="login-form">
                         <div class="radio-inputs-wrapper">
                             <label class="radio">
-                                <input type="radio" value="admin" name="radio" />
+                                <input type="radio" value="admin" name="radio" checked/>
                                 <span></span>
                                 <p>Admin</p>
                             </label>
@@ -250,8 +258,8 @@
                                 <p>Buyer</p>
                             </label>
                         </div>
-                        <input type="text" id="login-user" placeholder="User" />
-                        <input type="password" id="login-pwd" placeholder="Password" />
+                        <input type="text" id="login-user" placeholder="User"/>
+                        <input type="password" id="login-pwd" placeholder="Password"/>
                         <button id="login-button" class="btn">Login</button>
                         <span id="btn-go-register" class="go-to-btn">Are you register yet?</span>
                     </div>
