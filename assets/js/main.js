@@ -2,8 +2,8 @@
 const toastWrapper = document.querySelector(".toast-wrapper");
 
 // global variables
-let currentUser = [];
-let aDataProduct = [];
+let currentUser = {};
+let aDataProduct = {};
 let filterSale = false;
 let tabStatus = "pending";
 let totalEarnings = 0;
@@ -15,7 +15,7 @@ const aSystem = new System();
 // initial state
 function initialState(){
   aSystem.createProductList();
-  currentUser = [];
+  currentUser = {};
 }
 initialState();
 
@@ -49,7 +49,7 @@ function loginUser(){
 document.getElementById("log-out-btn").addEventListener("click", logOut);
 document.getElementById("log-out-btn-admin").addEventListener("click", logOut);
 function logOut(){
-  currentUser = [];
+  currentUser = {};
   showNextView("user-login");
   showUserLayout();
 }
