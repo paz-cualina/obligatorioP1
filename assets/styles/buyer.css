@@ -14,9 +14,6 @@
 #user-registration .content form .input-wrapper.input-cvc { flex-direction: row; align-items: center; gap: 20px; }
 #user-registration .content form .input-wrapper.input-cvc input { width: 65px; }
 #user-registration .content form .input-wrapper .card-wrapper{ position: relative; }
-#user-registration .content form .input-wrapper .card-wrapper #credit-card{position: absolute; top: 0; opacity: 0; z-index: 10; }
-#user-registration .content form .input-wrapper .card-wrapper #fake-input{height: 42px; color: var(--white); font-size: 17px; font-weight: 600; text-transform: uppercase; background-color: transparent; outline: none; font-family: "Poppins", sans-serif; width: 100%; border: none; border-bottom: 1px solid var(--white); border-radius: 0; padding: 4px; text-align: center; transition: all 0.3s; display: block;}
-#user-registration .content form .input-wrapper .card-wrapper #fake-input.active{ border-bottom: 1px solid var(--secondary);}
 #user-registration .go-to-btn { margin-top: 30px; }
 
 

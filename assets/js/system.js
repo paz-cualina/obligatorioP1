@@ -19,7 +19,6 @@ class System {
                 showNextView("list-of-products");
                 showUserLayout();
             }
-            console.log(this.allBuyers)
             return true;
         } else if ( this.existBuyer(aBuyer) ) {
             toastMessage(`The user ${aBuyer.userName} already exist`, "error");
@@ -134,7 +133,7 @@ class System {
                     <div class="subtotal">
                         <div class="wrapper-counter">
                             <span class="btn-minus">-</span>
-                            <input type="text" value="0" id="qty-product" readonly>
+                            <input type="text" value="1" id="qty-product" readonly>
                             <span class="btn-plus">+</span>
                         </div>
                         <span class="number">$${aDataProduct.productPrice}</span>
@@ -245,6 +244,31 @@ class System {
         }
         
         this.createProfilesList();
+    }
+
+    createProfilesList() {
+        let allProfilesAdmin = "";
+        let profileAdminContainer = document.getElementById("list-of-admins");
+        for (let index = 0; index < this.allAdmins.length; index++) {
+            allProfilesAdmin += `
+            <li>
+                <p>Username: ${this.allAdmins[index].userName}</p>
+                <p>Id: ${this.allAdmins[index].id}</p>
+            </li>`;
+        }
+        profileAdminContainer.innerHTML = allProfilesAdmin;
+        let allProfilesBuyers = "";
+        let profileBuyerContainer = document.getElementById("list-of-buyers");
+        for (let i = 0; i < this.allBuyers.length; i++) {
+            allProfilesBuyers += `
+            <li>
+                <p>Username: ${this.allBuyers[i].userName}</p>
+                <p>Balance: $ ${this.allBuyers[i].balance}</p>
+                <p>Id: ${this.allBuyers[i].id}</p>
+            </li>`;
+        }
+        profileBuyerContainer.innerHTML = allProfilesBuyers;
+      
     }
 
     updateBalanceAndStock(actionApprove, aDataOrder) {
@@ -401,10 +425,13 @@ class System {
                     <div class="column">
                         <img src="./assets/img/products/${this.allProducts[index].productImg}.png">
                     </div>
-                    <div class="column">${this.allProducts[index].productStock}</div>
+                    <div class="column">${this.allProducts[index].productPrice}</div>
+                    <div class="column">
+                        <input type="number" value="${this.allProducts[index].productStock}" class="stock-input" data-product-id="${this.allProducts[index].productId}" />
+                    </div>
                     <div class="column">
                         <div class="switch">
-                            <input type="checkbox" ${checkedStatus} data-product-id=${this.allProducts[index].productId} data-swich-action="productStatus"/>
+                            <input type="checkbox" ${checkedStatus} data-product-id=${this.allProducts[index].productId} data-switch-action="productStatus" class="switch-status" />
                             <div class="switch-options">
                                 <span class="left-option">Active</span>
                                 <span class="right-option">Paused</span>
@@ -417,7 +444,7 @@ class System {
                     </div>
                     <div class="column">
                         <div class="switch">
-                            <input type="checkbox" ${checkedOnSale} data-product-id=${this.allProducts[index].productId} data-swich-action="productSale"/>
+                            <input type="checkbox" ${checkedOnSale} data-product-id=${this.allProducts[index].productId} data-switch-action="productSale"/>
                             <div class="switch-options">
                                 <span class="left-option">Active</span>
                                 <span class="right-option">Paused</span>
@@ -430,56 +457,42 @@ class System {
                     </div>
                 </div>`;
         }
-        stockStatusList.innerHTML = allStockStatusList;
 
+        stockStatusList.innerHTML = allStockStatusList;
     }
 
-    findProductToChangeStatus(dataProductId, dataSwichAction, booleanSwichAction) {
-        let aDataProductList = null;
+    findProductToChangeStatus(dataProductId, dataSwitchAction, booleanSwitchAction) {
+        let aDataProduct = null;
         let index = 0;
 
-        while (aDataProductList === null && index < this.allProducts.length) {
-
+        while (aDataProduct === null && index < this.allProducts.length) {
             if (this.allProducts[index].productId === dataProductId) {
-                aDataProductList = this.allProducts[index];         
+                aDataProduct = this.allProducts[index];         
             }
-            else { index++; }
+            else {
+                index++;
+            }
         }
-        aDataProductList[dataSwichAction] = booleanSwichAction;
-        this.stockStatusList()
+
+        if (dataSwitchAction === "productSale" || parseInt(aDataProduct.productStock) > 0) {
+            aDataProduct[dataSwitchAction] = booleanSwitchAction;
+        } else {
+            aDataProduct[dataSwitchAction] = false;
+        }
+
+        this.stockStatusList();
     }
 
-    createProfilesList() {
-        let allProfilesAdmin = "";
-        let profileAdminContainer = document.getElementById("list-of-admins");
-
-        
-        for (let index = 0; index < this.allAdmins.length; index++) {
-            
-            allProfilesAdmin += `
-            <li>
-                <p>Username: ${this.allAdmins[index].userName}</p>
-                <p>Id: ${this.allAdmins[index].id}</p>
-            </li>`;   
-
-        }
-
-        profileAdminContainer.innerHTML = allProfilesAdmin;
-
-        let allProfilesBuyers = "";
-        let profileBuyerContainer = document.getElementById("list-of-buyers");
-        for (let i = 0; i < this.allBuyers.length; i++) {
-
-            allProfilesBuyers += `
-            <li>
-                <p>Username: ${this.allBuyers[i].userName}</p>
-                <p>Balance: $ ${this.allBuyers[i].balance}</p>
-                <p>Id: ${this.allBuyers[i].id}</p>
-            </li>`;   
-
-        }
-        profileBuyerContainer.innerHTML = allProfilesBuyers;
+    updateStockTable(dataProductId, stockInput, statusElement){
+        findObjectByValue(this.allProducts, "productId", dataProductId).productStock = stockInput;
+        this.stockSwitch(dataProductId, statusElement);
     }
+
+    stockSwitch(dataProductId, statusElement) {
+        const findProduct = findObjectByValue(this.allProducts, "productId", dataProductId);
+        statusElement.checked = findProduct.productStock > 0;
+    }
+
     createEarningsList() {
         totalEarnings = 0;
         let allEarnings = "";
@@ -518,12 +531,13 @@ class System {
     preload() {
         // Buyers
         this.addBuyer(new Buyer("Tamara", "Sancristobal", "tam_sancri", "Tamara2024", "4916103567334187","123"));
-        this.addBuyer(new Buyer("John", "Doe", "john_doe", "John2024", "4916112345678901", "456"));
-        this.addBuyer(new Buyer("Jane", "Smith", "jane_smith", "Jane2024", "4916123456789012", "789"));
-        this.addBuyer(new Buyer("Alice", "Johnson", "alice_johnson", "Alice2024", "4916134567890123", "012"));
-        this.addBuyer(new Buyer("Bob", "Brown", "bob_brown", "Bob2024", "4916145678901234", "345"));
+        this.addBuyer(new Buyer("John", "Doe", "john_doe", "John2024", "4916103567334187", "456"));
+        this.addBuyer(new Buyer("Jane", "Smith", "jane_smith", "Jane2024", "4916103567334187", "789"));
+        this.addBuyer(new Buyer("Alice", "Johnson", "alice_johnson", "Alice2024", "4916103567334187", "012"));
+        this.addBuyer(new Buyer("Bob", "Brown", "bob_brown", "Bob2024", "4916103567334187", "345"));
         // Admins
         this.addAdmin(new Admin("mel_roger", "Melanie2024"));
+        this.addAdmin(new Admin("tam_sancri", "Tamara2024"));
         this.addAdmin(new Admin("john_admin", "JohnAdmin123"));
         this.addAdmin(new Admin("jane_admin", "JaneAdmin08"));
         this.addAdmin(new Admin("alice_admin", "AliceAdmin1990"));
@@ -543,10 +557,10 @@ class System {
         
         // Purchases
         currentUser = this.allAdmins[0];
-        this.addPurchase(new Purchase(0, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"pending", 1200 ));
+        this.addPurchase(new Purchase(2, { "productName": "Scottish Miniskirt", "productPrice": 600, "productDescription": "Miniskirt with black and white scottish print", "productImg": "product-skirt", "productStock": 5, "productStatus": true, "productSale": false, "productId": "PROD_ID_4" }, 2,"pending", 1200 ));
         this.findPurchaseToChangeStatus(0, "approved");
 
-        this.addPurchase(new Purchase(0, { "productName": "Black Sunglasses", "productPrice": 200, "productDescription": "Regular black sunglasses", "productImg": "product-sunglasses", "productStock": 10, "productStatus": true, "productSale": false, "productId": "PROD_ID_10" }, 3,"pending", 600 ));
+        this.addPurchase(new Purchase(1, { "productName": "Black Sunglasses", "productPrice": 200, "productDescription": "Regular black sunglasses", "productImg": "product-sunglasses", "productStock": 10, "productStatus": true, "productSale": false, "productId": "PROD_ID_10" }, 3,"pending", 600 ));
         this.findPurchaseToChangeStatus(1, "cancelled");
 
         // This will remain pending
@@ -555,7 +569,7 @@ class System {
         this.addPurchase(new Purchase(1, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 2,"pending", 2200 ));
         this.findPurchaseToChangeStatus(3, "approved");
 
-        this.addPurchase(new Purchase(0, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"pending", 1100 ));
+        this.addPurchase(new Purchase(3, { "productName": "Hoodie Korn", "productPrice": 1100, "productDescription": "Black hoodie with white centered Korn logo", "productImg": "product-hoodie", "productStock": 1, "productStatus": true, "productSale": false, "productId": "PROD_ID_2" }, 1,"pending", 1100 ));
         this.findPurchaseToChangeStatus(4, "approved");
 
         this.addPurchase(new Purchase(2, { "productName": "Black Sport Pants", "productPrice": 1500, "productDescription": "Black sport pants with side pockets", "productImg": "product-black-pants", "productStock": 10, "productStatus": true, "productSale": true, "productId": "PROD_ID_3" }, 1,"pending", 1500 ));

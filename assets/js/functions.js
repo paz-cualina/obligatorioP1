@@ -84,7 +84,7 @@ function counterQty() {
   
     btnMinus.addEventListener("click", function() {
         let currentValue = parseInt(qtyProduct.value);
-        if (currentValue > 0) {
+        if (currentValue > 1) {
             qtyProduct.value = currentValue - 1;
         }
     });

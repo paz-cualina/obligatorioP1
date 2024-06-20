@@ -63,7 +63,7 @@
                         </div>
                         <div class="column">
                             <figure>
-                                <img src="./assets/img/product-placeholder.jpg" id="loaded-img">
+                                <img src="./assets/img/product-placeholder.png" id="loaded-img">
                             </figure>
                             <img src="./assets/img/logo-flower.png" class="logo-flower">
                         </div>
@@ -76,6 +76,7 @@
                     <div class="row table-titles">
                         <div class="column">PRODUCT</div>
                         <div class="column">IMAGE</div>
+                        <div class="column">PRICE</div>
                         <div class="column">STOCK</div>
                         <div class="column">STATUS</div>
                         <div class="column">ON SALE</div>
@@ -198,15 +199,14 @@
                 <div class="form-wrapper" id="register-form">
                     <h1>User Registration</h1>
                     <form>
-                        <input type="text" id="register-firstName" placeholder="First Name" value="wewrweqw"/>
-                        <input type="text" id="register-lastName" placeholder="Last Name"  value="wewrweqw"/>
-                        <input type="text" id="register-user" placeholder="User"  value="wewrweqw"/>
-                        <input type="password" id="register-pwd" placeholder="Password" value="wewrweqwWWWW333" />
+                        <input type="text" id="register-firstName" placeholder="First Name"/>
+                        <input type="text" id="register-lastName" placeholder="Last Name" />
+                        <input type="text" id="register-user" placeholder="User" />
+                        <input type="password" id="register-pwd" placeholder="Password" />
                         <div class="input-wrapper">
                             <label>Credit Card</label>
                             <div class="card-wrapper">
-                                <span class="fake-input" id="fake-input"></span>
-                                <input type="number" id="credit-card" placeholder="0000-2222-4444-6666"  value="123"/>
+                                <input type="text" id="credit-card" maxlength="19" placeholder="0000-2222-4444-6666" />
                             </div>
                             
                         </div>
@@ -234,12 +234,12 @@
                         <div class="form" id="login-form">
                             <div class="radio-inputs-wrapper">
                                 <label class="radio">
-                                    <input type="radio" value="admin" name="radio" />
+                                    <input type="radio" value="admin" name="radio" checked />
                                     <span></span>
                                     <p>Admin</p>
                                 </label>
                                 <label class="radio">
-                                    <input id="buyer-radio" type="radio" value="buyer" name="radio" checked />
+                                    <input id="buyer-radio" type="radio" value="buyer" name="radio" />
                                     <span></span>
                                     <p>Buyer</p>
                                 </label>

@@ -1,4 +1,5 @@
 let counterBuyer = 0;
+
 class Buyer
 {
     constructor(firstName, lastName, userName, password, card, cvc)
@@ -13,6 +14,7 @@ class Buyer
         this.admin = false;
         this.id = counterBuyer;
     }
+
     validate() {
         if ( validateFirstName(this.firstName) && validateLastName(this.lastName) && validateUser(this.userName) && validatePassword(this.password) && validateCard(this.card) && validateCVC(this.cvc) ) {
             counterBuyer++;
@@ -21,5 +23,4 @@ class Buyer
             return false;
         }
     }
-    
 }

@@ -26,7 +26,7 @@ function registerBuyer(){
   const lastName = document.getElementById("register-lastName").value.trim().toLowerCase();
   const userName = document.getElementById("register-user").value.trim().toLowerCase();
   const password = document.getElementById("register-pwd").value.trim();
-  const card = document.getElementById("credit-card").value.trim();
+  const card = document.getElementById("credit-card").value.trim().replace(/-/g, '');
   const cvc = document.getElementById("card-cvc").value.trim();
 
   const newBuyer = new Buyer(firstName, lastName, userName, password, card, cvc);
@@ -52,7 +52,6 @@ function logOut(){
   currentUser = [];
   showNextView("user-login");
   showUserLayout();
-  cleanInputs("login-form");
 }
 
 // upload new product
@@ -108,7 +107,6 @@ document.getElementById("btn-go-register").addEventListener("click", goRegister)
 function goRegister(){
   showNextView("user-registration");
   loggedIn = true;
-  cleanInputs("register-form");
 }
 
 // go to login page
@@ -137,7 +135,6 @@ document.querySelectorAll(".admin-sidebar li").forEach(element => {
     if(sidebarItem === "purchase-approval-section"){
       aSystem.showPurchaseOrders("pending");
     } else if (sidebarItem === "profile-section"){
-      console.log(aSystem.allBuyers)
       aSystem.createProfilesList();
     } else if (sidebarItem === "earnings-report-section"){
       aSystem.createEarningsList();
@@ -196,18 +193,33 @@ document.getElementById("list-of-orders-admin").addEventListener("click", ($even
 
 // table STOCK AND STATUS OF PRODUCTS
 document.getElementById("stock-status-list").addEventListener("click", ($event) => {
-  const dataProductId = $event.target.closest("input").getAttribute('data-product-id');
-  const dataSwichAction = $event.target.closest("input").getAttribute('data-swich-action');
-  const booleanSwichAction = $event.target.closest('input').checked;
-  
-  aSystem.findProductToChangeStatus(dataProductId, dataSwichAction, booleanSwichAction);
-  aSystem.stockStatusList()  
+  const dataInput = $event.target.closest("input");
+  if (dataInput) {
+    const dataProductId = dataInput.getAttribute('data-product-id');
+    const dataSwitchAction = dataInput.getAttribute('data-switch-action');
+    if (dataProductId && dataSwitchAction) {
+      aSystem.findProductToChangeStatus(dataProductId, dataSwitchAction, dataInput.checked);
+    }
+  }
 });
 
-document.getElementById("btn-img").addEventListener("click", ($event) => {
+// input stock table STOCK AND STATUS OF PRODUCTS
+document.getElementById("stock-status-list").addEventListener("input", ($event) => {
+  const stockInput = $event.target.closest("input[type=number]");
+  if (stockInput) {
+    const dataProductId = stockInput.getAttribute("data-product-id");
+    if (dataProductId) {
+      const statusElement = stockInput.closest(".row").getElementsByClassName("switch-status")[0];
+      aSystem.updateStockTable(dataProductId, stockInput.value, statusElement);
+    }
+  }
+});
+
+// Gallery Add Products
+document.getElementById("btn-img").addEventListener("click", () => {
   toggleClass("img-gallery", "show")
 });
-document.getElementById("close-gallery").addEventListener("click", ($event) => {
+document.getElementById("close-gallery").addEventListener("click", () => {
   toggleClass("img-gallery", "show")
 });
 document.querySelectorAll("#img-gallery ul li").forEach(element => {
@@ -219,24 +231,17 @@ document.querySelectorAll("#img-gallery ul li").forEach(element => {
   }
 });
 
+// Credit Card Format
 document.getElementById("credit-card").addEventListener('input', function() {
 
-  let value = document.getElementById("credit-card").value.replace(/-/g, '');
-  if (value.length > 16) {
-      value = value.substring(0, 16);
-  }
+  let valueInput = document.getElementById("credit-card").value.replace(/-/g, '');
+
   let formattedValue = '';
-  for (let i = 0; i < value.length; i++) {
-      if (i > 0 && i % 4 === 0) {
-          formattedValue += '-';
+  for (let i = 0; i < valueInput.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formattedValue += '-';
       }
-      formattedValue += value[i];
+      formattedValue += valueInput[i];
   }
-  document.getElementById("fake-input").textContent = formattedValue;
-});
-document.getElementById("credit-card").addEventListener('focus', function() {
-  document.getElementById("fake-input").classList.add('active');
-});
-document.getElementById("credit-card").addEventListener('blur', function() {
-  document.getElementById("fake-input").classList.remove('active');
+  document.getElementById("credit-card").value = formattedValue;
 });

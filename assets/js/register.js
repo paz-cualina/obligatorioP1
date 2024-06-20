@@ -74,48 +74,36 @@ function validatePassword(password) {
     return false; 
   }
 }
+
 function cardFormat(card) {
   if (card.length !== 16 && isNaN(card)) {
-    console.log("card format:" + card)
     return false;
-  }else
-  { return true; }
-}
-function luhn(card)
-{
-  let switchTo = true;
-  let total = 0;
-  console.log("card lunh:" + card)
-  for(let i = card.length-1; i >= 0; i--)
-  {
-    console.log("card position" + i)
-    if(switchTo)
-    {
-      let subTotal = parseInt(card[i]) * 2;
-      if(subTotal > 9) {
-        subTotal -= 9;
-        total += subTotal;
-      }else {total += subTotal;}
-      switchTo = false;
-      console.log("card i = " + card[i])
-      console.log("subTotal = " + subTotal)
-      console.log("total = " + total)
-    }
-    else
-    {
-      total += parseInt(card[i]);
-      switchTo = true;
-      console.log("card i = " + card[i])
-      console.log("total = " + total)
-    }
+  } else { 
+    return true; 
   }
-  total = total * 9;
-  total = String(total);
-
-  console.log("TOTAL FINAL = " + total)
-
-  return total[total.length-1];
 }
+
+function luhn(card) {
+  let total = 0;
+  let switchTo = false;
+
+  for (let i = card.length - 1; i >= 0; i--) {
+      let n = parseInt(card[i], 10);
+
+      if (switchTo) {
+          n *= 2;
+          if (n > 9) {
+              n -= 9;
+          }
+      }
+
+      total += n;
+      switchTo = !switchTo;
+  }
+  
+  return (total % 10 === 0);
+}
+
 function validateCard(card) {
   if (!cardFormat(card)) {
     toastMessage("Card number must be 16 digits", "error")
