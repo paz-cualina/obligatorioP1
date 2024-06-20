@@ -6,6 +6,7 @@ function containUpperCase(text) {
   }
   return false;
 }
+
 function containLowerCase(text) {
   for ( let i = 0; i < text.length; i++ ) {
     if ( text[i] >= "a" && text[i] <= "z" ) {
@@ -14,6 +15,7 @@ function containLowerCase(text) {
   }
   return false;
 }
+
 function containNumber(text) {
   for ( let i = 0; i < text.length; i++ ) {
     if ( !isNaN(text[i]) ) {
@@ -22,6 +24,7 @@ function containNumber(text) {
   }
   return false;
 }
+
 function validateFirstName(firstName) {
   if ( notEmpty(firstName) ) {
     if ( firstName.length >= 2 && firstName.length <= 12 ) {
@@ -35,6 +38,7 @@ function validateFirstName(firstName) {
     return false; 
   }
 }
+
 function validateLastName(lastName) {
   if ( notEmpty(lastName) ) {
     if ( lastName.length >= 2 && lastName.length <= 12 ) {
@@ -48,6 +52,7 @@ function validateLastName(lastName) {
     return false; 
   }
 }
+
 function validateUser(userName) {
   if ( notEmpty(userName)) {
     if ( userName.length >= 6 && userName.length <= 20 ) {
@@ -61,6 +66,7 @@ function validateUser(userName) {
     return false; 
   }
 }
+
 function validatePassword(password) {
   if ( notEmpty(password) ) {
     if ( password.length >= 5 && containUpperCase(password) && containLowerCase(password) && containNumber(password) ) {
@@ -116,6 +122,7 @@ function validateCard(card) {
   }
   return true;
 }
+
 function validateCVC(cvc) {
   if (cvc.length !== 3) {
     toastMessage("CVC must be 3 digits", "error")

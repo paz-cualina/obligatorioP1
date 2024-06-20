@@ -10,6 +10,7 @@ class Purchase
         this.purchaseID = counterPurchase;
         this.totalOrder = totalOrder;
     }
+
     validate() {
         if ( greaterZero(this.quantity) ) {
             toastMessage("Purchase has been loaded successfully", "success")
@@ -19,5 +20,5 @@ class Purchase
             return false;
         }
      }
-    
+   
 }

@@ -96,6 +96,7 @@ function counterQty() {
 
 };
 
+// Find object by numeric id
 function findObjectByNumericId(allObject, propertyName, matchingId) {
     let foundObject = null;
     let index = 0;
@@ -103,11 +104,14 @@ function findObjectByNumericId(allObject, propertyName, matchingId) {
     while (foundObject === null && index < allObject.length) {
         if (parseInt(allObject[index][propertyName]) === parseInt(matchingId)) {
             foundObject = allObject[index];         
-        }else { index++; }
+        } else { 
+            index++; 
+        }
     }
     return foundObject
 }
 
+// Find object by value
 function findObjectByValue(allObject, propertyName, matchingValue) {
     let foundObject = null;
     let index = 0;
@@ -115,7 +119,9 @@ function findObjectByValue(allObject, propertyName, matchingValue) {
     while (foundObject === null && index < allObject.length) {
         if (allObject[index][propertyName] === matchingValue) {
             foundObject = allObject[index];         
-        }else { index++; }
+        } else { 
+            index++; 
+        }
     }
     return foundObject
 }
@@ -125,10 +131,13 @@ function toggleClass(elemetId, className){
     element.classList.toggle(className);
 }
 
+// Restore image add product
 function restoreImgPlaceholder(){
     document.getElementById("loaded-img").src = `./assets/img/product-placeholder.png`;
 }
 
+
+// Clean inputs
 function cleanInputs(formId){
     const form = document.getElementById(formId);
     const inputs = form.querySelectorAll('input');

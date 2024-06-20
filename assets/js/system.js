@@ -10,6 +10,7 @@ class System {
     existBuyer(aBuyer) {
         return findObjectByValue(this.allBuyers, "userName", aBuyer.userName) !== null;
     }
+
     addBuyer(aBuyer) {
         if (aBuyer.validate() && !this.existBuyer(aBuyer)) {
             this.allBuyers.push(aBuyer);
@@ -27,6 +28,7 @@ class System {
             return false;
         }
     }
+
     addProduct(aProduct) {
         if (aProduct.validate()){
             this.allProducts.push(aProduct);
@@ -39,9 +41,11 @@ class System {
             return false;
         }
     }
+
     existAdmin(anAdmin) {
         return findObjectByValue(this.allAdmins, "userName", anAdmin.userName) !== null;
     }
+
     addAdmin(anAdmin) {
         if (anAdmin.validate() && !this.existAdmin(anAdmin)) {
             this.allAdmins.push(anAdmin);
@@ -100,7 +104,6 @@ class System {
                     }
                 }  
             }
-
         }
     }
     productDetail(dataIdProduct) {
@@ -143,6 +146,7 @@ class System {
 
         return contentDetailContainer.innerHTML = contentDetail;
     }
+
     addPurchase(aPurchase) {
         if (aPurchase.validate()) {
             this.allPurchases.push(aPurchase);
@@ -384,7 +388,6 @@ class System {
         }
         
         orderBuyContainer.innerHTML = allStatesList;
-
         this.showCurrentBalanceAndTotal(status);
     }
 
@@ -524,6 +527,7 @@ class System {
 
 
         }
+        
         earningsReportTable.innerHTML = allEarnings;
         document.getElementById("totalEarnings").innerHTML = `$ ${totalEarnings}`;
     }

@@ -23,4 +23,5 @@ class Buyer
             return false;
         }
     }
+    
 }

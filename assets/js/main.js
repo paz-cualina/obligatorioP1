@@ -26,7 +26,7 @@ function registerBuyer(){
   const lastName = document.getElementById("register-lastName").value.trim().toLowerCase();
   const userName = document.getElementById("register-user").value.trim().toLowerCase();
   const password = document.getElementById("register-pwd").value.trim();
-  const card = document.getElementById("credit-card").value.trim().replace(/-/g, '');
+  const card = document.getElementById("credit-card").value.trim().replace(/-/g, "");
   const cvc = document.getElementById("card-cvc").value.trim();
 
   const newBuyer = new Buyer(firstName, lastName, userName, password, card, cvc);
@@ -119,7 +119,7 @@ function goLogin(){
 document.getElementById("btn-go-list").addEventListener("click", goList);
 function goList(){
   showNextView("list-of-products");
-  document.getElementsByClassName('main-products')[0].scrollIntoView();
+  document.getElementsByClassName("main-products")[0].scrollIntoView();
 }
 
 // navigate on admin bar sections 
@@ -174,8 +174,8 @@ document.querySelectorAll(".list-tabs-orders li").forEach(element => {
 document.getElementById("list-of-orders-buyer").addEventListener("click", ($event) => {
   const actionButton = $event.target.closest(".btn-purchase");
   if (actionButton) {
-    const itemPurchase = actionButton.getAttribute('data-purchaseId');
-    const btnStatusAction = actionButton.getAttribute('data-status-action');
+    const itemPurchase = actionButton.getAttribute("data-purchaseId");
+    const btnStatusAction = actionButton.getAttribute("data-status-action");
 
     aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
     aSystem.showPurchaseOrders(tabStatus);
@@ -184,8 +184,8 @@ document.getElementById("list-of-orders-buyer").addEventListener("click", ($even
 
 // cancel and approve purchase button admin
 document.getElementById("list-of-orders-admin").addEventListener("click", ($event) => {
-  const itemPurchase = $event.target.closest(".btn-purchase").getAttribute('data-purchaseId');
-  const btnStatusAction = $event.target.closest(".btn-purchase").getAttribute('data-status-action');
+  const itemPurchase = $event.target.closest(".btn-purchase").getAttribute("data-purchaseId");
+  const btnStatusAction = $event.target.closest(".btn-purchase").getAttribute("data-status-action");
   
   aSystem.findPurchaseToChangeStatus(itemPurchase, btnStatusAction);
   aSystem.showPurchaseOrders(tabStatus);
@@ -195,8 +195,8 @@ document.getElementById("list-of-orders-admin").addEventListener("click", ($even
 document.getElementById("stock-status-list").addEventListener("click", ($event) => {
   const dataInput = $event.target.closest("input");
   if (dataInput) {
-    const dataProductId = dataInput.getAttribute('data-product-id');
-    const dataSwitchAction = dataInput.getAttribute('data-switch-action');
+    const dataProductId = dataInput.getAttribute("data-product-id");
+    const dataSwitchAction = dataInput.getAttribute("data-switch-action");
     if (dataProductId && dataSwitchAction) {
       aSystem.findProductToChangeStatus(dataProductId, dataSwitchAction, dataInput.checked);
     }
@@ -232,14 +232,14 @@ document.querySelectorAll("#img-gallery ul li").forEach(element => {
 });
 
 // Credit Card Format
-document.getElementById("credit-card").addEventListener('input', function() {
+document.getElementById("credit-card").addEventListener("input", function() {
 
-  let valueInput = document.getElementById("credit-card").value.replace(/-/g, '');
+  let valueInput = document.getElementById("credit-card").value.replace(/-/g, "");
 
-  let formattedValue = '';
+  let formattedValue = "";
   for (let i = 0; i < valueInput.length; i++) {
     if (i > 0 && i % 4 === 0) {
-      formattedValue += '-';
+      formattedValue += "-";
       }
       formattedValue += valueInput[i];
   }
